@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:21:38 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 15:11:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/29 17:15:43 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char	*ms_cd_removepath(char *current_pwd)
 //Update le PWD et OLDPWD dans envp_ms
 void	ms_cd_updatepath(char *current_pwd, char *new_pwd, char **envp_ms)
 {
-	int	pwd_path;
-	int	oldpwd_path;
 	int	index;
 	int	count;
 
