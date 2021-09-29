@@ -6,15 +6,17 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 11:16:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/29 13:16:21 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ms_cd_doubledot(char **envp_ms, char *old_pwd, char *current_pwd, char *new_pwd)
+void	ms_cd_doubledot(char **envp_ms, char *current_pwd)
 {
-	int	index;
+	int		index;
+	char	*new_pwd;
+	char	*old_pwd;
 
 	index = ft_strlen(current_pwd);
 	while (current_pwd[index])
