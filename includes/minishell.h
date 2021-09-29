@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 12:33:34 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/29 17:00:47 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+# include "token.h"
+# include "exec.h"
 
 void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
