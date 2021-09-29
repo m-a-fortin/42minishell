@@ -6,7 +6,7 @@
 #    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/09/29 17:10:59 by mafortin         ###   ########.fr        #
+#    Updated: 2021/09/29 17:27:58 by mafortin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS_PATH =	srcs
 LIBFT =		libft
 LIB =		lib
 
-SRCS =		minishell.c exec/ms_signals.c exec/ms_pwd.c exec/ms_cd.c exec/ms_cd_utils.c envp/ms_envp_utils.c
+SRCS =		minishell.c ms_signals.c ms_pwd.c ms_cd.c ms_cd_utils.c ms_envp_utils.c
 
 CC =		gcc
 CFLAGS =	-Wall -Werror -Wextra -c -g

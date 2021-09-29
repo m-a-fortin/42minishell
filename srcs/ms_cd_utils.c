@@ -6,18 +6,17 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:21:38 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 17:15:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:27:01 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 //fonctions pour remove le dernier directory dans le path PWD.
 char	*ms_cd_removepath(char *current_pwd)
 {
 	int	index;
 	int	len;
-	int	count;
 	char	*new_pwd;
 
 	index = 0;
@@ -30,7 +29,7 @@ char	*ms_cd_removepath(char *current_pwd)
 			len--;
 	}
 	new_pwd = ft_calloc(len + 1, sizeof(char));
-	new_pwd = ft_strlcpy(new_pwd, current_pwd, len + 1);
+	ft_strlcpy(new_pwd, current_pwd, len + 1);
 	return (new_pwd);
 }
 

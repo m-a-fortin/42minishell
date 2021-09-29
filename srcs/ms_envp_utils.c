@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 12:55:21 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:27:12 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ int	ms_setenv(char *name, char *value, char **envp_ms)
 		new_line = ft_strjoin(name, value);
 		envp_ms = ft_addline(envp_ms, new_line);
 	}
-	ft_print_matrice(envp_ms);
 	return (0);
 }
