@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 09:04:48 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/30 09:29:10 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "../../includes/parse.h"
 #include "../../includes/token.h"
 
-void	add_to_token_list(t_token *token, t_valid *valid)
+void	add_to_token_list(t_parser *par, t_token *token)
 {
-	;
+	; //TODO add valid tokens to the linked list
 }
 
 bool	find_token(t_token *token)
@@ -24,7 +24,7 @@ bool	find_token(t_token *token)
 	
 }
 
-char	*trim_input(t_token *token, char *input)
+char	*trim_input(char *input)
 {
 	char	*temp;
 
@@ -36,9 +36,9 @@ char	*trim_input(t_token *token, char *input)
 	return (input);
 }
 
-void	init_tokens(t_token *token, char *input)
+void	init_parser(t_parser *par, char *input)
 {
-	token->input = NULL;
-	token->index = 0;
-	token->state = TEXT;
+	par->input = NULL;
+	par->index = 0;
+	par->state = TEXT;
 }

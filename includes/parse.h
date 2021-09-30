@@ -10,11 +10,12 @@ typedef enum e_state
 	S_QUOTE,
 } t_state;
 
-typedef struct s_valid
+typedef struct s_parser
 {
-	char *valid_token;
-	struct s_valid *next;
-} t_valid;
+	char 	*input;
+	int 	index;
+	t_state state;
+} t_parser;
 
 void	parse_input(char *input);
 

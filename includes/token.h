@@ -1,7 +1,8 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-# define OPERATORS ""
+# define OPERATORS "<>|$="
+
 typedef enum e_type
 {
 	PIPE,
@@ -14,14 +15,13 @@ typedef enum e_type
 
 typedef struct s_token
 {
-	char 		*input;
-	int 		index;
-	t_state 	state;
+	char 			*valid_token;
+	t_type 			type;
+	struct s_valid 	*next;
 } t_token;
 
-
-void	init_tokens(t_token *token, char *input);
-char	*trim_input(t_token *token, char *input);
+void 	init_parser(t_parser *par, char *input);
+char 	*trim_input(char *input);
 bool 	find_token(t_token *token);
 
 #endif

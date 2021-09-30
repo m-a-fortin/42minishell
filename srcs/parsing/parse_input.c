@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 09:04:15 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/30 09:23:40 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 #include "../../includes/token.h"
 #include "../../includes/parse.h"
 
-static bool	validate_token_syntax(t_token *token)
+static bool	validate_token_syntax(t_parser *par)
 {
-	t_valid	*valid;
+	t_token	*token;
 
-	valid = NULL;
-	while (token->input[token->index])
+	par = NULL;
+	while (par->input[par->index])
 	{
-		while (ft_strchr(SPACES, token->input[token->index])); // * coupe les whitespaces entre les tokens
-			token->index++;
-		if(!find_token(token)) //* check if token syntax is valid, if not return false
+		while (ft_strchr(SPACES, par->input[par->index])); // * coupe les whitespaces entre les tokens
+			par->index++;
+		if(!find_token(par)) //* check if token syntax is valid, if not return false
 			return (false);
-		add_to_token_list(token, valid);
+		add_to_token_list(par, token);
 	}
 	return (true);
 }
 
 void	parse_input(char *input)
 {
-	t_token	token;
+	t_parser	par;
 
-	init_tokens(&token, input);
+	init_parser(&par, input);
 	if (!input)
 		;// TODO Error code here
-	token.input = trim_input(&token, input);
-	if (!validate_token_syntax(&token))
+	par.input = trim_input(input);
+	if (!validate_token_syntax(&par))
 	{
 		//TODO print error near invalid syntax
 	}
