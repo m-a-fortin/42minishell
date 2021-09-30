@@ -6,82 +6,43 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 13:16:21 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:41:25 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ms_cd_doubledot(char **envp_ms, char *current_pwd)
+//cd dans home si il est set. Si unset retourne un message d'erreur.
+void	ms_cd_home(char **envp_ms)
 {
-	int		index;
-	char	*new_pwd;
-	char	*old_pwd;
-
-	index = ft_strlen(current_pwd);
-	while (current_pwd[index])
-	{
-		if (current_pwd[index] == '/')
-			break ;
-		else
-			index--;
-	}
-	new_pwd = calloc(index + 1, sizeof(char));
-	ft_strlcpy(new_pwd, current_pwd, index + 1);
-	ms_setenv("PWD=", new_pwd, envp_ms);
-	
-
-}
-
-char	*ms_cd_removepath(char *current_pwd)
-{
-	int	index;
-	int	len;
-	int	count;
-
-	index = 0;
-	len = ft_strlen(current_pwd);
-	while (len >= 0)
-	{
-		if (current_pwd[len] == '/')
-		{
-			count++;
-			break ;
-		}
-		len--;
-	}
-	
-}
-void	ms_cd_main(t_job *cmd_head, char **envp_ms)
-{
-	char	*old_pwd;
-	char	*current_pwd;
 	char	*new_pwd;
 
-	current_pwd = getcwd(current_pwd, 0);
-	if (cmd_head->args == ".")
+	new_pwd = ms_getenv("HOME=", envp_ms);
+	if (new_pwd == NULL)
 	{
-		//refresh pwd.
+		ft_putstr_fd("minishell: cd: HOME not set\n", 1);
 		return ;
 	}
+	chdir(new_pwd);
+}
 
-	if (cmd_head->args == "..")
-	{
-		//old_pwd = currect_pwd
-		//path va etre le dir avant dans pwd.
-		chdir()
-	}
+//Si le path est bon, chdir dans le path et update l'envp_ms.
+//Sinon retourne un message d'erreur comme bash.
+void	ms_cd_main(char **cmd, char **envp_ms)
+{
+	char	*error;
 
-	if (cmd_head->args == NULL || cmd_head->args == "~")
+	error = 0;
+	if (cmd[1] == NULL || ft_strncmp(cmd[1], "~", 1) == 0)
+		ms_cd_home(envp_ms);
+	else if (chdir(cmd[1]) == -1)
 	{
-		//old_pwd = currect_pwd
-		//path va etre le root dir
-		chdir()
+		error = strerror(errno);
+		ft_putstr_fd("minishell: cd: ", 1);
+		ft_putstr_fd(cmd[1], 1);
+		ft_putstr_fd(": ", 1);
+		ft_putendl_fd(error, errno);
 	}
 	else
-		chdir(cmd_head->args);
-	//faire fonction qui change le envp PWD et OLD_PWD
-	free(current_pwd);
-	free(old_pwd);
-	free(new_pwd);
+		ms_setenv("PWD=", cmd[1], envp_ms);
 }
