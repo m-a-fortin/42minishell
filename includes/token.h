@@ -20,8 +20,6 @@ typedef struct s_token
 	struct s_valid 	*next;
 } t_token;
 
-void 	init_parser(t_parser *par, char *input);
 char 	*trim_input(char *input);
-bool 	find_token(t_token *token);
 
 #endif

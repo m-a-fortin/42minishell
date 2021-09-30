@@ -6,28 +6,29 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:58:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 08:56:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/30 10:57:23 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "token.h"
+#include "../../includes/minishell.h"
+#include "../../includes/token.h"
+#include "../../includes/parse.h"
 
-void	change_state(t_token *token)
+void	change_state(t_parser *par)
 {
-	if (token->input[token->index] == '\'')
+	if (par->input[par->index] == '\'')
 	{
-		if (token->state == TEXT)
-			token->state = S_QUOTE;
-		else if (token->state == S_QUOTE)
-			token->state = TEXT;
+		if (par->state == TEXT)
+			par->state = S_QUOTE;
+		else if (par->state == S_QUOTE)
+			par->state = TEXT;
 	}
-	else if (token->input[token->index] == '"')
+	else if (par->input[par->index] == '"')
 	{
-		if (token->state == TEXT)
-			token->state = D_QUOTE;
-		else if (token->state == D_QUOTE)
-			token->state = TEXT;
+		if (par->state == TEXT)
+			par->state = D_QUOTE;
+		else if (par->state == D_QUOTE)
+			par->state = TEXT;
 	}
 }
 
