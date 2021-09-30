@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 09:23:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/30 09:31:10 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	validate_token_syntax(t_parser *par)
 	par = NULL;
 	while (par->input[par->index])
 	{
-		while (ft_strchr(SPACES, par->input[par->index])); // * coupe les whitespaces entre les tokens
+		while (ft_strchr(SPACES, par->input[par->index])); //* coupe les whitespaces entre les tokens
 			par->index++;
 		if(!find_token(par)) //* check if token syntax is valid, if not return false
 			return (false);
