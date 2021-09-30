@@ -6,11 +6,11 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 19:15:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:48:29 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 //cd dans home si il est set. Si unset retourne un message d'erreur.
 void	ms_cd_home(char **envp_ms)
