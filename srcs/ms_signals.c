@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:32:43 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 12:53:12 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:16:16 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,11 @@ void	ms_nl_signal(int signal)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+}
+
+void	ms_exit_signal(int signal, char **envp)
+{
+	signal = 1;
+	ft_free_tab(envp);
+	exit (0);
 }

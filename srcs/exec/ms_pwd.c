@@ -6,20 +6,19 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 18:27:44 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:17:05 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-//ecrit le current working directory. Se sert de notre envp_ms pour ca.
+//ecrit le current working directory avec la string de getcwd.
 void	ms_pwd_main(void)
 {
 	char	*pwd_line;
-	
+
 	pwd_line = NULL;
 	pwd_line = getcwd(pwd_line, 0);
-	ft_putstr_fd(pwd_line, 1);
-	write(1, "\n", 1);
+	ft_putendl_fd(pwd_line, 1);
 	free(pwd_line);
 }

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/29 18:20:49 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:12:10 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,26 @@ void	ms_readline_loop(char **envp_ms)
 	char	*input;
 	char	**cmd;
 
-	cmd = malloc(sizeof(char *) * 3);
+	cmd = malloc(sizeof(char *) * 2);
 	cmd[0] = malloc(sizeof(char) * 3);
-	cmd[1] = malloc(sizeof(char) * 3);
-	cmd[2] = 0;
 	ft_strlcpy(cmd[0], "cd", 3);
-	ft_strlcpy(cmd[1], "..", 3);
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
 	while (true)
 	{
 		input = readline("MiniShell % ");
-		if (ft_strncmp(input, "PWD", 3) == 0)
+		//parse_input(input);
+		if (ft_strncmp(input, "pwd", 3) == 0)
 			ms_pwd_main();
-		if (ft_strncmp(input, "cd ..", 5) == 0)
+		if (ft_strncmp(input, "cd", 2) == 0)
 			ms_cd_main(cmd, envp_ms);
+		if (ft_strncmp(input, "exit", 4) == 0)
+		{
+			free(input);
+			ft_free_tab(envp_ms);
+			ft_free_tab(cmd);
+			exit(0);
+		}
 
 		//fonction qui recoit l'input (PARSING)
 		//fonction qui exec avec la linked list global
