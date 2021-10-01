@@ -11,13 +11,14 @@ typedef enum e_type
 	HEREDOC,
 	STRING,
 	APPEND,
+	EMPTY,
 } t_type;
 
 typedef struct s_token
 {
-	char 			*valid_token;
+	void 			*valid_token;
 	t_type 			type;
-	struct s_valid 	*next;
+	struct s_token 	*next;
 } t_token;
 
 char 	*trim_input(char *input);

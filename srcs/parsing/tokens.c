@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 11:47:07 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/30 15:37:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,14 @@ void	add_to_token_list(t_parser *par)
 {
 	t_token	*token;
 
-	token = NULL;
-	
+	ft_lstadd_back(token, ft_lstnew(par->input));
 }
 
-//TODO Find token. when Done, substr the rest of the input and reset index
+//TODO Find token. when Done, substr the rest of the input.
 bool	find_token(t_parser *par)
 {
 	while (ft_strchr(OPERATORS, par->input[par->index]))
-	{
 		par->index++;
-		//add_to_token_list(par);
-	}
 	while (ft_isalnum(par->input[par->index]))
 		par->index++;
 	if (!par->input[par->index])

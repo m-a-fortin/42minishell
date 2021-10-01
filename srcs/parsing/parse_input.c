@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 12:00:00 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/30 15:27:40 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	parse_input(char *input)
 		;// TODO Error code here
 
 	while (validate_token_syntax(&par, input))
+	{
+		//TODO add_to_token_list(par);
 		input = par.input;
+	}
 	 //TODO add error code function here
 }
 
