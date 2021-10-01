@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 19:19:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 20:47:34 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void	ms_readline_loop(char **envp_ms)
 {
 	char	*input;
+	char	**args;
 
+	envp_ms++;
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
 	while (true)
