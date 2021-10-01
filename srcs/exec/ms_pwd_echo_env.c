@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 21:11:14 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:17:48 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ms_echo_main(char **args, int fd)
 	ms_echo_loop(args, index, no_nl, fd);
 }
 
+//print la variable envp_ms dans le fd (sans arguments)
+//envp_ms est une copie de envp du main et est update avec les cmds.
 void	ms_env_main(char **envp_ms, char **args, int fd)
 {
 	int	count;
