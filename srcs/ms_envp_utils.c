@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 16:12:58 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/01 01:07:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ms_setenv(char *name, char *value, char **envp_ms)
 	int		index;
 	char	*new_line;
 	int		done;
+	char	**temp;
 
 	index = 0;
 	done = 0;
@@ -62,7 +63,10 @@ int	ms_setenv(char *name, char *value, char **envp_ms)
 	if (done == 0)
 	{
 		new_line = ft_strjoin(name, value);
-		envp_ms = ft_addline(envp_ms, new_line);
+		temp = ft_addline(envp_ms, new_line);//addline not working
+		ft_free_tab(envp_ms);
+		envp_ms = temp;
+		free (new_line);
 	}
 	return (0);
 }

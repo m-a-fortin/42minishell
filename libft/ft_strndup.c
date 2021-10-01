@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/01 00:21:39 by mafortin         ###   ########.fr       */
+/*   Created: 2021/09/30 23:12:16 by mafortin          #+#    #+#             */
+/*   Updated: 2021/10/01 00:36:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "libft.h"
 
-void	ms_pwd_main(int fd);
-void	ms_cd_main(char **cmd, char **envp_ms);
-void	ms_echo_main(char **args, int fd);
-void	ms_env_main(char **envp_ms, char **args, int fd);
-void	ms_export_main(char **envp, char **args, int fd);
-void	ms_exec_error(char *value, char *cmd_name, char *error_str);
-void	ms_print_exec_error(char *value, char *cmd_name, char *error_str);
+char	*ft_strndup(const char *s1, size_t len)
+{
+	char	*cpy;
 
-#endif
+	cpy = malloc(sizeof(*s1) * len + 1);
+	if (!cpy)
+		return (0);
+	cpy = ft_memcpy((void *)cpy, s1, len);
+	cpy[len + 1] = '\0';
+	return (cpy);
+}

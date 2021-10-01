@@ -6,7 +6,7 @@
 #    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/09/30 21:07:23 by mafortin         ###   ########.fr        #
+#    Updated: 2021/10/01 00:27:07 by mafortin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,16 @@
 NAME =		minishell
 OBJS_PATH =	objs
 SRCS_PATH =	srcs
+#EXEC_PATH = srcs/exec
 LIBFT =		libft
 LIB =		lib
 
-SRCS =		minishell.c ms_signals.c ms_pwd_echo_env.c ms_envp_utils.c #ms_cd.c
-
+SRCS =		minishell.c ms_signals.c ms_envp_utils.c ms_export.c\
+ms_exec_error.c
+#EXEC =		ms_pwd_echo_env.c ms_cd.c ms_export.c ms_exec_error.c
 CC =		gcc
 CFLAGS =	-Wall -Werror -Wextra -c -g
 INCLUDES =	-Imlx_mac -Iincludes
-#LIBS =		-Llibft -lft -lreadline -lcurses
 OBJS =		$(SRCS:.c=.o)
 
 SRCS_FULL =	$(addprefix srcs/, $(SRCS))

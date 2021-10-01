@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ms_exec_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/01 00:21:39 by mafortin         ###   ########.fr       */
+/*   Created: 2021/10/01 00:15:17 by mafortin          #+#    #+#             */
+/*   Updated: 2021/10/01 00:23:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "../includes/minishell.h"
 
-void	ms_pwd_main(int fd);
-void	ms_cd_main(char **cmd, char **envp_ms);
-void	ms_echo_main(char **args, int fd);
-void	ms_env_main(char **envp_ms, char **args, int fd);
-void	ms_export_main(char **envp, char **args, int fd);
-void	ms_exec_error(char *value, char *cmd_name, char *error_str);
-void	ms_print_exec_error(char *value, char *cmd_name, char *error_str);
-
-#endif
+void	ms_print_exec_error(char *value, char *cmd_name, char *error_str)
+{
+	ft_putstr_fd("minishell: ", 1);
+	ft_putstr_fd(cmd_name, 1);
+	ft_putstr_fd(": ", 1);
+	ft_putstr_fd(value, 1);
+	ft_putstr_fd(": ", 1);
+	ft_putendl_fd(error_str, 1);
+}
