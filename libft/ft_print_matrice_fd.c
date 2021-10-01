@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_matrice.c                                 :+:      :+:    :+:   */
+/*   ft_print_matrice_fd.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 12:54:32 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 21:13:38 by mafortin         ###   ########.fr       */
+/*   Created: 2021/09/30 21:02:29 by mafortin          #+#    #+#             */
+/*   Updated: 2021/09/30 21:04:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_matrice(char **matrice)
+void	ft_print_matrice_fd(char **matrice, int fd)
 {
 	int	x;
 	int	y;
@@ -23,10 +23,10 @@ void	ft_print_matrice(char **matrice)
 		y = 0;
 		while (matrice[x][y])
 		{
-			write(1, &matrice[x][y], 1);
+			write(fd, &matrice[x][y], 1);
 			y++;
 		}
-		write(1, "\n", 1);
+		write(fd, "\n", 1);
 		x++;
 	}
 	return ;

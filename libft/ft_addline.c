@@ -6,14 +6,16 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:34:37 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/27 17:08:14 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:14:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//Alloc un nouveau char**, copy la matrice a l'interieur et rajoute line a la fin.
-//Free matrice original. Le retour doit etre free a l'exterieur de la fonction.
+//Alloc un nouveau char**, copy la matrice a l'interieur
+//et rajoute line a la fin.
+//Free matrice original. Le retour doit etre free a
+//l'exterieur de la fonction.
 char	**ft_addline(char **matrice, char *line)
 {
 	int		depth;
@@ -31,5 +33,4 @@ char	**ft_addline(char **matrice, char *line)
 	new_matrice[index] = ft_strdup(line);
 	ft_free_tab(matrice);
 	return (new_matrice);
-
 }

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_pwd_echo.c                                      :+:      :+:    :+:   */
+/*   ms_pwd_echo_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 20:54:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:11:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //ecrit le current working directory. Se sert de notre envp_ms pour ca.
-void	ms_pwd_main(void)
+void	ms_pwd_main(int fd)
 {
 	char	*pwd_line;
-	pwd_line = NULL;
+
 	pwd_line = getcwd(pwd_line, 0);
-	ft_putendl_fd(pwd_line, 1);
+	ft_putendl_fd(pwd_line, fd);
 	free(pwd_line);
 }
 
@@ -58,4 +58,17 @@ void	ms_echo_main(char **args, int fd)
 		no_nl++;
 	}
 	ms_echo_loop(args, index, no_nl, fd);
+}
+
+void	ms_env_main(char **envp_ms, char **args, int fd)
+{
+	int	count;
+
+	count = ft_matrice_size(args);
+	if (count != 1)
+	{
+		ft_putendl_fd("env: invalid number of arguments", 1);
+		return ;
+	}
+	ft_print_matrice_fd(envp_ms, fd);
 }

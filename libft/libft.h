@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 13:54:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/27 14:11:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:13:19 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ int			ft_matrice_size(char **tab);
 int			ft_isdigit_s(int *c);
 int			ft_isdigit_string(char *c);
 int			ft_char_search(char *string, char to_find);
-char		**ft_change_line(char **matrice, char *newline, int	index);
+char		**ft_change_line(char **matrice, char *newline, int index);
 void		ft_print_matrice(char **matrice);
 char		**ft_matrice_cpy(char **matrice);
 char		**ft_addline(char **matrice, char *line);
+void		ft_print_matrice_fd(char **matrice, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:01:29 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/27 16:03:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:14:48 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //change une ligne dans une matrice. prend l'index de la ligne a changer et
 //un char * de la nouvelle ligne
-char	**ft_change_line(char **matrice, char *newline, int	index)
+char	**ft_change_line(char **matrice, char *newline, int index)
 {
 	int		i;
 	char	**new_matrice;
