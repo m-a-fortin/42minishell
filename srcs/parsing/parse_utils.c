@@ -6,13 +6,35 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:58:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 10:57:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/01 23:10:49 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include "../../includes/token.h"
-#include "../../includes/parse.h"
+
+bool	input_is_not_empty(char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i])
+		i++;
+	if (i > 0)
+		return (true);
+	return (false);
+}
+
+char	index_char(t_parser *par)
+{
+	return (par->input[par->index]);
+}
+
+void	reset_parser(t_parser *par, char *input)
+{
+	par->index = 0;
+	par->state = TEXT;
+	par->input = trim_input(input);
+}
 
 void	change_state(t_parser *par)
 {
@@ -30,17 +52,4 @@ void	change_state(t_parser *par)
 		else if (par->state == D_QUOTE)
 			par->state = TEXT;
 	}
-}
-
-bool	ft_isoperator(char *op, int	c)
-{
-	int	i;
-
-	i = 0;
-	while (op[i])
-	{
-		if (c == op[i++])
-			return (true);
-	}
-	return (false);
 }

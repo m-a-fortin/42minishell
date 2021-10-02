@@ -6,47 +6,43 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 15:27:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/01 23:30:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include "../../includes/parse.h"
-#include "../../includes/token.h"
 
-static bool	validate_token_syntax(t_parser *par, char *input)
+bool	find_token(t_parser *par, t_token *token)
 {
-	init_parser(par, input);
-	while(!find_token(par)) //* check if token syntax is valid, if not return false
-		return (false);
-	par->input = ft_substr(par->input, par->index, ft_strlen(par->input));
-	printf("%s\n", par->input);
-	return (true);
+	if (ft_strchr(OPERATORS, index_char(par)))
+		return (tokenize_operator(par, token));
+	return (false);
 }
 
-void	parse_input(char *input)
+bool	parse_input(char *input)
 {
+	t_token		*token;
 	t_parser	par;
 
-	par.input = NULL;
+	token = token_lst_addnew(NULL);
 	if (!input)
-		;// TODO Error code here
-
-	while (validate_token_syntax(&par, input))
+		return (NULL);
+	input = trim_input(input);
+	while (input_is_not_empty(input))
 	{
-		//TODO add_to_token_list(par);
-		input = par.input;
+		reset_parser(&par, input);
+		if (find_token(&par, token))
+			input = ft_substr(input, par.index, ft_strlen(input));
+		token = token->next;
 	}
-	 //TODO add error code function here
+	return (true);
 }
 
 int	main(void)
 {
-	int		i;
 	char *input;
 	
-	i = 0;
-	input = ">>   HALO   ";
+	input = "   >> < >> << < >   HALO   ";
 	while (true)
 		parse_input(input);
 }
