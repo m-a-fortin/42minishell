@@ -6,31 +6,54 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/30 15:37:33 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/01 23:27:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include "../../includes/parse.h"
-#include "../../includes/token.h"
 
-//TODO add valid tokens to the linked list
-void	add_to_token_list(t_parser *par)
+void	set_operator_type(t_token *token, char *str)
 {
-	t_token	*token;
-
-	ft_lstadd_back(token, ft_lstnew(par->input));
+	if (ft_strncmp(str, ">>", ft_strlen(str) + 1) == 0)
+		token->type = R_HDOC;
+	else if (ft_strncmp(str, "<<", ft_strlen(str) + 1) == 0)
+		token->type = L_HDOC;
+	else if (ft_strncmp(str, ">", ft_strlen(str) + 1) == 0)
+		token->type = R_REDIR;
+	else if (ft_strncmp(str, "<", ft_strlen(str) + 1) == 0)
+		token->type = L_REDIR;
+	else if (ft_strncmp(str, "|", ft_strlen(str) + 1) == 0)
+		token->type = PIPE;
 }
 
-//TODO Find token. when Done, substr the rest of the input.
-bool	find_token(t_parser *par)
+void	write_token_to_list(t_parser *par, t_token *token, char *str)
 {
-	while (ft_strchr(OPERATORS, par->input[par->index]))
+	int	i;
+
+	i = 0;
+	token->valid_token = ft_calloc(3, sizeof(char));
+	while (i != par->index)
+	{
+		token->valid_token[i] = par->input[i];
+		i++;
+	}
+	token_lst_addback(&token, token_lst_addnew(str));
+}
+
+bool	tokenize_operator(t_parser *par, t_token *token)
+{
+	char	op;
+	char	*str;
+
+	op = index_char(par);
+	par->index++;
+	if (index_char(par) == op)
 		par->index++;
-	while (ft_isalnum(par->input[par->index]))
-		par->index++;
-	if (!par->input[par->index])
-		return (false);
+	str = ft_calloc(3, sizeof(char));
+	if (!token->valid_token)
+		token->valid_token = NULL;
+	write_token_to_list(par, token, str);
+	set_operator_type(token, token->valid_token);
 	return (true);
 }
 
@@ -38,17 +61,10 @@ char	*trim_input(char *input)
 {
 	char	*temp;
 
+	// if (*input)
+	// 	add_history(input);
 	temp = input;
 	temp = ft_strtrim(input, SPACES);
 	input = temp;
-	// if (*input)
-	// 	add_history(input);
 	return (input);
-}
-
-void	init_parser(t_parser *par, char *input)
-{
-	par->input = trim_input(input);
-	par->index = 0;
-	par->state = TEXT;
 }
