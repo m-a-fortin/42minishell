@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 12:31:05 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 12:36:33 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_job
 {
 	char			**cmd;//nom de la commande - name of the command
 	char			*redirection; //job de redirection
+	char			*pipe;//job de pipe
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.
 }			t_job;
 
