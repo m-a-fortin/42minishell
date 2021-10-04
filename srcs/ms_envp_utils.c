@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 16:12:58 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:45:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,19 @@ char	*ms_getenv(char *name, char **envp_ms)
 //la rejoute avec sa valeur name est le nom de la varable
 //env avec son deleminteur EX:PATH=
 //valeur est la ligne suivant le nom
-int	ms_setenv(char *name, char *value, char **envp_ms)
+
+char	**ms_setenv_addback(char *name, char *value, char **envp_ms)
+{
+	char	*new_line;
+	char	**new_envp;
+
+	new_line = ft_strjoin(name, value);
+	new_envp = ft_addline(envp_ms, new_line);
+	free (new_line);
+	return (new_envp);
+}
+
+char	**ms_setenv(char *name, char *value, char **envp_ms)
 {
 	int		index;
 	char	*new_line;
@@ -60,9 +72,6 @@ int	ms_setenv(char *name, char *value, char **envp_ms)
 		index++;
 	}
 	if (done == 0)
-	{
-		new_line = ft_strjoin(name, value);
-		envp_ms = ft_addline(envp_ms, new_line);
-	}
-	return (0);
+		return (ms_setenv_addback(name, value, envp_ms));
+	return (envp_ms);
 }

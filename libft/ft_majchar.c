@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrice_cpy.c                                   :+:      :+:    :+:   */
+/*   ft_majchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 13:38:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 14:07:49 by mafortin         ###   ########.fr       */
+/*   Created: 2021/09/30 22:37:06 by mafortin          #+#    #+#             */
+/*   Updated: 2021/09/30 22:39:29 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//Alloc et copie une matrice. Ne free pas la matrice original. Doit etre free
-// a l'exterieur de la fonction.
-char	**ft_matrice_cpy(char **matrice)
+bool	ft_majchar(char c)
 {
-	int		x;
-	int		len;
-	char	**new_matrice;
-
-	x = 0;
-	len = ft_matrice_size(matrice);
-	new_matrice = ft_calloc(len + 1, sizeof(char *));
-	while (matrice[x])
-	{
-		new_matrice[x] = ft_strdup(matrice[x]);
-		x++;
-	}
-	return (new_matrice);
+	if (c >= 'A' && c <= 'Z')
+		return (true);
+	else
+		return (false);
 }
