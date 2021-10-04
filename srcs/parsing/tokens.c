@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/04 11:16:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:26:14 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	add_token_to_list(t_parser *par, t_token *token)
 	int		i;
 
 	i = 0;
-	token->valid_token = ft_calloc(token_length(par) + 1, sizeof(char));
+	token->valid_token = ft_calloc(token_length(par), sizeof(char));
 	while (i != par->index)
 	{
 		token->valid_token[i] = par->input[i];
@@ -42,8 +42,6 @@ void	add_token_to_list(t_parser *par, t_token *token)
 
 bool	tokenize_string(t_parser *par, t_token *token)
 {
-	// while (index_char(par) == ft_isalnum(index_char(par)))
-	// 	par->index++;
 	add_token_to_list(par, token);
 	token->type = STRING;
 	return (true);
