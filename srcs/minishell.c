@@ -6,14 +6,14 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 15:52:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:43:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 //loop de readline qui envoie les infos au parsing. FONCTIONNE
-void	ms_readline_loop(t_shell *env)
+void	ms_readline_loop(t_exec *ms)
 {
 	char	*input;
 	//char	**job;
@@ -24,6 +24,7 @@ void	ms_readline_loop(t_shell *env)
 	while (true)
 	{
 		input = readline("MiniShell % ");
+		//job = ft_split(input, ' ');
 		//parse_input(input);
 		//ms_exec_main(t_job *job_head, char **envp_ms);
 		free (input);
@@ -33,9 +34,9 @@ void	ms_readline_loop(t_shell *env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_shell *env;
+	t_exec *ms;
 
-	env = malloc(sizeof(t_shell));//pas oublier de free la struct et son
+	ms = malloc(sizeof(t_exec));//pas oublier de free la struct et son
 	//t_job	*job_head;//structure-linkedlist peupler par le parsing et utliser pour l'execution
 	//cree et placer ici une fonction pour bien init la linked list (EXEC OU PARSING)
 
@@ -45,7 +46,7 @@ int	main(int argc, char **argv, char **envp)
 		exit(-1);
 	}
 	argv++;
-	env->ms = ft_matrice_cpy(envp);
-	ms_readline_loop(env);
-	ft_free_tab(env->ms);
+	ms->env = ft_matrice_cpy(envp);
+	ms_readline_loop(ms);
+	ft_free_tab(ms->env);
 }

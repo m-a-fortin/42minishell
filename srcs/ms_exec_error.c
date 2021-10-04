@@ -6,11 +6,11 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 00:15:17 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 15:49:28 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:51:10 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
 void	ms_print_exec_error(char *value, char *cmd_name, char *error_str)
 {

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 15:49:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:24:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	ms_valid_exp_name(char *args)
 }
 
 //fonction qui set le nom et la valeur de export dans envp
-void	ms_setexp(t_shell *env, char *args)
+void	ms_setexp(t_exec *ms, char *args)
 {
 	char	*name;
 	char	*head;
@@ -74,26 +74,26 @@ void	ms_setexp(t_shell *env, char *args)
 		index++;
 	name = ft_strndup(args, index + 1);
 	value = ft_strdup(args += index + 1);
-	env->ms = ms_setenv(name, value, env->ms);
+	ms->env = ms_setenv(name, value, ms->env);
 	free(name);
 	free(value);
 }
 
 //export prend "nom=valeur" en parametre et le met dans envp.
 //si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
-void	ms_export_main(t_shell *env, char **args, int fd)
+void	ms_export_main(t_exec *ms, char **args, int fd)
 {
 	int	x;
 
 	x = 1;
 	if (args[x] == NULL)
-		ms_export_print(env->ms, fd);
+		ms_export_print(ms->env, fd);
 	while (args[x])
 	{
 		if (ft_char_search(args[x], '=') == 0)
 			x++;
 		if (ms_valid_exp_name(args[x]) == true)
-			ms_setexp(env, args[x]);
+			ms_setexp(ms, args[x]);
 		else
 		{
 			ms_print_exec_error(args[x], args[0], "not a valid identifier");
