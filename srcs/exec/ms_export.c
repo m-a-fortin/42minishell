@@ -6,11 +6,11 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 15:45:58 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:49:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 //Si export n'a pas d'arguments, Il print envp avec "declare -x"
 void	ms_export_print(char **envp, int fd)
