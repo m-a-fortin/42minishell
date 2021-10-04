@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:59:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/01 22:07:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/04 12:47:34 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	token_lst_addback(t_token **token, t_token *new)
 	}
 }
 
-t_token *token_lst_addnew(void	*valid_token)
+t_token	*token_lst_addnew(void	*valid_token)
 {
 	t_token	*new;
 

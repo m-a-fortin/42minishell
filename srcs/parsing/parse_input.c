@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/04 12:44:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/04 12:47:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ bool	find_token(t_parser *par, t_token *token)
 			break ;
 	}
 	return (tokenize_string(par, token));
-	
 }
 
 bool	parse_input(char *input)
@@ -49,8 +48,8 @@ bool	parse_input(char *input)
 
 int	main(void)
 {
-	char *input;
-	
+	char	*input;
+
 	input = "   >> $$echo< |< >> << < >   HALO   ";
 	while (true)
 		parse_input(input);
