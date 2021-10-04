@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_envp_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/01 01:07:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/01 16:19:50 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	*ms_getenv(char *name, char **envp_ms)
 //la rejoute avec sa valeur name est le nom de la varable
 //env avec son deleminteur EX:PATH=
 //valeur est la ligne suivant le nom
-int	ms_setenv(char *name, char *value, char **envp_ms)
+
+char	**ms_setenv(char *name, char *value, char **envp_ms)
 {
 	int		index;
 	char	*new_line;
@@ -65,8 +66,8 @@ int	ms_setenv(char *name, char *value, char **envp_ms)
 		new_line = ft_strjoin(name, value);
 		temp = ft_addline(envp_ms, new_line);//addline not working
 		ft_free_tab(envp_ms);
-		envp_ms = temp;
 		free (new_line);
+		return (temp);
 	}
-	return (0);
+	return (envp_ms);
 }

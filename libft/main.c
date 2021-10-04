@@ -26,11 +26,10 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 		new_line = ft_strjoin(name, value);
 		temp = ft_addline(envp_ms, new_line);//addline not working
 		ft_free_tab(envp_ms);
-		envp_ms = ft_matrice_cpy(temp);
-		ft_print_matrice(envp_ms);
 		free (new_line);
+		return (temp);
 	}
-	return (0);
+	return (envp_ms);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -42,11 +41,6 @@ int	main(int argc, char **argv, char **envp)
 	argc++;
 	argv++;
 	matrice = ft_matrice_cpy(envp);
-	while (matrice[index])
-	{
-		printf("%s\n", matrice[index]);
-		index++;
-	}
-	//ms_setenv("NAME=", "ALLLO", matrice);
-	//ft_print_matrice(matrice);
+	matrice = ms_setenv("PWD=", "ALLLO", matrice);
+	ft_print_matrice(matrice);
 }

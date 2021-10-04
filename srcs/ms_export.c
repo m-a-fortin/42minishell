@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/01 01:01:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 12:14:44 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ bool	ms_valid_exp_name(char *args)
 	int	index;
 
 	index = 0;
-	if (ft_isalpha(args[0]) == 0)
+	if (ft_isalpha(args[0]) == 0 && args[0] != '_')
 		return (false);
 	while (args[index])
 	{
 		if (args[index] == '=')
 			return(ms_valid_exp_value(args, index));
-		if (ft_isalnum(args[index]) == 0)
+		if (ft_isalnum(args[index]) == 0 && args[0] != '_')
 			break ;
 		index++;
 	}
@@ -74,7 +74,7 @@ void	ms_setexp(char **envp, char *args)
 		index++;
 	name = ft_strndup(args, index + 1);
 	value = ft_strdup(args += index + 1);
-	ms_setenv(name, value, envp);
+	envp = ms_setenv(name, value, envp);
 	args = head;
 	free(name);
 	free(value);
@@ -103,3 +103,7 @@ void	ms_export_main(char **envp, char **args, int fd)
 		x++;
 	}
 }
+
+//Jai fait des modif a ms_setenv et a ft_matricecpy. Verifier que ca marche a l'exterieur du scope de export main
+//et faire des test pour voir si ca fonctionne de base. Ya un main.c dans libft pour des teste a lexterieur que minishell.
+//ne pas oublier de suprimmer main.c dans libft.
