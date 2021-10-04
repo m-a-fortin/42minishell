@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 12:26:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 12:31:05 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int		ms_setenv(char *name, char *value, char **envp_ms);
 //linkedlist peupler par le parsing et utiliser par l'execution. les nodes doivent etre free apres l'exec
 typedef struct s_job
 {
-	char			*cmd;//nom de la commande - name of the command
-	char			*args;//arguments utiliser avec la commande NULL si y'en a pas - arguments used by the command. NULL if non
+	char			**cmd;//nom de la commande - name of the command
 	char			*redirection; //job de redirection
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.
 }			t_job;
