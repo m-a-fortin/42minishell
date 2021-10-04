@@ -6,11 +6,23 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:58:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/01 23:10:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/02 07:27:01 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+char	*trim_input(char *input)
+{
+	char	*temp;
+
+	// if (*input)
+	// 	add_history(input);
+	temp = input;
+	temp = ft_strtrim(input, SPACES);
+	input = temp;
+	return (input);
+}
 
 bool	input_is_not_empty(char *input)
 {
