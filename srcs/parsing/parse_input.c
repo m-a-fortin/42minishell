@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/04 12:38:47 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 12:47:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ bool	find_token(t_parser *par, t_token *token)
 			break ;
 	}
 	return (tokenize_string(par, token));
-	
 }
 
 bool	parse_input(char *input)
@@ -41,16 +40,16 @@ bool	parse_input(char *input)
 	{
 		reset_parser(&par, input);
 		if (find_token(&par, token))
-			input = ft_substr(par.input, token_length(&par) + 1, ft_strlen(input));
+			input = ft_substr(par.input, token_length(&par), ft_strlen(input));
 		token = token->next;
 	}
-	return (true);
+	return (validate_syntax(head));
 }
 
 int	main(void)
 {
-	char *input;
-	
+	char	*input;
+
 	input = "   >> $$echo< |< >> << < >   HALO   ";
 	while (true)
 		parse_input(input);

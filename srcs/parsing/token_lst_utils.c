@@ -39,7 +39,7 @@ void	token_lst_addback(t_token **token, t_token *new)
 	}
 }
 
-t_token *token_lst_addnew(void	*valid_token)
+t_token	*token_lst_addnew(void	*valid_token)
 {
 	t_token	*new;
 

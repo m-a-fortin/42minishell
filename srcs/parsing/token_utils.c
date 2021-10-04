@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/04 10:26:32 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:26:20 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	token_length(t_parser *par)
 	int	i;
 
 	i = 0;
-	while (i < par->index - 1)
+	while (i <= par->index - 1)
 		i++;
 	return (i);
 }
