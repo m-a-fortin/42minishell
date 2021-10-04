@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_addline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:34:37 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/01 15:43:38 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/04 13:35:37 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char	**ft_addline(char **matrice, char *line)
 		index++;
 	}
 	new_matrice[index] = ft_strdup(line);
-	index++;
+	ft_free_tab(matrice);
 	return (new_matrice);
 }
