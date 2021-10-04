@@ -3,30 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/09/30 21:07:23 by mafortin         ###   ########.fr        #
+#    Updated: 2021/10/04 08:26:43 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME =		minishell
-OBJS_PATH =	objs
-SRCS_PATH =	srcs
-LIBFT =		libft
-LIB =		lib
+NAME 		=	minishell
+OBJS_PATH 	=	objs
+SRCS_PATH 	=	srcs
+LIBFT 		=	libft
+LIB 		=	lib
 
-SRCS =		minishell.c ms_signals.c ms_pwd_echo_env.c ms_envp_utils.c #ms_cd.c
+SRCS 		=	minishell.c ms_signals.c ms_pwd_echo_env.c ms_envp_utils.c #ms_cd.c
 
-CC =		gcc
-CFLAGS =	-Wall -Werror -Wextra -c -g
-INCLUDES =	-Imlx_mac -Iincludes
-#LIBS =		-Llibft -lft -lreadline -lcurses
-OBJS =		$(SRCS:.c=.o)
+CC 			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra -c -g
+INCLUDES 	=	-Imlx_mac -Iincludes
+#LIBS 		=	-Llibft -lft -lreadline -lcurses
+OBJS 		=	$(SRCS:.c=.o)
 
-SRCS_FULL =	$(addprefix srcs/, $(SRCS))
-OBJS_FULL =	$(addprefix objs/, $(OBJS))
+SRCS_FULL 	=	$(addprefix srcs/, $(SRCS))
+OBJS_FULL 	=	$(addprefix objs/, $(OBJS))
 
 all: $(OBJS_PATH) $(NAME)
 
