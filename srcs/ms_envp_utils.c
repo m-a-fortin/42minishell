@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 15:45:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/04 18:31:16 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,20 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 	if (done == 0)
 		return (ms_setenv_addback(name, value, envp_ms));
 	return (envp_ms);
+}
+
+void	ms_change_arg(char *arg, t_exec *ms)
+{
+	int	index;
+	int	x;
+
+	x = 0;
+	arg++;
+	while (ms->env[x])
+	{
+		if (ft_strncmp(arg, ms->env[x], ft_strlen(arg)) == 0)
+		{
+			
+		}
+	}
 }
