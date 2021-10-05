@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:58:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/05 09:22:18 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:48:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*trim_input(char *input)
 {
 	char	*temp;
 
-	if (*input)
-		add_history(input);
 	temp = input;
 	temp = ft_strtrim(input, SPACES);
 	input = temp;
