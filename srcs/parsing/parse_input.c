@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/05 11:31:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:21:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ bool	parse_input(char *input)
 		token = token->next;
 	}
 	//print_list(head);
-	return (validate_tokens_syntax(head, par));
+	return (true);
+	//return (validate_tokens_syntax(head, par));
 }

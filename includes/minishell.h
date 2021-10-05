@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 16:49:10 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 14:14:18 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_exec
 # include "token.h"
 # include "parse.h"
 # include "exec.h"
+# include "shell_errors.h"
 
 void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
