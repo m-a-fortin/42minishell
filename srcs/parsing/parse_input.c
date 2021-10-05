@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/04 12:47:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:22:14 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 bool	find_token(t_parser *par, t_token *token)
 {
@@ -43,14 +43,15 @@ bool	parse_input(char *input)
 			input = ft_substr(par.input, token_length(&par), ft_strlen(input));
 		token = token->next;
 	}
-	return (validate_syntax(head));
+	//return (validate_syntax(head));
+	return (true);
 }
 
-int	main(void)
-{
-	char	*input;
+// int	main(void)
+// {
+// 	char	*input;
 
-	input = "   >> $$echo< |< >> << < >   HALO   ";
-	while (true)
-		parse_input(input);
-}
+// 	input = "   >> $$echo< |< >> << < >   HALO   ";
+// 	while (true)
+// 		parse_input(input);
+// }

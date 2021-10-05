@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 17:43:24 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:22:35 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 //loop de readline qui envoie les infos au parsing. FONCTIONNE
 void	ms_readline_loop(t_exec *ms)
@@ -30,6 +30,7 @@ void	ms_readline_loop(t_exec *ms)
 		free (input);
 		//ft_free_tab(job);
 	}
+	ms->env = &input;
 }
 
 int	main(int argc, char **argv, char **envp)

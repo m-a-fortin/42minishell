@@ -1,0 +1,17 @@
+make all --dry-run --keep-going --print-directory
+make: Entering directory `/Users/mmondell/Documents/42Cursus/42minishell'
+ 
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/parsing/parse_input.c -o objs/parse_input.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/parsing/parse_utils.c -o objs/parse_utils.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/parsing/token_lst_utils.c -o objs/token_lst_utils.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/parsing/token_utils.c -o objs/token_utils.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/parsing/tokens.c -o objs/tokens.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/exec/ms_cd.c -o objs/ms_cd.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/exec/ms_export.c -o objs/ms_export.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/exec/ms_pwd_echo_env.c -o objs/ms_pwd_echo_env.o
+gcc -Wall -Werror -Wextra -g -Iincludes/ -Ilibft/ -c srcs/exec/ms_unset.c -o objs/ms_unset.o
+make re --no-print-directory -C libft/
+gcc objs/minishell.o objs/ms_signals.o objs/ms_envp_utils.o objs/ms_exec_error.o objs/parse_input.o objs/parse_utils.o objs/token_lst_utils.o objs/token_utils.o objs/tokens.o objs/ms_cd.o objs/ms_export.o objs/ms_pwd_echo_env.o objs/ms_unset.o -Llibft/ -lft -Llib/ -lreadline -lcurses -o minishell
+echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
+make: Leaving directory `/Users/mmondell/Documents/42Cursus/42minishell'
+ 

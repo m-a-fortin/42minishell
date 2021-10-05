@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 00:15:17 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 16:51:10 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:22:45 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 void	ms_print_exec_error(char *value, char *cmd_name, char *error_str)
 {

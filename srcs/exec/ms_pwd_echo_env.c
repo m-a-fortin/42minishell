@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pwd_echo_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 21:17:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:21:51 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 //ecrit le current working directory. Se sert de notre envp_ms pour ca.
 void	ms_pwd_main(int fd)
 {
 	char	*pwd_line;
 
+	pwd_line = NULL;
 	pwd_line = getcwd(pwd_line, 0);
 	ft_putendl_fd(pwd_line, fd);
 	free(pwd_line);

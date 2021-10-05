@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_envp_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 15:45:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:22:39 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 //retourne et alloue une ligne de envp qui commence par name
 //name est le nom de la varable env avec son deleminteur EX:PATH=

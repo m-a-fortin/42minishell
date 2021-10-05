@@ -8,7 +8,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "/Users/mmondell/Documents/42Cursus/42minishell/srcs/parsing/a.out",
+			"program": "/Users/mmondell/Documents/42Cursus/42minishell/Makefile",
 			"args": [],
 			"cwd": "${workspaceFolder}"
 		}

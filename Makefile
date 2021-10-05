@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/05 08:14:11 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/05 09:19:55 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,41 +17,54 @@ OBJS_PATH 	=	objs/
 SRCS_PATH 	=	srcs/
 LIB_PATH 	=	lib/
 CC 			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -c -g
+CFLAGS		=	-Wall -Werror -Wextra -g
 RM			=	rm -rf
 
+LIBFT_PATH	=	libft/
+LIBFT		=	ft
+
 INC_FILES 	=	minishell.h token.h parse.h exec.h
-SRCS_FILES	=	minishell.c ms_signals.c ms_pwd_echo_env.c ms_envp_utils.c #ms_cd.c
+SRCS_FILES	=	minishell.c ms_signals.c ms_envp_utils.c ms_exec_error.c
+EXEC_FILES	=	ms_cd.c ms_export.c ms_pwd_echo_env.c ms_unset.c
+PARSE_FILES	=	parse_input.c parse_utils.c token_lst_utils.c token_utils.c\
+				tokens.c
+				
+EXEC_PATH	= 	$(SRCS_PATH)exec
+PARSE_PATH	=	$(SRCS_PATH)parsing
 
-#LIBS 		=	-Llibft -lft -lreadline -lcurses
-OBJS 		=	$(SRCS:.c=.o)
+SRCS 		=	$(addprefix $(SRCS_PATH), $(SRCS_FILES))
+PARSE_SRCS	=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
+EXEC_SRCS	= 	$(addprefix $(EXEC_PATH), $(EXEC_FILES))
 
-SRCS 		=	$(addprefix srcs/, $(SRCS))
-OBJS 		=	$(addprefix objs/, $(OBJS))
+OBJS_FILES	= 	$(SRCS_FILES:.c=.o) $(PARSE_FILES:.c=.o) $(EXEC_FILES:.c=.o)
 
-all: $(OBJS_PATH) $(NAME)
+INCLUDES	=	$(addprefix $(INC_PATH), $(INC_FILES))
+OBJS 		=	$(addprefix $(OBJS_PATH), $(OBJS_FILES))
+
+VPATH		=	$(SRCS_PATH) $(PARSE_PATH) $(EXEC_PATH)
+
+$(OBJS_PATH)%.o: %.c
+	$(CC) $(CFLAGS) -I$(INC_PATH) -I$(LIBFT_PATH) -c $< -o $@
+
+$(NAME):	$(OBJS_PATH) $(OBJS)
+	@make re --no-print-directory -C $(LIBFT_PATH)
+	@$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -L$(LIB_PATH) -lreadline -lcurses -o $(NAME)
+	@echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 	@echo Created: Object directory
 
-$(NAME): $(OBJS_FILES)
-	@make re --no-print-directory -C ./libft
-	@$(CC) $(OBJS_FILES) -L$(LIB) -Llibft -lft -lreadline -lcurses -o $(NAME)
-	@echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
-
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
-	@echo "Created: $@\033[1A\033[M"
-	@$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
+all:	$(NAME)
 
 clean:
 	@make clean --no-print-directory -C ./libft
-	@rm -rf $(OBJS_FILES) $(OBJS_PATH) 
+	@$(RM) $(OBJS_FILES) $(OBJS_PATH) 
 	@echo "\033[34;1m CLEAN DONE \033[0m"
 
 fclean: clean
 	@make fclean --no-print-directory -C ./libft
-	@rm -f $(NAME)
+	@$(RM) $(NAME)
 	@echo "\033[34;1m FCLEAN DONE \033[0m"
 
 re: fclean all
