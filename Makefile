@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
+#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
 #    Updated: 2021/10/05 08:14:11 by mmondell         ###   ########.fr        #

@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"typeinfo": "c",
+		"chrono": "cpp"
+	}
+}

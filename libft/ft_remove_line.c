@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrice_cpy.c                                   :+:      :+:    :+:   */
+/*   ft_remove_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 13:38:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 14:07:49 by mafortin         ###   ########.fr       */
+/*   Created: 2021/10/04 16:29:46 by mafortin          #+#    #+#             */
+/*   Updated: 2021/10/04 17:33:25 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//Alloc et copie une matrice. Ne free pas la matrice original. Doit etre free
-// a l'exterieur de la fonction.
-char	**ft_matrice_cpy(char **matrice)
+char	**ft_remove_line(char **matrice, int index)
 {
-	int		x;
-	int		len;
 	char	**new_matrice;
+	int		depth;
+	int		x;
+	int		x_2;
 
 	x = 0;
-	len = ft_matrice_size(matrice);
-	new_matrice = ft_calloc(len + 1, sizeof(char *));
+	x_2 = 0;
+	depth = ft_matrice_size(matrice);
+	new_matrice = ft_calloc(depth, sizeof(char *));
 	while (matrice[x])
 	{
-		new_matrice[x] = ft_strdup(matrice[x]);
+		if (x == index)
+			x++;
+		new_matrice[x_2] = ft_strdup(matrice[x]);
 		x++;
+		x_2++;
 	}
+	ft_free_tab(matrice);
 	return (new_matrice);
 }

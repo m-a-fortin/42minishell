@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:32:43 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 17:16:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/01 15:31:07 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //Fonctions qui gere le signal envoyer quand ctrl+c est entree au clavier.
 void	ms_nl_signal(int signal)
 {
-	signal = 1;
+	signal++;
 	write(1, "\n", 2);
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -24,7 +24,7 @@ void	ms_nl_signal(int signal)
 
 void	ms_exit_signal(int signal, char **envp)
 {
-	signal = 1;
+	signal++;
 	ft_free_tab(envp);
 	exit (0);
 }
