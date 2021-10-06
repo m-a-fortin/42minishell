@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/09/30 20:54:28 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 08:24:52 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ms_cd_home(char **envp_ms)
 
 //Si le path est bon, chdir dans le path et update l'envp_ms.
 //Sinon retourne un message d'erreur comme bash.
-void	ms_cd_main(char **cmd, char **envp_ms)
+int	ms_cd_main(char **cmd, char **envp_ms)
 {
 	char	*error;
 
@@ -42,7 +42,11 @@ void	ms_cd_main(char **cmd, char **envp_ms)
 		ft_putstr_fd(cmd[1], 1);
 		ft_putstr_fd(": ", 1);
 		ft_putendl_fd(error, errno);
+		return (1);
 	}
 	else
-		ms_setenv("PWD=", cmd[1], envp_ms);
+	{
+		envp_ms = ms_setenv("PWD=", cmd[1], envp_ms);
+		return (0);
+	}
 }
