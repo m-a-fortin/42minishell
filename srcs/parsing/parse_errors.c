@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/06 16:17:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/06 16:39:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@ void	print_error(char *name, char *msg)
 
 void	bad_quotes_syntax(t_parser *par)
 {
-	char	*error_msg;
-
 	if (par->state == D_QUOTE)
-		error_msg = D_QUOTE_ERR;
+		print_error(NAME, D_QUOTE_ERR);
 	else
-		error_msg = S_QUOTE_ERR;
-	print_error(NAME, error_msg);
+		print_error(NAME, S_QUOTE_ERR);
 	g_job.error = BAD_SYNTAX;
 }
 
