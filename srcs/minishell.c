@@ -6,11 +6,11 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/05 15:15:12 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 09:36:01 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 //loop de readline qui envoie les infos au parsing. FONCTIONNE
 void	ms_readline_loop(t_exec *ms)
@@ -31,6 +31,7 @@ void	ms_readline_loop(t_exec *ms)
 		free (input);
 		//ft_free_tab(job);
 	}
+	ms->env = &input;
 }
 
 int	main(int argc, char **argv, char **envp)

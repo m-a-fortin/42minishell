@@ -6,11 +6,11 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/05 08:24:52 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 09:34:57 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 //cd dans home si il est set. Si unset retourne un message d'erreur.
 void	ms_cd_home(char **envp_ms)

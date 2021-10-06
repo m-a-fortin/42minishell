@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/04 12:47:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/05 11:31:23 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
+
+// void	print_list(t_token *head)
+// {
+// 	int	i = 1;
+
+// 	while (head->next)
+// 	{
+// 		printf("TOKEN[%d] = %s\n", i, head->valid_token);
+// 		head = head->next;
+// 		i++;
+// 	}
+// }
 
 bool	find_token(t_parser *par, t_token *token)
 {
@@ -35,6 +47,9 @@ bool	parse_input(char *input)
 	head = token;
 	if (!input)
 		return (NULL);
+	// if (*input)
+	// 	add_history(input);
+	printf("\nINPUT = %s\n\n", input);
 	input = trim_input(input);
 	while (input_is_not_empty(input))
 	{
@@ -43,14 +58,6 @@ bool	parse_input(char *input)
 			input = ft_substr(par.input, token_length(&par), ft_strlen(input));
 		token = token->next;
 	}
-	return (validate_syntax(head));
-}
-
-int	main(void)
-{
-	char	*input;
-
-	input = "   >> $$echo< |< >> << < >   HALO   ";
-	while (true)
-		parse_input(input);
+	//print_list(head);
+	return (validate_tokens_syntax(head, par));
 }

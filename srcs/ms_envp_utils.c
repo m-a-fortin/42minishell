@@ -6,11 +6,11 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 09:33:26 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 09:36:51 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 //retourne et alloue une ligne de envp qui commence par name
 //name est le nom de la varable env avec son deleminteur EX:PATH=
@@ -75,41 +75,4 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 		return (ms_setenv_addback(name, value, envp_ms));
 	return (envp_ms);
 }
-
-char	*ms_check_arg_loop(char *name, char *arg, t_exec *ms, int index)
-{
-	int		x;
-	int		y;
-	int		len;
-	char	*new_line;
-
-	x = 0;
-	len = ft_strlen(name);
-	while (ms->env[x])
-	{
-		y = 0;
-		if (ft_strncmp(name, ms->env[x], len) == 0)
-		{
-			while (ms->env[x][y] != '=')
-				y++;
-			new_line = ft_strdup(ms->env[x][y + 1]);
-			free (arg);
-			return (new_line);
-		}
-		x++;
-	}
-	return (arg);
-}
-
-void	ms_check_arg(char *arg, t_exec *ms)
-{
-	int		index;
-	char	*name;
-	int		x;
-
-	index = 0;
-	index++;
-	x = 0;
-	name = ft_strdup(arg + index);
-	arg = ms_check_arg_loop(name, arg, ms, index);
-}
+	
