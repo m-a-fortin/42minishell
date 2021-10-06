@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
+#    By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/04 17:42:41 by mafortin         ###   ########.fr        #
+#    Updated: 2021/10/05 09:07:52 by hpst             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS_PATH =	srcs
 LIBFT =		libft
 LIB =		lib
 
-SRCS =		minishell.c ms_signals.c ms_envp_utils.c \
+SRCS =		minishell.c ms_signals.c ms_envp_utils.c ms_dollar_arg.c\
 ms_exec_error.c
 #EXEC =		ms_pwd_echo_env.c ms_cd.c ms_export.c ms_exec_error.c ms_export.c ms_unset.c
 CC =		gcc

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 16:24:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 08:27:49 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,13 @@ void	ms_setexp(t_exec *ms, char *args)
 
 //export prend "nom=valeur" en parametre et le met dans envp.
 //si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
-void	ms_export_main(t_exec *ms, char **args, int fd)
+int	ms_export_main(t_exec *ms, char **args, int fd)
 {
 	int	x;
+	int	exit;
 
 	x = 1;
+	exit = 0;
 	if (args[x] == NULL)
 		ms_export_print(ms->env, fd);
 	while (args[x])
@@ -97,8 +99,10 @@ void	ms_export_main(t_exec *ms, char **args, int fd)
 		else
 		{
 			ms_print_exec_error(args[x], args[0], "not a valid identifier");
+			exit = 1;
 			break ;
 		}
 		x++;
 	}
+	return (exit);
 }

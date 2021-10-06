@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 17:43:24 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:15:12 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ms_readline_loop(t_exec *ms)
 	while (true)
 	{
 		input = readline("MiniShell % ");
+		add_history(input);//verifier si ca fontionne
 		//job = ft_split(input, ' ');
 		//parse_input(input);
 		//ms_exec_main(t_job *job_head, char **envp_ms);

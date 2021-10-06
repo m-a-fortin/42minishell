@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 17:42:08 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/06 09:29:26 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ms_unset_error(char *args)
+int	ms_unset_error(char *args)
 {
 	ft_putstr_fd("bash: unset: ", 1);
 	ft_putstr_fd(args, 1);
 	ft_putendl_fd(": not a valid identifier", 1);
+	return (1);
 }
 
 bool	ms_valid_unset_name(char *args)
@@ -35,6 +36,7 @@ bool	ms_valid_unset_name(char *args)
 	return (true);
 }
 
+//Look in envp if value ARG is set. Change value if it is.
 void	ms_unset_main(t_exec *ms, char **args)
 {
 	int		x;
@@ -59,4 +61,5 @@ void	ms_unset_main(t_exec *ms, char **args)
 		}
 		x++;
 	}
+	return (0);
 }
