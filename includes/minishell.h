@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/05 14:14:18 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/06 09:24:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_exec
 {
 	char	**env;
 }			t_exec;
+
+extern t_job g_job;
 
 # include <stdio.h>
 # include <unistd.h>

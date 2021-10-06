@@ -6,30 +6,27 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/05 15:35:58 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/06 09:46:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	check_error(int error_type)
-// {
-// 	if (error_type == BAD_SYNTAX)
-// 		syntax_error();//TODO Bad_Syntax function;
-// 	else if (error_type == NO_EXEC_CMD)
-// 		;//TODO No exec function
-// 	else if (error_type == CMD_NOT_FOUND)
-// 		;//TODO CMD_NOT_FOUND function
-// 	else if (error_type == INV_ARG)
-// 		;//TODO Invalid arg function
-// 	else if (error_type == CTRL_C)
-// 		;//TODO Script terminated 
-// }
-
-void	bad_quotes_syntax(t_parser *par, t_token *token)
+void	print_error(char *name, char *msg, int error)
 {
-	char	*err_str;
-
-	err_str = ft_calloc(ft_strlen(D_QUOTE_ERR) + 1, sizeof(char));
-	
+	ft_putstr_fd(name, STDERR_FILENO);
+	ft_putstr_fd(msg, STDERR_FILENO);
+	error = BAD_SYNTAX;
 }
+
+void	bad_quotes_syntax(t_parser *par)
+{
+	char	*error_msg;
+
+	if (par->state == D_QUOTE)
+		error_msg = D_QUOTE_ERR;
+	else
+		error_msg = S_QUOTE_ERR;
+	print_error(NAME, error_msg, BAD_SYNTAX);
+}
+

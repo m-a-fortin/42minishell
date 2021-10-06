@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/05 15:00:39 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/06 09:45:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	set_operator_type(t_token *token, char *str)
 
 void	add_token_to_list(t_parser *par, t_token *token)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	token->valid_token = ft_calloc(token_length(par), sizeof(char));
@@ -58,7 +58,7 @@ bool	tokenize_string(t_parser *par, t_token *token)
 {
 	if (!closing_quotes(par))
 	{
-		bad_quotes_syntax(par, token);
+		bad_quotes_syntax(par);
 		return (false);
 	}
 	add_token_to_list(par, token);
