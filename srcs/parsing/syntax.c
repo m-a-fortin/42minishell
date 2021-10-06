@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/05 11:41:38 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:35:49 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ bool	validate_tokens_syntax(t_token *head, t_parser *par)
 	{
 		if (token->type == PIPE)
 		{
-			set_error(token->valid_token);
+			//TODO set_Error
 			return (false);
 		}
-		if (!valid_command(token) || !valid_text(token))
+		if (!validate_command(token) || !validate_redir(token))
 			return (false);
 		token = token->next;
 	}
