@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/06 10:23:49 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/06 11:07:15 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,11 @@ $(OBJS_PATH):
 	@echo Created: Object directory
 
 all:	$(NAME)
+
+linux :	$(OBJS_PATH) $(OBJS)
+	@make re --no-print-directory -C $(LIBFT_PATH)
+	@$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -lreadline -o $(NAME)
+	@echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
 
 clean:
 	@make clean --no-print-directory -C ./libft
