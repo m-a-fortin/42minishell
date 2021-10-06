@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   parse_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/06 11:10:19 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/06 16:35:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	bad_quotes_syntax(t_parser *par)
 	else
 		error_msg = S_QUOTE_ERR;
 	print_error(NAME, error_msg);
+	g_job.error = BAD_SYNTAX;
 }
 
