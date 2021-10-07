@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/05 09:22:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/06 11:11:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ bool	ms_valid_exp_name(char *args)
 void	ms_setexp(t_exec *ms, char *args)
 {
 	char	*name;
-	char	*head;
+	//char	*head;
 	char	*value;
 	int		index;
 
-	head = args;
+	//head = args;
 	index = 0;
 	while (args[index] != '=')
 		index++;
