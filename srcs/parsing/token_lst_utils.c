@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:59:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/07 19:36:42 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 10:37:51 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_token	*token_lst_addnew(void	*valid_token)
 	if (!new)
 		return (NULL);
 	new->valid_token = valid_token;
-	new->type = STRING;
+	new->type = EMPTY;
 	new->next = NULL;
 	return (new);
 }

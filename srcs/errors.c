@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 08:27:26 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:13:51 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	p_error(char *prg, char *arg, char *msg, char *token, int error)
 	if (token)
 		ft_putendl_fd(token, STDERR_FILENO);
 	error = 0;
-	//g_job.error = error;
+	//ms.exit = error;
 }
 
 void	bad_quotes_syntax(t_parser *par)
