@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 08:34:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:05:50 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_token
 t_token	*token_lst_last(t_token *token);
 t_token	*token_lst_addnew(void	*valid_token);
 t_type	set_operator_type(char *str);
-t_type	is_redirection(t_token *token);
+bool	is_redirection(t_token *token);
 void	token_lst_addback(t_token **token, t_token *new);
 
 #endif

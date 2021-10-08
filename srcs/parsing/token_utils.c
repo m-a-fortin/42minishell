@@ -6,23 +6,18 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 11:26:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:12:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_type	is_redirection(t_token *token)
+bool	is_redirection(t_token *token)
 {
-	if (token->type == L_REDIR)
-		return (L_REDIR);
-	else if (token->type == R_REDIR)
-		return (R_REDIR);
-	else if (token->type == R_HDOC)
-		return (R_HDOC);
-	else if (token->type == L_HDOC)
-		return (L_HDOC);
-	return (EMPTY);
+	if (token->type == L_REDIR || token->type == R_REDIR
+		|| token->type == L_HDOC || token->type == R_HDOC)
+		return (true);
+	return (false);
 }
 
 t_type	set_operator_type(char *str)
