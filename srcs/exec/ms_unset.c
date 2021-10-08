@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 17:49:12 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/08 11:12:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	ms_valid_unset_name(char *args)
 }
 
 //Look in envp if value ARG is set. Change value if it is.
-int	ms_unset_main(t_exec *ms, char **args)
+int	ms_unset_main(char **args)
 {
 	int		x;
 	int		index;
@@ -50,11 +50,11 @@ int	ms_unset_main(t_exec *ms, char **args)
 		index = 0;
 		if (ms_valid_unset_name(args[x]) == false)
 			return (ms_unset_error(args[x]));
-		while (ms->env[index])
+		while (ms.env[index])
 		{
-			if (ft_strncmp(args[x], ms->env[index], ft_strlen(args[x])) == 0)
+			if (ft_strncmp(args[x], ms.env[index], ft_strlen(args[x])) == 0)
 			{
-				ms->env = ft_remove_line(ms->env, index);
+				ms.env = ft_remove_line(ms.env, index);
 				break ;
 			}
 			index++;

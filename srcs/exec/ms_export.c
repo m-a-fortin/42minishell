@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 17:46:13 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/08 11:11:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,25 @@ bool	ms_valid_exp_name(char *args)
 }
 
 //fonction qui set le nom et la valeur de export dans envp
-void	ms_setexp(t_exec *ms, char *args)
+void	ms_setexp(char *args)
 {
 	char	*name;
-	//char	*head;
 	char	*value;
 	int		index;
 
-	//head = args;
 	index = 0;
 	while (args[index] != '=')
 		index++;
 	name = ft_strndup(args, index + 1);
 	value = ft_strdup(args += index + 1);
-	ms->env = ms_setenv(name, value, ms->env);
+	ms.env = ms_setenv(name, value, ms.env);
 	free(name);
 	free(value);
 }
 
 //export prend "nom=valeur" en parametre et le met dans envp.
 //si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
-int	ms_export_main(t_exec *ms, char **args, int fd)
+int	ms_export_main(char **args, int fd)
 {
 	int	x;
 	int	exit;
@@ -89,13 +87,13 @@ int	ms_export_main(t_exec *ms, char **args, int fd)
 	x = 1;
 	exit = 0;
 	if (args[x] == NULL)
-		ms_export_print(ms->env, fd);
+		ms_export_print(ms.env, fd);
 	while (args[x])
 	{
 		if (ft_char_search(args[x], '=') == 0)
 			x++;
 		if (ms_valid_exp_name(args[x]) == true)
-			ms_setexp(ms, args[x]);
+			ms_setexp(args[x]);
 		else
 		{
 			ms_print_exec_error(args[x], args[0], "not a valid identifier");

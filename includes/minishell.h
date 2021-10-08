@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 17:47:08 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/08 10:50:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ typedef struct s_job
 	int				error;
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.
 }			t_job;
-
-extern t_job g_job;
 
 # include <stdio.h>
 # include <unistd.h>
@@ -47,5 +45,8 @@ extern t_job g_job;
 void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
+void	ms_free_job(t_job *job_head, t_job *current);
+void	ms_new_job(t_job *job_head);
+void	ms_initjob(t_job *node);
 
 #endif

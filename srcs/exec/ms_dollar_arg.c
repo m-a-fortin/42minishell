@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:56:02 by hpst              #+#    #+#             */
-/*   Updated: 2021/10/06 18:06:04 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/08 11:10:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ms_arg_emty(char *arg)
 	return (arg = ft_calloc(1, sizeof(char)));
 }
 
-char	*ms_check_arg_loop(char *name, char *arg, t_exec *ms, int index)
+char	*ms_check_arg_loop(char *name, char *arg, int index)
 {
 	int		x;
 	int		y;
@@ -27,14 +27,14 @@ char	*ms_check_arg_loop(char *name, char *arg, t_exec *ms, int index)
 
 	x = 0;
 	len = ft_strlen(name);
-	while (ms->env[x])
+	while (ms.env[x])
 	{
 		y = 0;
-		if (ft_strncmp(name, ms->env[x], len) == 0)
+		if (ft_strncmp(name, ms.env[x], len) == 0)
 		{
-			while (ms->env[x][y] != '=')
+			while (ms.env[x][y] != '=')
 				y++;
-			new_line = ft_strdup(ms->env[x][y + 1]);
+			new_line = ft_strdup(ms.env[x][y + 1]);
 			free (arg);
 			return (new_line);
 		}
@@ -52,7 +52,7 @@ char	*ms_arg_number(char *arg, int index)
 	return (new_arg);
 }
 
-char	*ms_check_arg_main(char *arg, t_exec *ms)
+char	*ms_check_arg_main(char *arg)
 {
 	int		index;
 	char	*name;
@@ -64,25 +64,25 @@ char	*ms_check_arg_main(char *arg, t_exec *ms)
 	if (arg[index] == '$')
 	{
 		free(arg);
-		return(ft_itoa(ms->exit));
+		return(ft_itoa(ms.exit));
 	}
 	if (ft_isalpha(arg[index] == 0 && arg[index] != '_'))
 			return (ms_arg_number(arg, index + 1));
 	name = ft_strdup(arg + index);
-	arg = ms_check_arg_loop(name, arg, ms, index);
+	arg = ms_check_arg_loop(name, arg, index);
 	free(name);
 	return (arg);
 }
 
-void	ms_check_dollarsign(t_exec *ms, t_job g_job)
+void	ms_check_dollarsign(t_job *current)
 {
 	int	index;
 	
-	index = 0;
-	while (g_job.cmd[index])
+	index = 0; 
+	while (current->cmd[index])
 	{
-		if (g_job.cmd[index][0] == '$')
-			g_job.cmd[index] = ms_check_arg_main(g_job.cmd[index], ms);
+		if (current->cmd[index][0] == '$')
+			current->cmd[index] = ms_check_arg_main(current->cmd[index]);
 		index++;
 	}
 }
