@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:56:02 by hpst              #+#    #+#             */
-/*   Updated: 2021/10/08 11:37:34 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 13:09:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	*ms_check_arg_main(char *arg)
 	int		x;
 
 	index = 0;
-	index++;
 	x = 0;
 	if (arg[index] == '$')
 	{
