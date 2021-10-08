@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/07 19:35:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:43:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool	validate_pipe(t_token *token)
 		p_error(SHELL, NULL, UNXP_TOKEN, PIPE_TOKEN, BAD_SYNTAX);
 		return (false);
 	}
+	else
+		return (true);
 }
 
 bool	validate_cmd(t_token *token)
@@ -56,14 +58,11 @@ bool	validate_tokens_syntax(t_token *head)
 	while (token)
 	{
 		if (token->type == PIPE)
-			if (!validate_pipe(token))
-				return (false);
-		else if (token->type == redirection(token))
-			if (!validate_redir(token))
-				return (false);
+			return (validate_pipe(token));
+		else if (token->type == is_redirection(token))
+			return (validate_redir(token));
 		else if (token->type == STRING)
-			if (!validate_cmd(token))
-				return (false);
+			return (validate_cmd(token));
 	}
 	return (true);
 }
