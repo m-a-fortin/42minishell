@@ -6,13 +6,12 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 18:07:19 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/08 08:10:22 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_job g_job = (t_job){0};
 //loop de readline qui envoie les infos au parsing. FONCTIONNE
 void	ms_readline_loop(t_exec *ms)
 {
@@ -38,7 +37,7 @@ void	ms_readline_loop(t_exec *ms)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_exec	*ms;
+	t_exec *ms;
 
 	ms = malloc(sizeof(t_exec));//pas oublier de free la struct et son
 	//t_job	*job_head;//structure-linkedlist peupler par le parsing et utliser pour l'execution

@@ -6,7 +6,7 @@
 #    By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/06 17:51:50 by hpst             ###   ########.fr        #
+#    Updated: 2021/10/08 08:10:34 by hpst             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ LIBFT_PATH	=	libft/
 LIBFT		=	ft
 
 INC_FILES 	=	minishell.h token.h parse.h exec.h shell_errors.h
-SRCS_FILES	=	minishell.c ms_signals.c ms_envp_utils.c ms_exec_error.c
+SRCS_FILES	=	minishell.c ms_signals.c ms_envp_utils.c ms_exec_error.c errors.c
 EXEC_FILES	=	ms_cd.c ms_export.c ms_pwd_echo_env.c ms_unset.c
 PARSE_FILES	=	parse_input.c parse_utils.c token_lst_utils.c token_utils.c\
-				tokens.c syntax.c parse_errors.c
+				tokens.c syntax.c
 				
 EXEC_PATH	= 	$(SRCS_PATH)exec
 PARSE_PATH	=	$(SRCS_PATH)parsing

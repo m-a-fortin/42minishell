@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/06 10:28:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/07 19:28:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,17 @@ bool	parse_input(char *input)
 		return (NULL);
 	// if (*input)
 	// 	add_history(input);
-	printf("\nINPUT = %s\n\n", input);
 	input = trim_input(input);
 	while (input_is_not_empty(input))
 	{
 		reset_parser(&par, input);
 		if (find_token(&par, token))
+		{
 			input = ft_substr(par.input, token_length(&par), ft_strlen(input));
-		token = token->next;
+			token = token->next;
+			continue ;
+		}
+		return (NULL);
 	}
-	//print_list(head);
 	return (validate_tokens_syntax(head));
-	return (true);
 }
