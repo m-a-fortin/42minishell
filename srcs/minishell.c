@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/05 09:22:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:27:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ms_readline_loop(t_exec *ms)
 	char	*input;
 	//char	**job;
 
-
+	//init_global_struct(&g_job);
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
 	while (true)

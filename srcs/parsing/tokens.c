@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/07 19:24:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:08:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ bool	tokenize_operator(t_parser *par, t_token *token)
 	if (!token->valid_token)
 		token->valid_token = NULL;
 	add_token_to_list(par, token);
-	token->type = set_operator_type(token, token->valid_token);
+	token->type = set_operator_type(token->valid_token);
 	return (true);
 }

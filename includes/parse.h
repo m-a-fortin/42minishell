@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/07 10:54:36 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:34:00 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool	tokenize_string(t_parser *par, t_token *token);
 bool	tokenize_operator(t_parser *par, t_token *token);
 bool	validate_tokens_syntax(t_token *head);
 void	add_token_to_list(t_parser *par, t_token *token);
+
 
 /* PARSE UTILITIES */
 
