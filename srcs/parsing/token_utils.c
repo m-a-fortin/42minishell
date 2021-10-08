@@ -6,13 +6,13 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 08:46:03 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:26:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_type	redirection(t_token *token)
+t_type	is_redirection(t_token *token)
 {
 	if (token->type == L_REDIR)
 		return (L_REDIR);
@@ -22,9 +22,10 @@ t_type	redirection(t_token *token)
 		return (R_HDOC);
 	else if (token->type == L_HDOC)
 		return (L_HDOC);
+	return (EMPTY);
 }
 
-t_type	operator_type(t_token *token, char *str)
+t_type	set_operator_type(char *str)
 {
 	if (ft_strncmp(str, ">>", ft_strlen(str) + 1) == 0)
 		return (R_HDOC);
@@ -36,6 +37,7 @@ t_type	operator_type(t_token *token, char *str)
 		return (L_REDIR);
 	else if (ft_strncmp(str, "|", ft_strlen(str) + 1) == 0)
 		return (PIPE);
+	return (EMPTY);
 }
 
 void	add_token_to_list(t_parser *par, t_token *token)

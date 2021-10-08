@@ -6,20 +6,21 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 10:10:53 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:05:03 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ms_initjob(t_job *node)
+t_job *ms_create_node(t_job *node)
 {
 	node = malloc(sizeof(t_job));
-	node->cmd = NULL;
 	node->redirection = NULL;
+	node->cmd = NULL;
 	node->pipe = 0;
 	node->error = 0;
 	node->next = NULL;
+	return (node);
 }
 
 void	ms_new_job(t_job *job_head)
@@ -31,7 +32,7 @@ void	ms_new_job(t_job *job_head)
 	{
 		while (current->next)
 			current = current->next;
-		ms_initjob(current->next);
+		ms_create_node(current->next);
 	}
 }
 
@@ -43,5 +44,7 @@ void	ms_free_job(t_job *job_head, t_job *current)
 		ft_free_tab(current->cmd);
 	if (current->redirection)
 		free(current->redirection);
-	free(current);
+	job_head = current;
+	if (current)
+		free(current);
 }

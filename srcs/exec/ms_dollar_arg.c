@@ -6,19 +6,19 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:56:02 by hpst              #+#    #+#             */
-/*   Updated: 2021/10/08 11:10:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:37:34 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/exec.h"
 
-char	*ms_arg_emty(char *arg)
+char	*ms_arg_empty(char *arg)
 {
 	free (arg);
 	return (arg = ft_calloc(1, sizeof(char)));
 }
 
-char	*ms_check_arg_loop(char *name, char *arg, int index)
+char	*ms_check_arg_loop(char *name, char *arg)
 {
 	int		x;
 	int		y;
@@ -34,7 +34,7 @@ char	*ms_check_arg_loop(char *name, char *arg, int index)
 		{
 			while (ms.env[x][y] != '=')
 				y++;
-			new_line = ft_strdup(ms.env[x][y + 1]);
+			new_line = ft_strdup(ms.env[x] + (y + 1));
 			free (arg);
 			return (new_line);
 		}
@@ -64,16 +64,17 @@ char	*ms_check_arg_main(char *arg)
 	if (arg[index] == '$')
 	{
 		free(arg);
-		return(ft_itoa(ms.exit));
+		return(ft_itoa(ms.exit)); //Je dois stjoin si il y a d'autre chose apres.
 	}
 	if (ft_isalpha(arg[index] == 0 && arg[index] != '_'))
 			return (ms_arg_number(arg, index + 1));
 	name = ft_strdup(arg + index);
-	arg = ms_check_arg_loop(name, arg, index);
+	arg = ms_check_arg_loop(name, arg);
 	free(name);
 	return (arg);
 }
 
+//Fonction qui gere les arguments $ARG existant dans la variable ENV.
 void	ms_check_dollarsign(t_job *current)
 {
 	int	index;

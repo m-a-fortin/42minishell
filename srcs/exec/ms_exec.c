@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 11:21:01 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:00:06 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ms_exec_main(t_job *job_head)
 
 	current = job_head;
 	ms.exec = 1;
-	while (current)
+	while (current->next)
 	{
-		ms_check_dollarsign(current);
+		ms_check_dollarsign(job_head);
 		current = current->next;
 	}
 	ms_free_job(job_head, job_head);

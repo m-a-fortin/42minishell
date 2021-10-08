@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 11:23:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:04:05 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ void	ms_readline_loop(void)
 	char	*input;
 	t_job	*job_head = NULL;
 	
-	
 	signal(SIGINT, ms_nl_signal);
-	signal(SIGQUIT, SIG_IGN);
-	ms_initjob(job_head);
+	//signal(SIGQUIT, SIG_IGN);
 	while (true)
 	{
+		job_head = ms_create_node(job_head);
 		ms.exec = 0;
 		input = readline("MiniShell % ");
 		//parse_input(input, job_head);

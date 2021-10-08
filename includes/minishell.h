@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 10:50:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:03:27 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
 void	ms_free_job(t_job *job_head, t_job *current);
-void	ms_new_job(t_job *job_head);
+t_job	*ms_create_node(t_job *node);
 void	ms_initjob(t_job *node);
 
 #endif
