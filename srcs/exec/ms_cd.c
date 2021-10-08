@@ -6,7 +6,7 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 09:34:57 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 17:47:48 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	ms_cd_main(char **cmd, char **envp_ms)
 		return (1);
 	}
 	else
-	{
 		envp_ms = ms_setenv("PWD=", cmd[1], envp_ms);
-		return (0);
-	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 09:35:52 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 17:49:12 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ bool	ms_valid_unset_name(char *args)
 }
 
 //Look in envp if value ARG is set. Change value if it is.
-void	ms_unset_main(t_exec *ms, char **args)
+int	ms_unset_main(t_exec *ms, char **args)
 {
 	int		x;
 	int		index;
 
 	x = 1;
 	if (args[x] == NULL)
-		return ;
+		return (0);
 	while (args[x])
 	{
 		index = 0;

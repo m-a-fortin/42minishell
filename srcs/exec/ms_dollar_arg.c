@@ -6,11 +6,11 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:56:02 by hpst              #+#    #+#             */
-/*   Updated: 2021/10/05 15:09:28 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 18:06:04 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../../includes/exec.h"
 
 char	*ms_arg_emty(char *arg)
 {
@@ -62,11 +62,27 @@ char	*ms_check_arg_main(char *arg, t_exec *ms)
 	index++;
 	x = 0;
 	if (arg[index] == '$')
+	{
+		free(arg);
 		return(ft_itoa(ms->exit));
+	}
 	if (ft_isalpha(arg[index] == 0 && arg[index] != '_'))
 			return (ms_arg_number(arg, index + 1));
 	name = ft_strdup(arg + index);
 	arg = ms_check_arg_loop(name, arg, ms, index);
 	free(name);
 	return (arg);
+}
+
+void	ms_check_dollarsign(t_exec *ms, t_job g_job)
+{
+	int	index;
+	
+	index = 0;
+	while (g_job.cmd[index])
+	{
+		if (g_job.cmd[index][0] == '$')
+			g_job.cmd[index] = ms_check_arg_main(g_job.cmd[index], ms);
+		index++;
+	}
 }

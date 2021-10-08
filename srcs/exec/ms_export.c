@@ -6,7 +6,7 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 09:35:28 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 17:46:13 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ bool	ms_valid_exp_name(char *args)
 void	ms_setexp(t_exec *ms, char *args)
 {
 	char	*name;
-	char	*head;
+	//char	*head;
 	char	*value;
 	int		index;
 
-	head = args;
+	//head = args;
 	index = 0;
 	while (args[index] != '=')
 		index++;

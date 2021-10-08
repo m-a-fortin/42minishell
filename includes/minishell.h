@@ -6,7 +6,7 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 09:33:14 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/06 17:47:08 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ typedef struct s_job
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.
 }			t_job;
 
-typedef struct s_exec
-{
-	char	**env;
-	int		exit;
-}			t_exec;
+extern t_job g_job;
 
 # include <stdio.h>
 # include <unistd.h>
@@ -46,6 +42,7 @@ typedef struct s_exec
 # include "token.h"
 # include "parse.h"
 # include "exec.h"
+# include "shell_errors.h"
 
 void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
