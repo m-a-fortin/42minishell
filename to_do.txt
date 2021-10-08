@@ -1,4 +1,0 @@
-Test + norminette ms_dollar_arg
-Exit
-Redirection + airdocs
-Execve pipe + fork
