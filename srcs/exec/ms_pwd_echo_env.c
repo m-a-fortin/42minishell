@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pwd_echo_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/06 09:35:37 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/08 14:43:41 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ms_echo_main(char **args, int fd)
 
 //print la variable envp_ms dans le fd (sans arguments)
 //envp_ms est une copie de envp du main et est update avec les cmds.
-int	ms_env_main(char **envp_ms, char **args, int fd)
+int	ms_env_main(char **args, int fd)
 {
 	int	count;
 
@@ -75,6 +75,6 @@ int	ms_env_main(char **envp_ms, char **args, int fd)
 		ft_putendl_fd("env: invalid number of arguments", 1);
 		return (127);
 	}
-	ft_print_matrice_fd(envp_ms, fd);
+	ft_print_matrice_fd(g_ms.env, fd);
 	return (0);
 }

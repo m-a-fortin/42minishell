@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:03:27 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:30:41 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ typedef struct s_job
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.
 }			t_job;
 
+typedef struct s_exec
+{
+	char	**env;
+	int		exit;
+	int		exec;
+}			t_exec;
+
+extern t_exec g_ms;
 # include <stdio.h>
 # include <unistd.h>
 # include <signal.h>

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:32:43 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 11:23:44 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 13:45:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 //Fonctions qui gere le signal envoyer quand ctrl+c est entree au clavier.
 void	ms_nl_signal(int signal)
 {	
-	if (ms.exec == 0)
-		ms.exit = 1;
-	if (ms.exec == 1)
-		ms.exit = 130;
-	signal = ms.exit;
+	if (g_ms.exec == 0)
+		g_ms.exit = 1;
+	if (g_ms.exec == 1)
+		g_ms.exit = 130;
+	signal = g_ms.exit;
 	write(1, "\n", 2);
 	rl_on_new_line();
 	rl_replace_line("", 0);

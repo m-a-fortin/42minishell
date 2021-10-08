@@ -6,13 +6,13 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 12:05:03 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 13:45:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_job *ms_create_node(t_job *node)
+t_job	*ms_create_node(t_job *node)
 {
 	node = malloc(sizeof(t_job));
 	node->redirection = NULL;

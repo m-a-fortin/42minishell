@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 11:12:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:28:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	ms_unset_main(char **args)
 		index = 0;
 		if (ms_valid_unset_name(args[x]) == false)
 			return (ms_unset_error(args[x]));
-		while (ms.env[index])
+		while (g_ms.env[index])
 		{
-			if (ft_strncmp(args[x], ms.env[index], ft_strlen(args[x])) == 0)
+			if (ft_strncmp(args[x], g_ms.env[index], ft_strlen(args[x])) == 0)
 			{
-				ms.env = ft_remove_line(ms.env, index);
+				g_ms.env = ft_remove_line(g_ms.env, index);
 				break ;
 			}
 			index++;

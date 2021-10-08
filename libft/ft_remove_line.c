@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:29:46 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 17:33:25 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:27:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ char	**ft_remove_line(char **matrice, int index)
 	new_matrice = ft_calloc(depth, sizeof(char *));
 	while (matrice[x])
 	{
+		if (x == depth - 1)
+			break ;
 		if (x == index)
 			x++;
 		new_matrice[x_2] = ft_strdup(matrice[x]);
-		x++;
 		x_2++;
+		x++;
 	}
 	ft_free_tab(matrice);
 	return (new_matrice);

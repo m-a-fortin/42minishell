@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 10:24:31 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:08:02 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ bool	parse_input(char *input)
 	head = token;
 	if (!input)
 		return (NULL);
-	// if (*input)
-	// 	add_history(input);
 	input = trim_input(input);
 	while (input_is_not_empty(input))
 	{

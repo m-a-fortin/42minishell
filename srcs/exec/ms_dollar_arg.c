@@ -6,19 +6,15 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 08:56:02 by hpst              #+#    #+#             */
-/*   Updated: 2021/10/08 13:09:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/08 13:56:02 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/exec.h"
+#include "../../includes/minishell.h"
 
-char	*ms_arg_empty(char *arg)
-{
-	free (arg);
-	return (arg = ft_calloc(1, sizeof(char)));
-}
-
-char	*ms_check_arg_loop(char *name, char *arg)
+//Regarde dans env si la variable est defined. Si oui elle retour sa valeur
+//Si non retourne une string vide.
+char	*ms_check_arg_loop(char *arg)
 {
 	int		x;
 	int		y;
@@ -26,15 +22,15 @@ char	*ms_check_arg_loop(char *name, char *arg)
 	char	*new_line;
 
 	x = 0;
-	len = ft_strlen(name);
-	while (ms.env[x])
+	len = ft_strlen(arg) - 1;
+	while (g_ms.env[x])
 	{
 		y = 0;
-		if (ft_strncmp(name, ms.env[x], len) == 0)
+		if (ft_strncmp(arg + 1, g_ms.env[x], len) == 0)
 		{
-			while (ms.env[x][y] != '=')
+			while (g_ms.env[x][y] != '=')
 				y++;
-			new_line = ft_strdup(ms.env[x] + (y + 1));
+			new_line = ft_strdup(g_ms.env[x] + (y + 1));
 			free (arg);
 			return (new_line);
 		}
@@ -43,42 +39,35 @@ char	*ms_check_arg_loop(char *name, char *arg)
 	return (ms_arg_empty(arg));
 }
 
-char	*ms_arg_number(char *arg, int index)
+//Si la suite de $ est un chiffre imprime ce qui est apres le premier chiffre
+char	*ms_arg_number(char *arg)
 {
-	char *new_arg;
+	char	*new_arg;
 
-	new_arg = ft_strdup(arg + index);
+	new_arg = ft_strdup(arg + 2);
+	if (arg[0])
+		new_arg = ft_strjoin(new_arg, arg);
 	free (arg);
 	return (new_arg);
 }
 
 char	*ms_check_arg_main(char *arg)
 {
-	int		index;
-	char	*name;
-	int		x;
-
-	index = 0;
-	x = 0;
-	if (arg[index] == '$')
-	{
-		free(arg);
-		return(ft_itoa(ms.exit)); //Je dois stjoin si il y a d'autre chose apres.
-	}
-	if (ft_isalpha(arg[index] == 0 && arg[index] != '_'))
-			return (ms_arg_number(arg, index + 1));
-	name = ft_strdup(arg + index);
-	arg = ms_check_arg_loop(name, arg);
-	free(name);
-	return (arg);
+	if (arg[1] == '?')
+		return (ms_dollar_exit(arg));
+	if (ft_isalpha(arg[1] == 0 && arg[1] != '_'))
+		return (ms_arg_number(arg));
+	if (arg[1] == '_' && arg[2] == 0)
+		return (ms_arg_empty(arg));
+	return (ms_check_arg_loop(arg));
 }
 
 //Fonction qui gere les arguments $ARG existant dans la variable ENV.
 void	ms_check_dollarsign(t_job *current)
 {
 	int	index;
-	
-	index = 0; 
+
+	index = 0;
 	while (current->cmd[index])
 	{
 		if (current->cmd[index][0] == '$')
