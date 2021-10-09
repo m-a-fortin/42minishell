@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 00:15:17 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 15:32:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 15:38:08 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ms_print_exec_error(char *value, char *cmd_name, char *error_str)
 	ft_putendl_fd(error_str, STDERR_FILENO);
 }
 
-bool	ms_pathname_error(char *cmd_name, t_job *current)
+bool	ms_pathname_error(char *cmd_name)
 {
 	ft_putstr_fd("Minishell: ", 1);
 	ft_putstr_fd(current->cmd[0], 1);
