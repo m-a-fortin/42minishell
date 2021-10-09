@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 15:42:59 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 15:47:40 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ bool	ms_exec_fork(t_job *current, t_job *job_head, int *in_out)
 
 	pid = fork();
 	//open les fd
+	// va me falloir une string des FD, j'ai oublier ca.
 	//regarder comment je fais avec pipex pour close les fd et tout.
 	dup2(in_out[0], 0);
 	dup2(in_out[1], 1);
