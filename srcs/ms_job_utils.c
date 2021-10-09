@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 13:45:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 12:47:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_job	*ms_create_node(t_job *node)
 	node = malloc(sizeof(t_job));
 	node->redirection = NULL;
 	node->cmd = NULL;
-	node->pipe = 0;
 	node->error = 0;
 	node->next = NULL;
 	return (node);

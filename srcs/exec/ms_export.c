@@ -6,28 +6,11 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 13:54:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:47:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//Si export n'a pas d'arguments, Il print envp avec "declare -x"
-void	ms_export_print(char **envp, int fd)
-{
-	int		x;
-	char	**print;
-
-	print = ft_calloc(ft_matrice_size(envp) + 1, sizeof(char *));
-	x = 0;
-	while (envp[x])
-	{
-		print[x] = ft_strjoin("declare -x ", envp[x]);
-		x++;
-	}
-	ft_print_matrice_fd(print, fd);
-	ft_free_tab(print);
-}
 
 //valide si la valeur de export est imprimable
 bool	ms_valid_exp_value(char *args, int index)
@@ -77,30 +60,33 @@ void	ms_setexp(char *args)
 	free(value);
 }
 
+bool	ms_export_loop(char **args, int index)
+{
+	if (ft_char_search(args[index], '=') == 0)
+		return (true);
+	if (ms_valid_exp_name(args[index]) == true)
+		ms_setexp(args[index]);
+	else
+	{
+		ms_print_exec_error(args[index], args[0], "not a valid identifier");
+		return (false);
+	}
+	return (true);
+}
 //export prend "nom=valeur" en parametre et le met dans envp.
 //si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
 int	ms_export_main(char **args, int fd)
 {
 	int	x;
-	int	exit;
 
 	x = 1;
-	exit = 0;
 	if (args[x] == NULL)
 		ms_export_print(g_ms.env, fd);
 	while (args[x])
 	{
-		if (ft_char_search(args[x], '=') == 0)
-			x++;
-		if (ms_valid_exp_name(args[x]) == true)
-			ms_setexp(args[x]);
-		else
-		{
-			ms_print_exec_error(args[x], args[0], "not a valid identifier");
-			exit = 1;
-			break ;
-		}
+		if (ms_export_loop(args, x) == false)
+			return (1);
 		x++;
 	}
-	return (exit);
+	return (0);
 }

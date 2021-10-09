@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 11:26:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 12:31:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	ms_exit_check(char **cmd)
 
 //sujet a changer, par exemple si on decide que chaque job est une node dans la linked list
 //faut je change le code, si une node = un pipe/fork, la fonctions est correct.
-void	ms_exit_return(t_job *job_head, t_job *current)
+int	ms_exit_return(t_job *job_head, t_job *current)
 {
 	if (job_head == current && current->next == NULL)
 	{
@@ -48,12 +48,13 @@ void	ms_exit_return(t_job *job_head, t_job *current)
 		ms_free_job(job_head, job_head);
 		exit (g_ms.exit);
 	}
+	return (g_ms.exit);
 }
 
 //Exit avec un code de retour. Set g_ms.exit au chiffre entrer en arguments de exit.
 // 0 si aucun argument, 1 si il y + que un argument et 255 si l'argument n'est pas un chiffre.
 // N'exit pas minishell si exit est dans un pipe.
-void	ms_exit_main(t_job *job_head, t_job *current)
+int	ms_exit_main(t_job *job_head, t_job *current)
 {
 	int		depth;
 	char	**cmd;
@@ -74,5 +75,5 @@ void	ms_exit_main(t_job *job_head, t_job *current)
 	}
 	else
 		check = ms_exit_check(cmd);
-	ms_exit_return(job_head, current);
+	return (ms_exit_return(job_head, current));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_errors.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 14:12:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/07 19:33:31 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:48:56 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define INV_ARG 128
 # define CTRL_C	130
 
-# define SHELL "minishell: "
+# define SHELL "Minishell: "
 # define UNXP_TOKEN "syntax error near unexpected token "
 # define PIPE_TOKEN "`|\'"
 # define NEWLINE_TOKEN "`newline\'"
