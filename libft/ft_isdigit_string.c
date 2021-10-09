@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 11:59:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/08/09 12:23:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 10:18:04 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int	ft_isdigit_string(char *c)
 	int	index;
 
 	index = 0;
-	if (c[index] == '-')
+	if (c[index] == '-' || c[index] == '+')
 		index++;
 	while (c[index + 1])
 	{

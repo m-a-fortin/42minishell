@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 14:44:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 11:13:34 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	ms_check_dollarsign(t_job *job_head);
 void	ms_exec_main(t_job *job_head);
 char	*ms_dollar_exit(char *arg);
 char	*ms_arg_empty(char *arg);
+void	ms_exit_main(t_job *job_head, t_job *current);
 
 #endif

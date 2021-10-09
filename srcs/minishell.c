@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 15:09:47 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/09 10:03:43 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ int	main(int argc, char **argv, char **envp)
 	g_ms.env = ft_matrice_cpy(envp);
 	ms_readline_loop();
 	ft_free_tab(g_ms.env);
+	return (g_ms.exit);
 }
