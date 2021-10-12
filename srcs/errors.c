@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 14:09:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:14:17 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	p_error(char *prg, char *arg, char *msg, char *token, int error)
 		ft_putstr_fd(msg, STDERR_FILENO);
 	if (token)
 		ft_putendl_fd(token, STDERR_FILENO);
-	error = 0;
+	printf("%d\n", error);
 	//g_ms.exit = error;
 }
 
