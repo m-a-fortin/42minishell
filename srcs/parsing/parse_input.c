@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 15:08:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:43:01 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ bool	find_token(t_parser *par, t_token *token)
 		return (tokenize_operator(par, token));
 	while (!ft_strchr(OPERATORS, index_char(par)))
 	{
-		par->index++;
+		if (index_char(par) == '\'')
+			break ;
 		if (ft_strchr(SPACES, index_char(par)))
 			break ;
+		par->index++;
 	}
 	return (tokenize_string(par, token));
 }

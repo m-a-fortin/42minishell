@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_tester.c                                      :+:      :+:    :+:   */
+/*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 09:31:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/12 10:42:00 by mmondell         ###   ########.fr       */
+/*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
+/*   Updated: 2021/10/12 10:32:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+char	*dollarsign_main(char *string, int index)
 {
-	char	*input;
-
-	input = " echo 'salut'comm'ent'ca\"va\"asdcasdfvb ";
-	parse_input(input);
+	char	*name;
+	index++;
+	while (string[index] != ' ')
+	{
+		if (!name)
+		
+	}
 }
