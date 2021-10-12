@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:58:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/05 13:27:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:15:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,21 @@ void	reset_parser(t_parser *par, char *input)
 	par->input = trim_input(input);
 }
 
-void	change_state(t_parser *par, int index)
+void	check_state(t_parser *par, int index)
 {
-	if (par->input[index] == '\'')
+	if (index == '\'')
 	{
+		if (par->state == D_QUOTE)
+			return ;
 		if (par->state == TEXT)
 			par->state = S_QUOTE;
 		else if (par->state == S_QUOTE)
 			par->state = TEXT;
 	}
-	else if (par->input[index] == '\"')
+	else if (index == '\"')
 	{
+		if (par->state == S_QUOTE)
+			return ;
 		if (par->state == TEXT)
 			par->state = D_QUOTE;
 		else if (par->state == D_QUOTE)
