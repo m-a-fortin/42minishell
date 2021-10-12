@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/12 10:41:46 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:04:27 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ void		ft_print_matrice_fd(char **matrice, int fd);
 bool		ft_majchar(char c);
 char		*ft_strndup(const char *s1, size_t len);
 char		**ft_remove_line(char **matrice, int index);
-char		*ft_append_string(char *src, char c);
 
 #endif
