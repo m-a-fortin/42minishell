@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/12 18:12:42 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:46:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ int	find_closing_quote(t_parser *par, char quote)
 {
 	int	i;
 
-	i = par->index;
+	i = par->index + 1;
 	while (par->input[i])
 	{
 		if (par->input[i] == quote)
 			return (i);
+		i++;
 	}
-	return (0);
+	return (-1);
 }	
 
 bool	tokenize_string(t_parser *par, t_token *token)
