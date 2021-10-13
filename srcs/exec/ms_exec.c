@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 16:00:32 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:50:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	ms_exec_main(t_job *job_head)
 	in_out[1] = 1;
 	current = job_head;
 	g_ms.exec = 1;
+	g_ms.singlequote = false;
 	while (current)
 	{
 		//ms_check_quotes();
-		//if (singlequote == false)
+		if (g_ms.singlequote == false)
 			dollarsign_main(current);
-		//printf("Current CMD: %s\n", current->cmd[0]);
 		//ms_trim_quotes();
 		//in_out = ms_redirection_main(current, job_head, in_out);
 		ms_check_builtin(current, job_head, in_out[1]);

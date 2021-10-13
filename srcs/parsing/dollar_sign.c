@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 16:45:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:51:40 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_dollar	*dollarsign_exit(t_dollar *d_sign)
 {
-	char *temp;
+	char	*temp;
 
 	d_sign->value = ft_itoa(g_ms.exit);
 	temp = ft_strjoin(d_sign->new_string, d_sign->value);
@@ -24,22 +24,11 @@ t_dollar	*dollarsign_exit(t_dollar *d_sign)
 	return (d_sign);
 }
 
-t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
+t_dollar	*dollarsign_join(t_dollar *d_sign)
 {
 	char	*temp;
 
-	d_sign->index++;
 	temp = NULL;
-	if (string[d_sign->index] == '?')
-		return (dollarsign_exit(d_sign));
-	if (ft_isalpha(string[d_sign->index]) == 0 &&
-		string[d_sign->index] != '_')
-	{
-			d_sign->index++;
-			return (d_sign);
-	}
-	d_sign = dollarsign_name(string, d_sign);
-	d_sign->value = ms_getenv(d_sign->name, g_ms.env);
 	if (d_sign->new_string)
 	{
 		temp = ft_strjoin(d_sign->new_string, d_sign->value);
@@ -48,7 +37,27 @@ t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
 	}
 	else
 		d_sign->new_string = ft_strdup(d_sign->value);
-	return(d_sign);
+	return (d_sign);
+}
+
+t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
+{
+	d_sign->index++;
+	if (string[d_sign->index] == '?')
+		return (dollarsign_exit(d_sign));
+	if (ft_isalpha(string[d_sign->index]) == 0
+		&& string[d_sign->index] != '_')
+	{
+		d_sign->index++;
+		return (d_sign);
+	}
+	d_sign = dollarsign_name(string, d_sign);
+	d_sign->value = ms_getenv(d_sign->name, g_ms.env);
+	free(d_sign->name);
+	d_sign->name = NULL;
+	if (!d_sign->value)
+		return (d_sign);
+	return (dollarsign_join(d_sign));
 }
 
 char	*dollarsign_loop(char *string)
@@ -60,7 +69,7 @@ char	*dollarsign_loop(char *string)
 	dollarstruct_init(d_sign);
 	while (string[d_sign->index])
 	{
-		if (string[d_sign->index] == '$')
+		if (string[d_sign->index] == '$' && g_ms.singlequote == false)
 			d_sign = dollarsign_found(string, d_sign);
 		else
 		{
@@ -73,7 +82,7 @@ char	*dollarsign_loop(char *string)
 	}
 	free (string);
 	string = ft_strdup(d_sign->new_string);
-	//dollarsign_free(d_sign);
+	dollarsign_free(d_sign);
 	return (string);
 }
 
@@ -86,14 +95,5 @@ void	dollarsign_main(t_job *current)
 	{
 		current->cmd[index] = dollarsign_loop(current->cmd[index]);
 		index++;
-	}
-	index = 0;
-	if (current->redirection)
-	{
-		while (current->redirection[index])
-		{
-			current->redirection[index] = dollarsign_loop(current->cmd[index]);
-			index++;
-		}
 	}
 }

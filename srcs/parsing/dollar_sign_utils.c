@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 09:51:50 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 17:07:21 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:13:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign)
 	char	*temp;
 	char	*equal;
 
-	while(string[d_sign->index])
+	while (string[d_sign->index])
 	{
+		if (string[d_sign->index] == '\'')
+		{
+			if (g_ms.singlequote == false)
+				g_ms.singlequote = true;
+			if (g_ms.singlequote == true)
+				g_ms.singlequote = false;
+			break ;
+		}
 		if (string[d_sign->index] == ' ' || string[d_sign->index] == '"'
-			|| string[d_sign->index] == '\0')
+			|| string[d_sign->index] == '\0' || string[d_sign->index] == '$')
 			break ;
 		temp = ft_append_string(d_sign->name, string[d_sign->index]);
 		d_sign->name = temp;
@@ -36,15 +44,11 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign)
 	}
 	equal = ft_append_string(d_sign->name, '=');
 	d_sign->name = equal;
-	return(d_sign);
+	return (d_sign);
 }
 
 void	dollarsign_free(t_dollar *d_sign)
 {
-	if (d_sign->name)
-		free(d_sign->name);
-	if (d_sign->value)
-		free(d_sign->value);
 	if (d_sign->new_string)
 		free (d_sign->new_string);
 	if (d_sign)
