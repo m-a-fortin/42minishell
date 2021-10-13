@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 12:47:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:35:56 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	ms_new_job(t_job *job_head)
 	}
 }
 
-void	ms_free_job(t_job *job_head, t_job *current)
-{	
-	if (current->next)
-		ms_free_job(job_head, current->next);
-	if (current->cmd)
-		ft_free_tab(current->cmd);
-	if (current->redirection)
-		free(current->redirection);
-	job_head = current;
-	if (current)
-		free(current);
-}
+//void	ms_free_job(t_job *job_head, t_job *current)
+//{	
+	//if (current->next)
+		//ms_free_job(job_head, current->next);
+	//if (current->cmd)
+		//ft_free_tab(current->cmd);
+	//if (current->redirection)
+		//free(current->redirection);
+	//job_head = current;
+	//if (current)
+		//free(current);
+//}

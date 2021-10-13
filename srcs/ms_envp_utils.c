@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 13:46:09 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 13:45:57 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ms_getenv(char *name, char **envp_ms)
 	int		len;
 	char	*line;
 
+	if (!name)
+		return(NULL);
 	index = 0;
 	len = ft_strlen(name);
 	while (envp_ms[index])

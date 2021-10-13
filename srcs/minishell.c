@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 10:03:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:58:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ms_readline_loop(void)
 		job_head->cmd = ft_split(input, ' ');
 		//parse_input(input, job_head);
 		ms_exec_main(job_head);
+		//ms_free_job(job_head, job_head);
 		free (input);
 	}
 }

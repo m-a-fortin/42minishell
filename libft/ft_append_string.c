@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:01:17 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/12 17:03:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:35:37 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_append_string(char *src, char c)
 	char	*new_str;
 	int		index;
 
+	new_str = NULL;
 	if (!src)
 		return (ft_append_empty(new_str, c));
 	new_len = ft_strlen(src) + 2;
