@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/10/07 10:19:20 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/12 18:12:06 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,11 @@ $(NAME): $(OBJS)
 	$(LIBFT)
 	$(CC) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
 
+linux :	obj $(OBJS_PATH) $(OBJS)
+	@make re --no-print-directory -C $(LIBFT_PATH)
+	@$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -lcurses -lreadline -o $(NAME)
+	@echo "\\n\033[32;1m Compilation Complete \033[0m \\n"
+
 obj:
 	@mkdir -p $(OBJ_DIR)
 
@@ -92,7 +97,7 @@ obj:
 #*$(B_NAME): $(B_OBJS)
 #*	$(LIBFT)
 #*	$(CC) $(B_OBJS) -L$(LIBFT_DIR) -lft -o $(B_NAME)
-	
+
 ## ----- CLEAN COMMANDS ----- ##
 clean:
 	@$(RM) $(OBJS) $(B_OBJS)

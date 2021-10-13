@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:31:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 11:51:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:10:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	main(void)
 {
 	char	*input;
 
-	input = "   echo >> >sarouel > test1 | cat test1 | grep sarouel ";
+	input = " echo bl'sa>lut 'al'lo\"toi\"bla >test2 >> test3 ";
 	parse_input(input);
 }

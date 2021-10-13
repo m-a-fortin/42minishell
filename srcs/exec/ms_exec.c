@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 15:50:47 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:38:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	ms_exec_main(t_job *job_head)
 	g_ms.exec = 1;
 	while (current)
 	{
-		ms_check_dollarsign(current);
+		//ms_check_quotes();
+		//if (singlequote == false)
+			ms_check_dollarsign(current);
+		//ms_trim_quotes();
 		//in_out = ms_redirection_main(current, job_head, in_out);
 		ms_check_builtin(current, job_head, in_out[1]);
 		//if(ms_check_builtin(current, job_head, in_out[0], in_out[1] == false)

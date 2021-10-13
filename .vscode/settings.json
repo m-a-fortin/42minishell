@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"chrono": "c"
-	}
+		"chrono": "c",
+		"locale": "c",
+		"string": "c"
+	},
+	"C_Cpp.errorSquiggles": "Enabled"
 }

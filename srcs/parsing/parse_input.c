@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 15:08:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:08:22 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,21 @@ bool	find_token(t_parser *par, t_token *token)
 {
 	if (ft_strchr(OPERATORS, index_char(par)))
 		return (tokenize_operator(par, token));
-	while (!ft_strchr(OPERATORS, index_char(par)))
+	while (!ft_strchr(OPERATORS, index_char(par))
+		&& !ft_strchr(SPACES, index_char(par)))
 	{
+		check_state(par, par->input[par->index]);
+		if (par->state != TEXT)
+		{
+			par->index = find_closing_quote(par, index_char(par));
+			if (!par->index)
+			{
+				bad_quotes_syntax(par);
+				return (false);
+			}
+		}
 		par->index++;
-		if (ft_strchr(SPACES, index_char(par)))
-			break ;
+		
 	}
 	return (tokenize_string(par, token));
 }
