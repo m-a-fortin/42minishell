@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 11:23:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:19:08 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_token	*token_lst_addnew(void	*valid_token);
 t_type	set_operator_type(char *str);
 bool	is_redirection(t_token *token);
 void	token_lst_addback(t_token **token, t_token *new);
+void 	free_list(t_token *head);
 
 #endif

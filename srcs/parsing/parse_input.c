@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 13:54:11 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:18:54 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ bool	parse_input(char *input)
 		{
 			input = new_input(&par, input);
 			token = token->next;
+			token->next = NULL;
 			continue ;
 		}
 		return (NULL);

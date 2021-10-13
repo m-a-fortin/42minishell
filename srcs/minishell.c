@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 10:26:22 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:11:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_exec	g_ms = {0};
 //le retour du parsing.
 void	ms_readline_loop(void)
 {
-	char	*input;
-	t_job	*job_head;
+	char		*input;
+	t_job		*job_head;
 
 	job_head = NULL;
 	signal(SIGINT, ms_nl_signal);
