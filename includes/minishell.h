@@ -6,18 +6,35 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/12 10:44:52 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:23:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+typedef enum e_type
+{
+	PIPE,
+	R_HDOC,
+	L_HDOC,
+	R_REDIR,
+	L_REDIR,
+	STRING,
+	VARIABLE,
+	EMPTY,
+}	t_type;
+typedef struct s_redir
+{
+	t_type	type;
+	char	*file;
+}	t_redir;
+
 //linkedlist peupler par le parsing et utiliser par l'execution. les nodes doivent etre free apres l'exec
 typedef struct s_job
 {
 	char			**cmd;//nom de la commande - name of the command
-	char			**redirection; //job de redirection
+	t_redir			*redir; //job de redirection
 	int				pipe;
 	int				error;
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.

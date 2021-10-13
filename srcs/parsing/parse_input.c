@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/12 18:08:22 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:18:54 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 // 	}
 // }
 
+char	*new_input(t_parser *par, char *input)
+{
+	char	*temp;
+
+	temp = input;
+	temp = ft_substr(par->input, token_length(par), ft_strlen(input));
+	return (temp);
+}
+
 bool	find_token(t_parser *par, t_token *token)
 {
 	if (ft_strchr(OPERATORS, index_char(par)))
@@ -35,7 +44,8 @@ bool	find_token(t_parser *par, t_token *token)
 		if (par->state != TEXT)
 		{
 			par->index = find_closing_quote(par, index_char(par));
-			if (!par->index)
+			check_state(par, par->input[par->index]);
+			if (par->index < 0)
 			{
 				bad_quotes_syntax(par);
 				return (false);
@@ -63,7 +73,7 @@ bool	parse_input(char *input)
 		reset_parser(&par, input);
 		if (find_token(&par, token))
 		{
-			input = ft_substr(par.input, token_length(&par), ft_strlen(input));
+			input = new_input(&par, input);
 			token = token->next;
 			token->next = NULL;
 			continue ;
