@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/08 11:05:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:23:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,12 @@
 
 # define OPERATORS "<>|"
 
-typedef enum e_type
-{
-	PIPE,
-	R_HDOC,
-	L_HDOC,
-	R_REDIR,
-	L_REDIR,
-	STRING,
-	VARIABLE,
-	EMPTY,
-}	t_type;
-
 typedef struct s_token
 {
 	char			*valid_token;
 	t_type			type;
 	struct s_token	*next;
+	struct s_token	*prev;
 }	t_token;
 
 /* LIST UTILITIES */

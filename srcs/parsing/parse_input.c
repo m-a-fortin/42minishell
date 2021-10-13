@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 08:50:44 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:03:20 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 // 		i++;
 // 	}
 // }
+
+char	*new_input(t_parser *par, char *input)
+{
+	char	*temp;
+
+	temp = input;
+	temp = ft_substr(par->input, token_length(par), ft_strlen(input));
+	return (temp);
+}
 
 bool	find_token(t_parser *par, t_token *token)
 {
@@ -64,7 +73,7 @@ bool	parse_input(char *input)
 		reset_parser(&par, input);
 		if (find_token(&par, token))
 		{
-			input = ft_substr_free(par.input, token_length(&par), ft_strlen(input));
+			input = new_input(&par, input);
 			token = token->next;
 			token->next = NULL;
 			continue ;

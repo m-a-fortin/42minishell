@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 14:02:25 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/13 08:57:05 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/13 13:12:15 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS 	= ft_isalnum.c ft_isdigit.c ft_memccpy.c ft_memcpy.c ft_putchar_fd.c\
 		ft_isdigit_string.c get_next_line.c get_next_line_utils.c ft_char_search.c\
 		ft_change_line.c ft_print_matrice.c ft_matrice_cpy.c ft_addline.c\
 		ft_print_matrice_fd.c ft_majchar.c ft_strndup.c ft_remove_line.c\
-		ft_append_string.c ft_substr_free.c ft_strtrim_free.c
+		ft_append_string.c
+
 OBJS 	= ${SRCS:.c=.o}
 OBJS_B	= ${SRCS_B:.c=.o}
 HEADER	= libft.h
