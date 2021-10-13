@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/12 18:47:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 08:50:44 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	parse_input(char *input)
 		reset_parser(&par, input);
 		if (find_token(&par, token))
 		{
-			input = ft_substr(par.input, token_length(&par), ft_strlen(input));
+			input = ft_substr_free(par.input, token_length(&par), ft_strlen(input));
 			token = token->next;
 			token->next = NULL;
 			continue ;
