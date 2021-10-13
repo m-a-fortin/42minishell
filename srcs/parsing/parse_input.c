@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 14:18:54 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:15:40 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,31 @@ bool	find_token(t_parser *par, t_token *token)
 	return (tokenize_string(par, token));
 }
 
-bool	parse_input(char *input)
+t_job	*parse_input(char *input, t_job *job_head)
 {
 	t_token		*token;
 	t_token		*head;
 	t_parser	par;
+	char		*temp;
 
 	token = token_lst_addnew(NULL);
 	head = token;
 	if (!input)
 		return (NULL);
-	input = trim_input(input);
-	while (input_is_not_empty(input))
+	temp = ft_strdup(input);
+	temp = trim_input(input);
+	while (input_is_not_empty(temp))
 	{
-		reset_parser(&par, input);
+		reset_parser(&par, temp);
 		if (find_token(&par, token))
 		{
-			input = new_input(&par, input);
+			temp = new_input(&par, temp);
 			token = token->next;
-			token->next = NULL;
 			continue ;
 		}
 		return (NULL);
 	}
-	return (validate_tokens_syntax(head));
+	if (!validate_tokens_syntax(head))
+		return (NULL);
+	return (build_job(head, job_head));
 }
