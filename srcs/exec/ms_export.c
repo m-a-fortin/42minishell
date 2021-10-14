@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 13:47:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:31:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ms_setexp(char *args)
 	index = 0;
 	while (args[index] != '=')
 		index++;
-	name = ft_strndup(args, index + 1);
+	name = ft_strndup(args, index);
 	value = ft_strdup(args += index + 1);
 	g_ms.env = ms_setenv(name, value, g_ms.env);
 	free(name);
