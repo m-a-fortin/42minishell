@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 10:40:21 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:19:08 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ms_export_print(char **envp, int fd);
 char	*ms_findpath(char *cmd);
 bool	ms_execve_error(char *pathname, char *cmd_name);
 bool	ms_pathname_error(char *cmd_name);
+void	ms_redirection_main(int *in_out, t_job *current);
 
 
 #endif

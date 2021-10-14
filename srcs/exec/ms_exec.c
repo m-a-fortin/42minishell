@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 12:07:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:18:51 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ bool	ms_exec_fork(t_job *current, t_job *job_head, int *in_out)
 void	ms_exec_main(t_job *job_head)
 {
 	t_job	*current;
-	int		in_out[2];
+	int		*in_out;
 
+	in_out = malloc(sizeof(int) * 2);
 	in_out[0] = 0;
 	in_out[1] = 1;
 	current = job_head;
-	g_ms.exec = 1;
 	g_ms.singlequote = false;
 	g_ms.doublequote = false;
 	while (current)
 	{
 		//ms_check_quotes();
 		dollarsign_main(current);
-		//if (g_ms.doublequote == false && g_ms.singlequote == false)
-			//in_out = ms_redirection_main(current, job_head, in_out);
+		ms_redirection_main(in_out, current);
 		trimquotes_main(current);
+		g_ms.exec = 1;
 		ms_check_builtin(current, job_head, in_out[1]);
 		//if(ms_check_builtin(current, job_head, in_out[0], in_out[1] == false)
 		//if(ms_exec_fork(t_job *current, t_job *job_head, in_out) == false)
