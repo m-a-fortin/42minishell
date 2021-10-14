@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/10/12 18:34:34 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/13 15:46:44 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ LIBFT_DIR		=	../../libft/
 
 ## ----- SOURCE FILES ----- ##
 SRCS_FILES		= 	parse_input.c parse_utils.c token_lst_utils.c token_utils.c\
-					tokens.c syntax.c ../errors.c main_tester.c
+					tokens.c syntax.c ../errors.c main_tester.c build_job.c build_utils.c\
+					../ms_job_utils.c
+
 ## ----- BONUS SOURCE FILES ----- ##
 #*B_SRCS_FILES	= 
 

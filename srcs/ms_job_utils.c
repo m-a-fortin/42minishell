@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_job_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 17:45:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:46:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 t_job	*ms_create_node(t_job *node)
 {
 	node = malloc(sizeof(t_job));
-	//node->redirection = NULL;
+
+	node->redir = NULL;
 	node->cmd = NULL;
 	node->error = 0;
 	node->next = NULL;
@@ -41,8 +42,9 @@ void	ms_free_job(t_job *job_head, t_job *current)
 		ms_free_job(job_head, current->next);
 	if (current->cmd)
 		ft_free_tab(current->cmd);
-	//if (current->redirection)
-		//free(current->redirection);
+
+	if (current->redir)
+		free(current->redir);
 	job_head = current;
 	if (current)
 		free(current);

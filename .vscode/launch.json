@@ -9,6 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "/Users/mmondell/Documents/42Cursus/42minishell/srcs/parsing/parse",
+			//"program": "/Users/mmondell/Documents/42Cursus/42minishell/minishell",
 			"args": [],
 			"cwd": "${workspaceFolder}"
 		}
