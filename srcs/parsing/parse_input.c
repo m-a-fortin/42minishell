@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 16:15:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/14 08:16:21 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ t_job	*parse_input(char *input, t_job *job_head)
 
 	token = token_lst_addnew(NULL);
 	head = token;
-	if (!input)
-		return (NULL);
 	temp = ft_strdup(input);
 	temp = trim_input(input);
 	while (input_is_not_empty(temp))
@@ -81,6 +79,7 @@ t_job	*parse_input(char *input, t_job *job_head)
 		}
 		return (NULL);
 	}
+	free(temp);
 	if (!validate_tokens_syntax(head))
 		return (NULL);
 	return (build_job(head, job_head));
