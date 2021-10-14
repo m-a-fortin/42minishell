@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 10:37:45 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 11:49:47 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*dollarsign_loop(char *string)
 	dollarstruct_init(d_sign);
 	while (string[d_sign->index])
 	{
+		if (string[d_sign->index] == '\'' || string[d_sign->index] == '\"')
+			update_quotestatus(string[d_sign->index]);
 		if (string[d_sign->index] == '$' && g_ms.singlequote == false)
 			d_sign = dollarsign_found(string, d_sign);
 		else
@@ -86,9 +88,13 @@ char	*dollarsign_loop(char *string)
 	return (string);
 }
 
+//fonction qui gere les arguments $. Si l'argument suivi de $ est dans env, il
+//changer la valeur. Sinon il retourne une string vide. La regle des quotes et
+//double quotes agis comme dans bash. Si ce qui suit $ n'est pas un nom de variable
+//avec une syntax valide, il skip le premier char et ajoute le reste a la string
 void	dollarsign_main(t_job *current)
 {
-	int		index;
+	int	index;
 
 	index = 0;
 	while (current->cmd[index])
@@ -96,5 +102,6 @@ void	dollarsign_main(t_job *current)
 		current->cmd[index] = dollarsign_loop(current->cmd[index]);
 		index++;
 	}
-	
+	index = 0;
+	//pas oublier de regarder les redirections
 }
