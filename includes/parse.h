@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 10:35:33 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:14:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	tokenize_operator(t_parser *par, t_token *token);
 bool	validate_tokens_syntax(t_token *head);
 void	add_token_to_list(t_parser *par, t_token *token);
 t_job	*parse_input(char *input, t_job *job_head);
-t_job	*build_job(t_token *token, t_job *job);
+t_job	*build_job(t_token *token_head, t_job *job_head);
 t_job	*parse_input(char *input, t_job *job_head);
 
 void	dollarsign_main(t_job *current);
@@ -61,6 +61,7 @@ void		check_state(t_parser *par, int index);
 bool		input_is_not_empty(char *input);
 void		dollarstruct_init(t_dollar *d_sign);
 void		dollarsign_free(t_dollar *d_sign);
+int			count_redirections(t_token *token);
 int			count_cmd_and_args(t_token *token);
 t_dollar	*dollarsign_name(char *string, t_dollar *d_sign);
 

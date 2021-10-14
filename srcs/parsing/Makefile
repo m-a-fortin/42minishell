@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/10/13 15:46:44 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/14 11:24:28 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ $(OBJ_DIR)%.o:%.c
 
 $(NAME): $(OBJS)
 	$(LIBFT)
-	$(CC) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+	$(CC) $(OBJS) -L$(LIBFT_DIR) -lft -lreadline -o $(NAME)
 
 linux :	obj $(OBJS_PATH) $(OBJS)
 	@$(LIBFT)
