@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 14:19:08 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:15:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 typedef struct s_token
 {
+	struct s_token	*prev;
 	char			*valid_token;
 	t_type			type;
 	struct s_token	*next;
-	struct s_token	*prev;
 }	t_token;
 
 /* LIST UTILITIES */

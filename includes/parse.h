@@ -41,13 +41,12 @@ typedef struct	s_dollar
 int		find_closing_quote(t_parser *par, char quote);
 char	*trim_input(char *input);
 void	init_parser(t_parser *par, char *input);
-bool	parse_input(char *input);
 bool	find_token(t_parser *par, t_token *token);
 bool	tokenize_string(t_parser *par, t_token *token);
 bool	tokenize_operator(t_parser *par, t_token *token);
 bool	validate_tokens_syntax(t_token *head);
 void	add_token_to_list(t_parser *par, t_token *token);
-void	dollarsign_main(t_job *current);
+t_job	*build_job(t_token *token, t_job *job);
 
 /* PARSE UTILITIES */
 
@@ -59,6 +58,5 @@ bool		input_is_not_empty(char *input);
 void		dollarstruct_init(t_dollar *d_sign);
 t_dollar	*dollarsign_name(char *string, t_dollar *d_sign);
 void		dollarsign_free(t_dollar *d_sign);
-
 
 #endif

@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_tester.c                                      :+:      :+:    :+:   */
+/*   build_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 09:31:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 15:48:29 by mmondell         ###   ########.fr       */
+/*   Created: 2021/10/13 14:59:07 by mmondell          #+#    #+#             */
+/*   Updated: 2021/10/14 08:17:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	count_string_nodes(t_token *token)
 {
-	t_job	*job;
-	char	*input;
+	int	i;
 
-	job = NULL;
-	job = ms_create_node(job);
-	input = " echo blab blabb bla > test ";
-	parse_input(input, job);
+	i = 0;
+	while (token->type == STRING)
+	{
+		if (token->next->type != STRING)
+			return (i);
+		token = token->next;
+		i++;
+	}
+	return (i);
 }
