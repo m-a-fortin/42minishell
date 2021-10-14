@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 15:25:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:17:35 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ typedef struct s_parser
 	t_state	state;
 }	t_parser;
 
-t_job	*parse_input(char *input, t_job *job_head);
+typedef struct	s_dollar
+{
+	char	*new_string;
+	char	*name;
+	char	*value;
+	int		index;
+}	t_dollar;
+
 int		find_closing_quote(t_parser *par, char quote);
 char	*trim_input(char *input);
 void	init_parser(t_parser *par, char *input);
@@ -41,15 +48,15 @@ bool	validate_tokens_syntax(t_token *head);
 void	add_token_to_list(t_parser *par, t_token *token);
 t_job	*build_job(t_token *token, t_job *job);
 
-
-
 /* PARSE UTILITIES */
 
-int		token_length(t_parser *par);
-char	index_char(t_parser *par);
-void	reset_parser(t_parser *par, char *input);
-void	check_state(t_parser *par, int index);
-bool	input_is_not_empty(char *input);
-int		count_string_nodes(t_token *token);
+int			token_length(t_parser *par);
+char		index_char(t_parser *par);
+void		reset_parser(t_parser *par, char *input);
+void		check_state(t_parser *par, int index);
+bool		input_is_not_empty(char *input);
+void		dollarstruct_init(t_dollar *d_sign);
+t_dollar	*dollarsign_name(char *string, t_dollar *d_sign);
+void		dollarsign_free(t_dollar *d_sign);
 
 #endif

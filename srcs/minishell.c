@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 14:11:43 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:03:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,18 @@ void	ms_readline_loop(void)
 		job_head = ms_create_node(job_head);
 		g_ms.exec = 0;
 		input = readline("MiniShell % ");
+		if (!input)
+		{
+			free(input);
+			ms_free_job(job_head, job_head);
+			exit(g_ms.exit);
+		}
 		add_history(input);
 		job_head->cmd = ft_split(input, ' ');
 		//parse_input(input, job_head);
 		//TODO if job_head == NULL set g_ms.error to BAD_SYNTAX
 		ms_exec_main(job_head);
+		ms_free_job(job_head, job_head);
 		free (input);
 	}
 }
@@ -48,6 +55,4 @@ int	main(int argc, char **argv, char **envp)
 	}
 	g_ms.env = ft_matrice_cpy(envp);
 	ms_readline_loop();
-	ft_free_tab(g_ms.env);
-	return (g_ms.exit);
 }

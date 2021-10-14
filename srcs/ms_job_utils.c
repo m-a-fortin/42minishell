@@ -15,6 +15,7 @@
 t_job	*ms_create_node(t_job *node)
 {
 	node = malloc(sizeof(t_job));
+
 	node->redir = NULL;
 	node->cmd = NULL;
 	node->error = 0;
@@ -41,6 +42,7 @@ void	ms_free_job(t_job *job_head, t_job *current)
 		ms_free_job(job_head, current->next);
 	if (current->cmd)
 		ft_free_tab(current->cmd);
+
 	if (current->redir)
 		free(current->redir);
 	job_head = current;

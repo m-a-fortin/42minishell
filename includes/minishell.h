@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 15:46:21 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:48:35 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdbool.h>
 typedef enum e_type
 {
 	PIPE,
@@ -43,6 +44,7 @@ typedef struct s_job
 typedef struct s_exec
 {
 	char	**env;
+	bool	singlequote;
 	int		exit;
 	int		exec;
 }			t_exec;
