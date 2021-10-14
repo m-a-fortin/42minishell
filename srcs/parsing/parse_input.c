@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 08:16:21 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:17:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 // 	while (head->next)
 // 	{
-// 		printf("TOKEN[%d] = %s\n", i, head->valid_token);
+// 		printf("TOKEN[%d] = %s\n", i, head->token);
 // 		head = head->next;
 // 		i++;
 // 	}
