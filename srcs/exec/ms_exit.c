@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 14:36:45 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 11:36:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ms_exit_return(t_job *job_head, t_job *current)
 {
 	if (job_head == current && current->next == NULL)
 	{
-		ft_free_tab(g_ms.env);
+		//ft_free_tab(g_ms.env);
 		//ms_free_job(job_head, job_head);
 		exit (g_ms.exit);
 	}

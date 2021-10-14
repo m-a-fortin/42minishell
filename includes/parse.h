@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 10:35:33 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:08:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ void		dollarstruct_init(t_dollar *d_sign);
 void		dollarsign_free(t_dollar *d_sign);
 int			count_cmd_and_args(t_token *token);
 t_dollar	*dollarsign_name(char *string, t_dollar *d_sign);
+void		update_quotestatus(char type);
+void		trimquotes_main(t_job *current);
 
 #endif
