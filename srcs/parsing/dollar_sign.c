@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 11:49:47 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:59:49 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ t_dollar	*dollarsign_join(t_dollar *d_sign)
 
 t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
 {
-	d_sign->index++;
-	if (string[d_sign->index] == '?')
-		return (dollarsign_exit(d_sign));
-	if (ft_isalpha(string[d_sign->index]) == 0
-		&& string[d_sign->index] != '_')
+	if (ft_isalpha(string[d_sign->index + 1]) == 0
+		&& string[d_sign->index + 1] != '_' && string[d_sign->index + 1] != '?')
 	{
-		d_sign->index++;
+		d_sign->found = 0;
 		return (d_sign);
 	}
+	d_sign->index++;
+	d_sign->found = 1;
+	if (string[d_sign->index] == '?')
+		return (dollarsign_exit(d_sign));
 	d_sign = dollarsign_name(string, d_sign);
 	d_sign->value = ms_getenv(d_sign->name, g_ms.env);
 	free(d_sign->name);
@@ -69,11 +70,12 @@ char	*dollarsign_loop(char *string)
 	dollarstruct_init(d_sign);
 	while (string[d_sign->index])
 	{
+		d_sign->found = 0;
 		if (string[d_sign->index] == '\'' || string[d_sign->index] == '\"')
 			update_quotestatus(string[d_sign->index]);
 		if (string[d_sign->index] == '$' && g_ms.singlequote == false)
 			d_sign = dollarsign_found(string, d_sign);
-		else
+		if (d_sign->found == 0)
 		{
 			temp = ft_append_string(d_sign->new_string,
 					string[d_sign->index]);
@@ -89,9 +91,11 @@ char	*dollarsign_loop(char *string)
 }
 
 //fonction qui gere les arguments $. Si l'argument suivi de $ est dans env, il
-//changer la valeur. Sinon il retourne une string vide. La regle des quotes et
-//double quotes agis comme dans bash. Si ce qui suit $ n'est pas un nom de variable
-//avec une syntax valide, il skip le premier char et ajoute le reste a la string
+//changer la valeur. Sinon il retourne une string vide.
+// La regle des quotes et double quotes agis comme dans bash.
+//Si ce qui suit $ n'est pas un nom de variable
+//avec une syntax valide, il skip le premier char
+// et ajoute le reste a la string
 void	dollarsign_main(t_job *current)
 {
 	int	index;

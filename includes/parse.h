@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 12:08:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:44:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_dollar
 	char	*name;
 	char	*value;
 	int		index;
+	int		found;
 }	t_dollar;
 
 int		find_closing_quote(t_parser *par, char quote);
