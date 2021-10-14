@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 18:51:40 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:37:45 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	dollarsign_main(t_job *current)
 		current->cmd[index] = dollarsign_loop(current->cmd[index]);
 		index++;
 	}
+	
 }
