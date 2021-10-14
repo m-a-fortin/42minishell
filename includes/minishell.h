@@ -6,14 +6,31 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 18:48:35 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 09:41:29 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdio.h>
+# include <unistd.h>
+# include <signal.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <dirent.h>
 # include <stdbool.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/errno.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
+# include "../libft/libft.h"
+# include "token.h"
+# include "parse.h"
+# include "exec.h"
+# include "shell_errors.h"
 typedef enum e_type
 {
 	PIPE,
@@ -45,30 +62,12 @@ typedef struct s_exec
 {
 	char	**env;
 	bool	singlequote;
+	bool	doublequote;
 	int		exit;
 	int		exec;
 }			t_exec;
 
-extern t_exec g_ms;
-# include <stdio.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <dirent.h>
-# include <stdbool.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/errno.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include "../libft/libft.h"
-# include "token.h"
-# include "parse.h"
-# include "exec.h"
-# include "shell_errors.h"
-
+extern	t_exec g_ms;
 void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
