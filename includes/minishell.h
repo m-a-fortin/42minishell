@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 09:41:29 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:30:02 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-# include "../libft/libft.h"
-# include "token.h"
-# include "parse.h"
-# include "exec.h"
-# include "shell_errors.h"
+
 typedef enum e_type
 {
 	PIPE,
@@ -66,6 +62,12 @@ typedef struct s_exec
 	int		exit;
 	int		exec;
 }			t_exec;
+
+# include "../libft/libft.h"
+# include "token.h"
+# include "parse.h"
+# include "exec.h"
+# include "shell_errors.h"
 
 extern	t_exec g_ms;
 void	ms_nl_signal(int signal);
