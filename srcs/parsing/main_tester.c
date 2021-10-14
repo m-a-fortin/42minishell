@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:31:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 09:46:47 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/14 11:23:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(void)
 
 	job = NULL;
 	job = ms_create_node(job);
-	input = " echo blab blabb bla > test bob blouh ";
+	input = readline("TESTER: ");
 	parse_input(input, job);
 }

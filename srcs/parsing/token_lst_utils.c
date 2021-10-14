@@ -6,23 +6,23 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:59:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 08:29:58 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:32:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_list(t_token *head)
+void	free_list(t_token *head)
 {
-   t_token	*tmp;
+	t_token	*tmp;
 
-   while (head)
-    {
-       tmp = head;
-       head = head->next;
-	   free(tmp->token);
-       free(tmp);
-    }
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp->token);
+		free(tmp);
+	}
 }
 
 t_token	*token_lst_last(t_token *token)
