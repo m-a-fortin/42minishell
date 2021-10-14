@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 08:17:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/14 08:29:58 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	add_token_to_list(t_parser *par, t_token *token)
 	int	i;
 
 	i = 0;
-	token->valid_token = ft_calloc(token_length(par), sizeof(char));
+	token->token = ft_calloc(token_length(par), sizeof(char));
 	while (i != par->index)
 	{
-		token->valid_token[i] = par->input[i];
+		token->token[i] = par->input[i];
 		i++;
 	}
 	token_lst_addback(&token, token_lst_addnew(NULL));

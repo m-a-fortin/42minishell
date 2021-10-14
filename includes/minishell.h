@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 10:30:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:34:45 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef enum e_type
 	R_REDIR,
 	L_REDIR,
 	STRING,
-	VARIABLE,
 	EMPTY,
 }	t_type;
 typedef struct s_redir
@@ -48,7 +47,7 @@ typedef struct s_redir
 typedef struct s_job
 {
 	char			**cmd;//nom de la commande - name of the command
-	t_redir			*redir; //job de redirection
+	char			**redir; //job de redirection
 	int				pipe;
 	int				error;
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.

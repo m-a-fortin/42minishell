@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:59:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 08:17:21 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/14 08:29:58 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void free_list(t_token *head)
     {
        tmp = head;
        head = head->next;
-	   free(tmp->valid_token);
+	   free(tmp->token);
        free(tmp);
     }
 }
@@ -53,14 +53,14 @@ void	token_lst_addback(t_token **token, t_token *new)
 	}
 }
 
-t_token	*token_lst_addnew(void	*valid_token)
+t_token	*token_lst_addnew(void	*token)
 {
 	t_token	*new;
 
 	new = ft_calloc(1, sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->valid_token = valid_token;
+	new->token = token;
 	new->type = EMPTY;
 	new->prev = NULL;
 	new->next = NULL;
