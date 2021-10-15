@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 15:46:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 08:31:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ms_free_job(t_job *job_head, t_job *current)
 		ms_free_job(job_head, current->next);
 	if (current->cmd)
 		ft_free_tab(current->cmd);
-
 	if (current->redir)
 		free(current->redir);
 	job_head = current;
