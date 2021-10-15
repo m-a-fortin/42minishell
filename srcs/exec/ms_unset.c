@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 17:21:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 12:04:34 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ void	ms_unset_loop(char	*args)
 int	ms_unset_main(char **args)
 {
 	int		x;
-	int		index;
 
 	x = 1;
 	if (args[x] == NULL)
 		return (0);
 	while (args[x])
 	{
-		index = 0;
 		if (ms_valid_unset_name(args[x]) == false)
 			return (ms_unset_error(args[x]));
 		ms_unset_loop(args[x]);

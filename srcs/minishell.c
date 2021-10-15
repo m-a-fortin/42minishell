@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 08:34:26 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 12:11:50 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ms_readline_loop(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	argv = NULL;
+	argv++;
 	if (argc > 1)
 	{
 		ft_putstr_fd("Error\nminishell: invalid number of arguments\n", 1);
