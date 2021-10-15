@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 18:03:31 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 08:34:26 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	ms_readline_loop(void)
 			exit(g_ms.exit);
 		}
 		add_history(input);
-		job_head->cmd = ft_split(input, ' ');
-		//parse_input(input, job_head);
+		//job_head->cmd = ft_split(input, ' ');
+		job_head = parse_input(input, job_head);
 		//TODO if job_head == NULL set g_ms.error to BAD_SYNTAX
 		ms_exec_main(job_head);
 		ms_free_job(job_head, job_head);

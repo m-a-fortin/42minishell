@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 15:32:33 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 11:12:17 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_job	*build_job(t_token *token_head, t_job *job_head)
 	t_token	*token;
 
 	job = job_head;
-	token = token_head;	
+	token = token_head;
 	while (token->next != NULL)
 	{
 		if (token->type == PIPE)
@@ -95,6 +95,6 @@ t_job	*build_job(t_token *token_head, t_job *job_head)
 			token = token->next->next;
 		}
 	}
-	//print_tab(job_head);
+	free_list(token_head);
 	return (job_head);
 }

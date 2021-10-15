@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 16:06:20 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 10:53:47 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	dollarsign_main(t_job *current);
 
 int			token_length(t_parser *par);
 char		index_char(t_parser *par);
-void		reset_parser(t_parser *par, char *input);
+char		*reset_parser(t_parser *par, char *input);
 void		check_state(t_parser *par, int index);
 bool		input_is_not_empty(char *input);
 void		dollarstruct_init(t_dollar *d_sign);
