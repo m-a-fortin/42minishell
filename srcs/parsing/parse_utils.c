@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:58:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 13:36:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 11:10:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 char	*trim_input(char *input)
 {
 	char	*temp;
+	char	*str;
 
 	temp = ft_strdup(input);
-	temp = ft_strtrim(temp, SPACES);
-	return (temp);
+	str = temp;
+	str = ft_strtrim(temp, SPACES);
+	free (temp);
+	return (str);
 }
 
 bool	input_is_not_empty(char *input)
@@ -38,14 +41,20 @@ char	index_char(t_parser *par)
 	return (par->input[par->index]);
 }
 
-void	reset_parser(t_parser *par, char *input)
+char	*reset_parser(t_parser *par, char *input)
 {
 	char	*temp;
+	char	*str;
 
 	par->index = 0;
 	par->state = TEXT;
-	temp = ft_strtrim(input, SPACES);
-	par->input = temp;
+	temp = ft_strdup(input);
+	str = temp;
+	str = ft_strtrim(temp, SPACES);
+	free(input);
+	free(temp);
+	par->input = str;
+	return (str);
 }
 
 void	check_state(t_parser *par, int index)
