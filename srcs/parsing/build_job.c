@@ -6,31 +6,34 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 12:26:08 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 12:57:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	print_tab(t_job *job)
-// {
-// 	int	i;
+void	print_tab(t_job *job)
+{
+	int	i;
 
-// 	i = 0;
-// 	printf("commands and args\n------------------\n");
-// 	while (job->cmd[i])
-// 	{
-// 		printf("[%d]  %s\n",i ,job->cmd[i]);
-// 		i++;
-// 	}
-// 	printf("all redirections\n------------------\n");
-// 	i = 0;
-// 	while (job->redir[i])
-// 	{
-// 		printf("[%d]  %s\n",i ,job->redir[i]);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	printf("commands and args\n------------------\n");
+	while (job->cmd[i])
+	{
+		printf("[%d]  %s\n",i ,job->cmd[i]);
+		i++;
+	}
+	if (job->redir)
+	{
+		printf("all redirections\n------------------\n");
+		i = 0;
+		while (job->redir[i])
+		{
+			printf("[%d]  %s\n",i ,job->redir[i]);
+			i++;
+		}
+	}
+}
 
 void	build_redirection(t_token *tok, t_job *job)
 {
@@ -95,6 +98,7 @@ t_job	*build_job(t_token *token_head, t_job *job_head)
 			token = token->next->next;
 		}
 	}
+	print_tab(job_head);
 	free_list(token_head);
 	return (job_head);
 }
