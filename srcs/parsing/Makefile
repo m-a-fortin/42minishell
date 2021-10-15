@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/10/14 11:24:28 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/15 11:59:43 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CFLAGS			=	-Wall -Wextra -Werror -g
 SRCS_DIR		=	srcs/
 #*B_SRCS_DIR		= 
 
-OBJ_DIR			=	obj/
+OBJ_DIR			=	objs/
 
 INCLUDE_DIR		=	../../includes/
 
