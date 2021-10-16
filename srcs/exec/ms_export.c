@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 14:31:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 22:25:45 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 //valide si la valeur de export est imprimable
 bool	ms_valid_exp_value(char *args, int index)
@@ -53,7 +53,7 @@ void	ms_setexp(char *args)
 	index = 0;
 	while (args[index] != '=')
 		index++;
-	name = ft_strndup(args, index);
+	name = ft_strndup(args, index + 1);
 	value = ft_strdup(args += index + 1);
 	g_ms.env = ms_setenv(name, value, g_ms.env);
 	free(name);

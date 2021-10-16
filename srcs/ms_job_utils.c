@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_job_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 15:46:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 21:57:58 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_job	*ms_create_node(t_job *node)
 	node->cmd = NULL;
 	node->error = 0;
 	node->next = NULL;
+	g_ms.in = 0;
+	g_ms.out = 1;
+	g_ms.singlequote = false;
+	g_ms.doublequote = false;
 	return (node);
 }
 
@@ -42,7 +46,6 @@ void	ms_free_job(t_job *job_head, t_job *current)
 		ms_free_job(job_head, current->next);
 	if (current->cmd)
 		ft_free_tab(current->cmd);
-
 	if (current->redir)
 		free(current->redir);
 	job_head = current;

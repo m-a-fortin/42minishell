@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 11:36:11 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 22:16:24 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ int	ms_exit_main(t_job *job_head, t_job *current)
 	}
 	else
 		check = ms_exit_check(cmd);
+	if (check == false)
+		return (1);//voir l'utilite de check
 	return (ms_exit_return(job_head, current));
 }

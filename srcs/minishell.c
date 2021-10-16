@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 18:03:31 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 22:08:23 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 t_exec	g_ms = {0};
 
-//loop de readline qui envoie les infos au parsing et qui execute 
-//le retour du parsing.
-void	ms_readline_loop(void)
+//loop principal. Le retour de readline passe par la syntax,
+//le parsing et puis ensuite l'exec.
+void	ms_readline_loop(t_job *job_head)
 {
 	char		*input;
-	t_job		*job_head;
 
-	job_head = NULL;
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
 	while (true)
@@ -36,23 +34,29 @@ void	ms_readline_loop(void)
 			exit(g_ms.exit);
 		}
 		add_history(input);
-		job_head->cmd = ft_split(input, ' ');
-		//parse_input(input, job_head);
-		//TODO if job_head == NULL set g_ms.error to BAD_SYNTAX
-		ms_exec_main(job_head);
-		ms_free_job(job_head, job_head);
+		job_head = parse_input(input, job_head);
+		if (job_head)
+		{
+			ms_exec_main(job_head);
+			ms_free_job(job_head, job_head);
+		}
+		else
+			g_ms.exit = BAD_SYNTAX;
 		free (input);
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	argv = NULL;
+	t_job		*job_head;
+
+	job_head = NULL;
+	argv++;
 	if (argc > 1)
 	{
 		ft_putstr_fd("Error\nminishell: invalid number of arguments\n", 1);
 		exit(-1);
 	}
 	g_ms.env = ft_matrice_cpy(envp);
-	ms_readline_loop();
+	ms_readline_loop(job_head);
 }

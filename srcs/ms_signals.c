@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:32:43 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 13:45:44 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 12:04:07 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ms_nl_signal(int signal)
 		g_ms.exit = 1;
 	if (g_ms.exec == 1)
 		g_ms.exit = 130;
+	signal++;
 	signal = g_ms.exit;
 	write(1, "\n", 2);
 	rl_on_new_line();

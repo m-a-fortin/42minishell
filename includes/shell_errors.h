@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_errors.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 14:12:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/09 13:48:56 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/15 08:41:18 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 
 void	bad_quotes_syntax(t_parser *par);
 void	p_error(char *prg, char *arg, char *msg, char *token, int error);
+char	*next_token(t_token *token);
 
 #endif

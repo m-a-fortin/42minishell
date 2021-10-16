@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 08:29:58 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 08:36:25 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	validate_redir(t_token *token)
 	}
 	if (token->next->type != STRING)
 	{
-		p_error(SHELL, NULL, UNXP_TOKEN, token->next->token, BAD_SYNTAX);
+		p_error(SHELL, NULL, UNXP_TOKEN, next_token(token), BAD_SYNTAX);
 		return (false);
 	}
 	else

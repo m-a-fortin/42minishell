@@ -6,11 +6,24 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/13 11:55:20 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 08:41:01 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*next_token(t_token *token)
+{
+	token = token->next;
+	if (token->type == L_REDIR)
+		return (L_REDIR_TOKEN);
+	else if (token->type == R_REDIR)
+		return (R_REDIR_TOKEN);
+	else if (token->type == L_HDOC)
+		return (L_HDOC_TOKEN);
+	else
+		return (R_HDOC_TOKEN);
+}
 
 void	p_error(char *prg, char *arg, char *msg, char *token, int error)
 {
@@ -22,8 +35,7 @@ void	p_error(char *prg, char *arg, char *msg, char *token, int error)
 	if (token)
 		ft_putstr_fd(token, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
-	error = 0;
-	//g_ms.exit = error;
+	g_ms.exit = error;
 }
 
 void	bad_quotes_syntax(t_parser *par)
