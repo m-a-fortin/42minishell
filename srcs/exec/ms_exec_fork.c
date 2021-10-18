@@ -6,33 +6,39 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 12:59:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:35:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *ms_get_cmdpath(char *cmd_name)
-{
-	char	*path_return;
-	int		index;
-
-	
-}
-
-bool	ms_fork(t_job *current)
+bool	ms_fork(char **cmd)
 {
 	char	*path;
+	char	*cmd_name;
 
 	path = NULL;
-	if (execve(current->cmd[0], current->cmd, g_ms.env) == -1)
+	if (execve(cmd[0], cmd, g_ms.env) == -1)
 	{
-		path = ms_get_cmdpath(current->cmd[0])
+		cmd_name = ft_strjoin("/", cmd);
+		if (cmd[0] != '/' || cmd[0] != '.')
+			path = ms_get_cmdpath(cmd_name, cmd[0]);
+		else
+		{
+			path = ft_strdup(cmd[0]);
+			if (access(path, F_OK) != 0)
+				return (ms_nofiledir_error(path));
+		}
+		free (cmd_name);
+		if (access(path, F_OK) != 0)
+		if (!path)
+			return (ms_execve_error());
 	}
 }
 
-bool	ms_exec_fork(t_job *current])
+bool	ms_exec_fork(char **cmd)
 {
+	
 	pid_t	pid;
 
 	pid = fork();
@@ -43,5 +49,5 @@ bool	ms_exec_fork(t_job *current])
 		return (false);
 	}
 	if (pid == 0)
-		ms_fork(current);
+		ms_fork(cmd);
 }

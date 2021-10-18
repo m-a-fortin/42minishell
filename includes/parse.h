@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 09:10:42 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 14:00:09 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct	s_dollar
 	int		found;
 }	t_dollar;
 
+typedef struct s_job t_job;
+typedef enum e_type t_type;
 int		find_closing_quote(t_parser *par, char quote);
 char	*trim_input(char *input);
 void	init_parser(t_parser *par, char *input);
