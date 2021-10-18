@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 14:12:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 08:41:18 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:51:34 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define D_QUOTE_ERR "unexpected EOF while looking for matching `\"\'"
 
 void	bad_quotes_syntax(t_parser *par);
-void	p_error(char *prg, char *arg, char *msg, char *token, int error);
+void	p_error(char *prg, char *arg, char *msg, char *token);
 char	*next_token(t_token *token);
 
 #endif

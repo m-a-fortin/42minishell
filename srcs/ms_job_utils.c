@@ -3,45 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ms_job_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 21:57:58 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/18 13:03:32 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_job	*ms_create_node(t_job *node)
+t_job	*ms_job_lastnode(t_job *job)
 {
-	node = malloc(sizeof(t_job));
-
-	node->redir = NULL;
-	node->cmd = NULL;
-	node->error = 0;
-	node->next = NULL;
-	g_ms.in = 0;
-	g_ms.out = 1;
-	g_ms.singlequote = false;
-	g_ms.doublequote = false;
-	return (node);
+	while (job)
+	{
+		if (job->next == NULL)
+			return (job);
+	}
+	return (job);
 }
 
-void	ms_new_job(t_job *job_head)
+void	ms_job_addback(t_job **job, t_job *new)
 {
-	t_job	*current;
+	t_job	*last;
 
-	current = job_head;
-	if (job_head)
+	if (job)
 	{
-		while (current->next)
-			current = current->next;
-		ms_create_node(current->next);
+		if (*job)
+		{
+			last = ms_job_lastnode(*job);
+			last->next = new;
+		}
+		else
+			*job = new;
 	}
+}
+
+t_job	*ms_new_job(void)
+{
+	t_job	*new;
+
+	new = ft_calloc(1, sizeof(t_job));
+	if (!new)
+		return (NULL);
+	return (new);
 }
 
 void	ms_free_job(t_job *job_head, t_job *current)
 {	
+	if (!current)
+		return ;
 	if (current->next)
 		ms_free_job(job_head, current->next);
 	if (current->cmd)
