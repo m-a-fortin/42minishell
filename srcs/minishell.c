@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 13:07:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 13:20:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,23 @@ t_exec	g_ms = {0};
 
 void	print_header(void)
 {
-	PF("\e[32m| |_|  |_|_|_| |_|_|\e[36m___/_| |_|\\___|_|_| |\e[0m\n");
-	PF("\e[36m\\ _________________\e[32m____________________ /\e[0m\n");
-	PF("Created by: Marc-Andre Fortin & Maxime Mondello\n");
-	PF("Version: 1.0\n");
-	PF("\n\n\n");
+	printf("\e[36m  _________________\e[32m____________________\n");
+	printf("\e[32m/  __  __ _       _\e[36m     _          _ _  \\ \n");
+	printf("\e[32m| |  \\/  (_)_ __ (_)\e[36m___| |__   ___| | | |\n");
+	printf("\e[32m| | |\\/| | | '_ \\| \e[36m/ __| '_ \\ / _ \\ | | | \n");
+	printf("\e[32m| | |  | | | | | | \e[36m\\__ \\ | | |  __/ | | |\n");
+	printf("\e[32m| |_|  |_|_|_| |_|_|\e[36m___/_| |_|\\___|_|_| |\n");
+	printf("\e[36m\\ _________________\e[32m____________________ /\e[0m\n");
+	printf("Created by: Marc-Andre Fortin & Maxime Mondello\n");
+	printf("Version: 1.0\n");
+	printf("\n\n\n");
 }
 
 //loop de readline qui envoie les infos au parsing et qui execute 
 //le retour du parsing.
-void	ms_readline_loop(void)
+void	ms_readline_loop(t_job *job_head)
 {
-	char		*input;
+	char	*input;
 
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
