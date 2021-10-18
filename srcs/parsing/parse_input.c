@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 11:04:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:59:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ t_job	*parse_input(char *input, t_job *job_head)
 		{
 			temp = new_input(&par, temp);
 			token = token->next;
-			continue ;
 		}
-		free(temp);
-		return (NULL);
 	}
 	free(temp);
 	if (!validate_tokens_syntax(head))
+	{
+		g_ms.exit = BAD_SYNTAX;
+		free_list(head);
 		return (NULL);
-	token = head;
+	}
 	return (build_job(head, job_head));
 }

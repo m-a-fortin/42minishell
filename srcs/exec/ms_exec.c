@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 11:49:56 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 13:05:12 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void	ms_saved_fd(void)
 {
 	g_ms.stdin = dup(0);
 	g_ms.stdout = dup(1);
+	g_ms.in = 0;
+	g_ms.out = 1;
+	g_ms.stdin = 0;
+	g_ms.stdout = 1;
+	g_ms.singlequote = false;
+	g_ms.doublequote = false;
 }
 
 void	ms_return_fd(void)

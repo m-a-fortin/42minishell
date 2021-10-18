@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 08:41:01 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:52:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*next_token(t_token *token)
 		return (R_HDOC_TOKEN);
 }
 
-void	p_error(char *prg, char *arg, char *msg, char *token, int error)
+void	p_error(char *prg, char *arg, char *msg, char *token)
 {
 	ft_putstr_fd(prg, STDERR_FILENO);
 	if (arg)
@@ -35,7 +35,6 @@ void	p_error(char *prg, char *arg, char *msg, char *token, int error)
 	if (token)
 		ft_putstr_fd(token, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
-	g_ms.exit = error;
 }
 
 void	bad_quotes_syntax(t_parser *par)
@@ -46,5 +45,6 @@ void	bad_quotes_syntax(t_parser *par)
 		error_msg = D_QUOTE_ERR;
 	else
 		error_msg = S_QUOTE_ERR;
-	p_error(SHELL, NULL, error_msg, NULL, BAD_SYNTAX);
+	g_ms.exit = BAD_SYNTAX;
+	p_error(SHELL, NULL, error_msg, NULL);
 }
