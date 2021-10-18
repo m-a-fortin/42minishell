@@ -6,30 +6,15 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 15:52:55 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:12:12 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
-#include "minishell.h"
-
-typedef struct s_exec
-{
-	char	**env;
-	bool	singlequote;
-	bool	doublequote;
-	int		stdin;
-	int		stdout;
-	int		in;
-	int		out;
-	int		exit;
-	int		exec;
-}			t_exec;
 
 typedef struct s_job t_job;
-
 int		ms_pwd_main(int fd);
 int		ms_cd_main(char **cmd);
 int		ms_echo_main(char **args, int fd);
@@ -47,6 +32,6 @@ bool	ms_pathname_error(char *cmd_name);
 bool	ms_redirection_main(t_job *current);
 bool	ms_exec_fork(char **cmd);
 void	ms_return_fd(void);
-char	*ms_get_cmdpath(char *cmd_name, char *cmd)
+char	*ms_get_cmdpath(char *cmd_name, char *cmd);
 
 #endif

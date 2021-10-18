@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 14:08:58 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:11:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ typedef struct s_job
 	int				error;
 	struct s_job	*next;//pointeur vers la prochaine commande NULL si y'en a pas - pointer to the next command, points to NULL if none.
 }			t_job;
+
+typedef struct s_exec
+{
+	char	**env;
+	bool	singlequote;
+	bool	doublequote;
+	int		stdin;
+	int		stdout;
+	int		in;
+	int		out;
+	int		exit;
+	int		exec;
+}			t_exec;
 
 extern	t_exec g_ms;
 void	ms_nl_signal(int signal);
