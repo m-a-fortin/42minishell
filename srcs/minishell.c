@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 12:11:50 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/18 11:24:10 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ms_readline_loop(void)
 	signal(SIGQUIT, SIG_IGN);
 	while (true)
 	{
-		job_head = ms_create_node(job_head);
 		g_ms.exec = 0;
 		input = readline("MiniShell % ");
 		if (!input)
