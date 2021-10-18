@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 17:11:45 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:15:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct	s_dollar
 }	t_dollar;
 
 typedef struct s_job t_job;
+int		find_closing_quote(t_parser *par, char quote);
+char	*trim_input(char *input);
+void	init_parser(t_parser *par, char *input);
+bool	find_token(t_parser *par, t_token *token);
 bool	tokenize_string(t_parser *par, t_token *token);
 bool	tokenize_operator(t_parser *par, t_token *token);
 bool	validate_tokens_syntax(t_token *head);
