@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 10:40:51 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 10:52:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void	ms_nl_signal(int signal);
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
 void	ms_free_job(t_job *job_head, t_job *current);
-t_job	*ms_create_node(t_job *node);
+t_job	*init_node(t_job *node);
+t_job	*ms_new_job(void);
+void	ms_job_addback(t_job **job, t_job *new);
 void	ms_initjob(t_job *node);
 
 #endif

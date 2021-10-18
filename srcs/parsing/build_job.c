@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 12:57:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:25:16 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,32 +73,30 @@ void	build_cmd_and_args(t_token *tok, t_job *job)
 	ft_strlcpy(job->cmd[i], tok->token, ft_strlen(tok->token) + 1);
 }
 
-t_job	*build_job(t_token *token_head, t_job *job_head)
+t_job	*build_job(t_token *token, t_job *job)
 {
-	t_job	*job;
-	t_token	*token;
+	t_job	*job_head;
+	t_token	*token_head;
 
-	job = job_head;
-	token = token_head;
+	job = ft_calloc(1, sizeof(t_job));
+	job_head = job;
+	token_head = token;
 	while (token->next != NULL)
 	{
 		if (token->type == PIPE)
 		{
-			token = token->next;
+			ms_job_addback(&job, ms_new_job());
 			job = job->next;
 		}
 		else if (token->type == STRING)
-		{
 			build_cmd_and_args(token, job);
-			token = token->next;
-		}
 		else if (is_redirection(token))
 		{
 			build_redirection(token, job);
-			token = token->next->next;
+			token = token->next;
 		}
+		token = token->next;
 	}
-	print_tab(job_head);
 	free_list(token_head);
 	return (job_head);
 }
