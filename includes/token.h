@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 14:11:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:08:55 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # define OPERATORS "<>|"
 
+typedef enum e_type
+{
+	PIPE,
+	R_HDOC,
+	L_HDOC,
+	R_REDIR,
+	L_REDIR,
+	STRING,
+	EMPTY,
+}	t_type;
 typedef struct s_token
 {
 	struct s_token	*prev;
@@ -24,7 +34,6 @@ typedef struct s_token
 }	t_token;
 
 /* LIST UTILITIES */
-
 t_token	*token_lst_last(t_token *token);
 t_token	*token_lst_addnew(void	*token);
 t_type	set_operator_type(char *str);

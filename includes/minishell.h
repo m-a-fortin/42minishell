@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/18 11:20:33 by mafortin         ###   ########.fr       */
-=======
-/*   Updated: 2021/10/18 12:36:09 by mmondell         ###   ########.fr       */
->>>>>>> parsing
+/*   Updated: 2021/10/18 17:08:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +26,11 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-
-# define PF printf
-typedef enum e_type
-{
-	PIPE,
-	R_HDOC,
-	L_HDOC,
-	R_REDIR,
-	L_REDIR,
-	STRING,
-	EMPTY,
-}	t_type;
+# include "../libft/libft.h"
+# include "token.h"
+# include "parse.h"
+# include "exec.h"
+# include "shell_errors.h"
 typedef struct s_redir
 {
 	t_type	type;
@@ -70,12 +59,6 @@ typedef struct s_exec
 	int		exit;
 	int		exec;
 }			t_exec;
-
-# include "../libft/libft.h"
-# include "token.h"
-# include "parse.h"
-# include "exec.h"
-# include "shell_errors.h"
 
 extern	t_exec g_ms;
 void	ms_nl_signal(int signal);
