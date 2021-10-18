@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 21:39:37 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/18 17:06:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
-#include "minishell.h"
 
+typedef struct s_job t_job;
 int		ms_pwd_main(int fd);
 int		ms_cd_main(char **cmd);
 int		ms_echo_main(char **args, int fd);
