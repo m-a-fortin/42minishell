@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 10:48:24 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:28:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ bool	ms_redirection_out(char *sign, char *next)
 	if (g_ms.out == -1)
 	{
 		ft_putstr_fd("ERROR OPEN", 1);//faire msg d'erreur.
+		close(g_ms.out);
 		return (false);
 	}
 	if (dup2(g_ms.out, 1) == -1)
 	{
-		ft_putstr_fd("ERROR DUP", 1);//gerer erreur correctement.
+		ft_putstr_fd("ERROR DUP", 1);//faire msg d'erreur.
 		return (false);
 	}
-	close(g_ms.out);
+	dup2(g_ms.out, 1);
+	close (g_ms.out);
 	return (true);
 }
 

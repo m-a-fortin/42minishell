@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/09 13:40:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:24:34 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	ms_check_builtin(t_job *current, t_job *job_head, int out)
 	}
 	if (ft_strncmp(current->cmd[0], "echo", 5) == 0)
 	{
-		g_ms.exit = ms_echo_main(current->cmd, out);
+		g_ms.exit = ms_echo_main(current->cmd, 1);
 		return (true);
 	}
 	if (ft_strncmp(current->cmd[0], "pwd", 4) == 0)
