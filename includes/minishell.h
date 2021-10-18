@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 10:52:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:36:09 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 
+# define PF printf
 typedef enum e_type
 {
 	PIPE,
