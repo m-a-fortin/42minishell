@@ -6,11 +6,11 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 14:43:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 10:23:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 //ecrit le current working directory. Se sert de notre envp_ms pour ca.
 int	ms_pwd_main(int fd)
