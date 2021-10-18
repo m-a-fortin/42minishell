@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 16:06:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 10:32:20 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
 	free(d_sign->name);
 	d_sign->name = NULL;
 	if (!d_sign->value)
-		return (d_sign);
+		d_sign->value = ft_strdup("\0");
 	return (dollarsign_join(d_sign));
 }
 

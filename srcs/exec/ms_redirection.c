@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 22:12:05 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/18 10:48:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ bool	ms_redirection_main(t_job *current)
 		return (true);
 	while (current->redir[x])
 	{
-		ms_redirection_loop(current->redir[x], current->redir[x + 1]);
+		if (ms_redirection_loop(current->redir[x], current->redir[x + 1])
+			==	false)
+			return (false);
 		if (!current->redir[x + 1])
 			break ;
 		x += 2;
