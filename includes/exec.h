@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 21:39:37 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/18 12:49:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char	*ms_findpath(char *cmd);
 bool	ms_execve_error(char *pathname, char *cmd_name);
 bool	ms_pathname_error(char *cmd_name);
 bool	ms_redirection_main(t_job *current);
-
+bool	ms_exec_fork(t_job *current]);
 
 #endif
