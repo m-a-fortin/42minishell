@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 18:13:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:18:19 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int	main(int argc, char **argv, char **envp)
 		exit(-1);
 	}
 	g_ms.env = ft_matrice_cpy(envp);
+	print_header();
 	ms_readline_loop(job_head);
 }
