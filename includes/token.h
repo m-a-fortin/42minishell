@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 17:08:55 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/19 07:58:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ t_type	set_operator_type(char *str);
 bool	is_redirection(t_token *token);
 bool	find_redirection(t_token *token);
 void	token_lst_addback(t_token **token, t_token *new);
-void 	free_list(t_token *head);
+void	free_list(t_token *head);
 
 #endif

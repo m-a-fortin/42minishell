@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 11:58:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 09:46:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,30 @@ bool	validate_tokens_syntax(t_token *head)
 	{
 		if (token->type == STRING)
 			token = token->next;
-		else if (token->type == PIPE)
+		else if (token->type != STRING)
 		{
-			if (!validate_pipe(token))
+			if (validate_pipe(token) || validate_redir(token))
+				token = token->next->next;
+			else
+			{
+				g_ms.exit = BAD_SYNTAX;
+				free_list(head);
 				return (false);
-			token = token->next->next;
+			}
 		}
-		else if (is_redirection(token))
-		{
-			if (!validate_redir(token))
-				return (false);
-			token = token->next->next;
-		}
+			
+		// else if (token->type == PIPE)
+		// {
+		// 	if (!validate_pipe(token))
+		// 		return (false);
+		// 	token = token->next->next;
+		// }
+		// else if (is_redirection(token))
+		// {
+		// 	if (!validate_redir(token))
+		// 		return (false);
+		// 	token = token->next->next;
+		// }
 	}
 	return (true);
 }

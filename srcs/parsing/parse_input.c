@@ -6,23 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 11:59:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 09:32:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// void	print_list(t_token *head)
-// {
-// 	int	i = 1;
-
-// 	while (head->next)
-// 	{
-// 		printf("TOKEN[%d] = %s\n", i, head->token);
-// 		head = head->next;
-// 		i++;
-// 	}
-// }
 
 char	*new_input(t_parser *par, char *input)
 {
@@ -74,7 +62,9 @@ t_job	*parse_input(char *input, t_job *job_head)
 		{
 			temp = new_input(&par, temp);
 			token = token->next;
+			continue ;
 		}
+		break ;
 	}
 	free(temp);
 	if (!validate_tokens_syntax(head))
