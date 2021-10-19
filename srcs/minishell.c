@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/19 07:58:19 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:12:23 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	print_header(void)
 	printf("\e[32m| | |  | | | | | | \e[36m\\__ \\ | | |  __/ | | |\n");
 	printf("\e[32m| |_|  |_|_|_| |_|_|\e[36m___/_| |_|\\___|_|_| |\n");
 	printf("\e[36m\\ _________________\e[32m____________________ /\e[0m\n");
+	printf("______________________________________________\n");
 	printf("Created by: Marc-Andre Fortin & Maxime Mondello\n");
 	printf("Version: 1.0\n");
+	printf("______________________________________________");
 	printf("\n\n\n");
 }
 
@@ -39,7 +41,7 @@ void	ms_readline_loop(t_job *job_head)
 	while (true)
 	{
 		g_ms.exec = 0;
-		input = readline("MiniShell % ");
+		input = readline("\001\033[32m\002Mini\001\033[36mShell \001\033[0m\002% ");
 		if (!input)
 		{
 			//ms_free_job(job_head, job_head);
