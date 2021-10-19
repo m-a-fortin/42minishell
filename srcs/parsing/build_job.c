@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/19 14:42:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:31:11 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,35 @@ void	print_tab(t_job *job)
 	int	j;
 
 	j = 1;
-	while (job)
+	if (job)
 	{
-		printf("\n\e[32mJOB %d\n\e[0mCOMMANDS\n----------------\n", j);
-		i = 0;
-		if (job->cmd)
+		while (job)
 		{
-			while (job->cmd[i])
-			{
-				printf("CMD:[%d]  %s\n", i, job->cmd[i]);
-				i++;
-			}
-		}
-		if (job->redir)
-		{
-			printf("\nREDIRECTION\n--------------\n");
+			printf("\n\e[32mJOB %d\n\e[0mCOMMANDS\n----------------\n", j);
 			i = 0;
-			while (job->redir[i])
+			if (job->cmd)
 			{
-				printf("[%d]  %s\n", i, job->redir[i]);
-				i++;
+				while (job->cmd[i])
+				{
+					printf("CMD:[%d]  %s\n", i, job->cmd[i]);
+					i++;
+				}
 			}
+			if (job->redir)
+			{
+				printf("\nREDIRECTION\n--------------\n");
+				i = 0;
+				while (job->redir[i])
+				{
+					printf("[%d]  %s\n", i, job->redir[i]);
+					i++;
+				}
+			}
+			j++;
+			job = job->next;
 		}
-		j++;
-		job = job->next;
 	}
+	printf("\n");
 }
 
 void	build_redirection(t_token *tok, t_job *job)

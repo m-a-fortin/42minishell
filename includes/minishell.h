@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/19 07:58:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:30:09 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "exec.h"
 # include "shell_errors.h"
 
+# define PROMPT "\001\e[32m\002Mini\001\e[36m\002Shell \001\e[0m\002% "
 typedef struct s_redir
 {
 	t_type	type;

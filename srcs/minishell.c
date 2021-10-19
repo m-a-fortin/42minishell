@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/19 11:12:23 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/19 15:27:30 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ t_exec	g_ms = {0};
 
 void	print_header(void)
 {
-	printf("\e[36m  _________________\e[32m____________________\n");
-	printf("\e[32m/  __  __ _       _\e[36m     _          _ _  \\ \n");
-	printf("\e[32m| |  \\/  (_)_ __ (_)\e[36m___| |__   ___| | | |\n");
-	printf("\e[32m| | |\\/| | | '_ \\| \e[36m/ __| '_ \\ / _ \\ | | | \n");
-	printf("\e[32m| | |  | | | | | | \e[36m\\__ \\ | | |  __/ | | |\n");
-	printf("\e[32m| |_|  |_|_|_| |_|_|\e[36m___/_| |_|\\___|_|_| |\n");
-	printf("\e[36m\\ _________________\e[32m____________________ /\e[0m\n");
+	printf("\e[96m  _________________\e[92m____________________\n");
+	printf("\e[92m/  __  __ _       _\e[96m     _          _ _  \\ \n");
+	printf("\e[92m| |  \\/  (_)_ __ (_)\e[96m___| |__   ___| | | |\n");
+	printf("\e[92m| | |\\/| | | '_ \\| \e[96m/ __| '_ \\ / _ \\ | | | \n");
+	printf("\e[92m| | |  | | | | | | \e[96m\\__ \\ | | |  __/ | | |\n");
+	printf("\e[92m| |_|  |_|_|_| |_|_|\e[96m___/_| |_|\\___|_|_| |\n");
+	printf("\e[96m\\ _________________\e[92m____________________ /\e[0m\n");
 	printf("______________________________________________\n");
 	printf("Created by: Marc-Andre Fortin & Maxime Mondello\n");
 	printf("Version: 1.0\n");
@@ -41,7 +41,7 @@ void	ms_readline_loop(t_job *job_head)
 	while (true)
 	{
 		g_ms.exec = 0;
-		input = readline("\001\033[32m\002Mini\001\033[36mShell \001\033[0m\002% ");
+		input = readline(PROMPT);
 		if (!input)
 		{
 			//ms_free_job(job_head, job_head);
