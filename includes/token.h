@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 13:26:07 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 07:54:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # define OPERATORS "<>|"
 
+typedef enum e_type
+{
+	PIPE,
+	R_HDOC,
+	L_HDOC,
+	R_REDIR,
+	L_REDIR,
+	STRING,
+	EMPTY,
+}	t_type;
 typedef struct s_token
 {
 	struct s_token	*prev;
@@ -24,7 +34,6 @@ typedef struct s_token
 }	t_token;
 
 /* LIST UTILITIES */
-
 t_token	*token_lst_last(t_token *token);
 t_token	*token_lst_addnew(void	*token);
 t_type	set_operator_type(char *str);
