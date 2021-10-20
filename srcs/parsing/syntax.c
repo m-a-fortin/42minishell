@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/19 09:46:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/19 10:24:08 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ bool	validate_tokens_syntax(t_token *head)
 				return (false);
 			}
 		}
-			
+	}
+	return (true);
+}
+
+		
 		// else if (token->type == PIPE)
 		// {
 		// 	if (!validate_pipe(token))
@@ -76,6 +80,3 @@ bool	validate_tokens_syntax(t_token *head)
 		// 		return (false);
 		// 	token = token->next->next;
 		// }
-	}
-	return (true);
-}

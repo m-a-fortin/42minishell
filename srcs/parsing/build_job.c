@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 13:07:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 10:18:33 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,38 @@
 void	print_tab(t_job *job)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (job->cmd[i])
+	j = 1;
+	if (job)
 	{
-		printf("[%d]  %s\n",i ,job->cmd[i]);
-		i++;
-	}
-	if (job->redir)
-	{
-		i = 0;
-		while (job->redir[i])
+		while (job)
 		{
-			printf("[%d]  %s\n",i ,job->redir[i]);
-			i++;
+			printf("\n\e[32mJOB %d\n\e[0mCOMMANDS\n----------------\n", j);
+			i = 0;
+			if (job->cmd)
+			{
+				while (job->cmd[i])
+				{
+					printf("CMD:[%d]  %s\n", i, job->cmd[i]);
+					i++;
+				}
+			}
+			if (job->redir)
+			{
+				printf("\nREDIRECTION\n--------------\n");
+				i = 0;
+				while (job->redir[i])
+				{
+					printf("[%d]  %s\n", i, job->redir[i]);
+					i++;
+				}
+			}
+			j++;
+			job = job->next;
 		}
 	}
+	printf("\n");
 }
 
 void	build_redirection(t_token *tok, t_job *job)
@@ -95,6 +111,7 @@ t_job	*build_job(t_token *token, t_job *job)
 		}
 		token = token->next;
 	}
+	//print_tab(job_head);
 	free_list(token_head);
 	return (job_head);
 }
