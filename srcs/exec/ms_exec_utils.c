@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 11:24:34 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:06:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,15 @@ bool	ms_check_builtin(t_job *current, t_job *job_head, int out)
 //Si export n'a pas d'arguments, Il print envp avec "declare -x"
 void	ms_export_print(char **envp, int fd)
 {
-	int		x;
 	char	**print;
 
 	print = ft_calloc(ft_matrice_size(envp) + 1, sizeof(char *));
-	x = 0;
-	while (envp[x])
-	{
-		print[x] = ft_strjoin("declare -x ", envp[x]);
-		x++;
-	}
+	// while (envp[x])
+	// {
+	// 	print[x] = ft_strjoin("declare -x ", envp[x]);
+	// 	x++;
+	// }
+	//envp = ft_sort_strtab(print);
 	ft_print_matrice_fd(print, fd);
 	ft_free_tab(print);
 }
