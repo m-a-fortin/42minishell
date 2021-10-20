@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 00:15:17 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 14:09:44 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/18 13:19:35 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ bool	ms_pathname_error(char *cmd_name)
 	ft_putstr_fd(cmd_name, 1);
 	ft_putendl_fd(": command not found", 1);
 	g_ms.exit = 127;
-	free(cmd_name);
 	return (false);
 }
 
-bool	ms_execve_error(char *pathname, char *cmd_name)
+bool	ms_execve_error(char *pathname)
 {
 	free(pathname);
-	free(cmd_name);
 	ft_putendl_fd("Minishell: Execve failed", 1);
 	g_ms.exit = errno;
 	return (false);
