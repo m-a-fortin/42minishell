@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_job.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/19 15:31:11 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/20 10:18:33 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_job	*build_job(t_token *token, t_job *job)
 		}
 		token = token->next;
 	}
-	print_tab(job_head);
+	//print_tab(job_head);
 	free_list(token_head);
 	return (job_head);
 }
