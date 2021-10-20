@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 16:20:28 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:46:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,22 @@ void	ms_fork(char **cmd)
 	}
 } 
 
+void	ms_fork_signal(int status)
+{
+	if (WIFEXITED(status))
+		g_ms.exit = WEXITSTATUS(status);
+	if (WIFSIGNALED(signal))
+	{
+		if (WTERMSIG(status) == SIGINT)
+			ft_putendl_fd("", 1);
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_putendl_fd("Kit-Kat", 1);
+	}
+	signal(SIGINT, ms_nl_signal);
+	signal(SIGQUIT, SIG_IGN);
+
+}
+
 bool	ms_exec_fork(t_job *current)
 {
 	pid_t	pid;
@@ -71,10 +87,7 @@ bool	ms_exec_fork(t_job *current)
 	if (pid == 0)
 		ms_fork(current->cmd);
 	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		g_ms.exit = WEXITSTATUS(status);
-	signal(SIGINT, ms_nl_signal);
-	signal(SIGQUIT, SIG_IGN);
+	ms_fork_signal(status);
 	if (g_ms.exit != 0)
 		return (false);
 	return (true);
