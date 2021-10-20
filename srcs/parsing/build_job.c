@@ -6,48 +6,48 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/20 14:28:17 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:25:22 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_tab(t_job *job)
-{
-	int	i;
-	int	j;
+// void	print_tab(t_job *job)
+// {
+// 	int	i;
+// 	int	j;
 
-	j = 1;
-	if (job)
-	{
-		while (job)
-		{
-			printf("\n\e[32mJOB %d\n\e[0mCOMMANDS\n----------------\n", j);
-			i = 0;
-			if (job->cmd)
-			{
-				while (job->cmd[i])
-				{
-					printf("CMD:[%d]  %s\n", i, job->cmd[i]);
-					i++;
-				}
-			}
-			if (job->redir)
-			{
-				printf("\nREDIRECTION\n--------------\n");
-				i = 0;
-				while (job->redir[i])
-				{
-					printf("[%d]  %s\n", i, job->redir[i]);
-					i++;
-				}
-			}
-			j++;
-			job = job->next;
-		}
-	}
-	printf("\n");
-}
+// 	j = 1;
+// 	if (job)
+// 	{
+// 		while (job)
+// 		{
+// 			printf("\n\e[32mJOB %d\n\e[0mCOMMANDS\n----------------\n", j);
+// 			i = 0;
+// 			if (job->cmd)
+// 			{
+// 				while (job->cmd[i])
+// 				{
+// 					printf("CMD:[%d]  %s\n", i, job->cmd[i]);
+// 					i++;
+// 				}
+// 			}
+// 			if (job->redir)
+// 			{
+// 				printf("\nREDIRECTION\n--------------\n");
+// 				i = 0;
+// 				while (job->redir[i])
+// 				{
+// 					printf("[%d]  %s\n", i, job->redir[i]);
+// 					i++;
+// 				}
+// 			}
+// 			j++;
+// 			job = job->next;
+// 		}
+// 	}
+// 	printf("\n");
+// }
 
 void	build_redirection(t_token *tok, t_job *job)
 {
@@ -111,7 +111,6 @@ t_job	*build_job(t_token *token, t_job *job)
 		}
 		token = token->next;
 	}
-	//print_tab(job_head);
 	free_list(token_head);
 	return (job_head);
 }
