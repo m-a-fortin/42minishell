@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matrice_cpy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:38:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 14:07:49 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:11:40 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_matrice_cpy(char **matrice)
 
 	x = 0;
 	len = ft_matrice_size(matrice);
-	new_matrice = ft_calloc(len + 1, sizeof(char *));
+	new_matrice = (char **)ft_calloc(len + 1, sizeof(char *));
 	while (matrice[x])
 	{
 		new_matrice[x] = ft_strdup(matrice[x]);

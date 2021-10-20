@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 11:06:43 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:11:42 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,7 @@ void	ms_export_print(char **envp, int fd)
 {
 	char	**print;
 
-	print = ft_calloc(ft_matrice_size(envp) + 1, sizeof(char *));
-	// while (envp[x])
-	// {
-	// 	print[x] = ft_strjoin("declare -x ", envp[x]);
-	// 	x++;
-	// }
-	//envp = ft_sort_strtab(print);
+	print = ft_sort_strtab(envp);
 	ft_print_matrice_fd(print, fd);
 	ft_free_tab(print);
 }
