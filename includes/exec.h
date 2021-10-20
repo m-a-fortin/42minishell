@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/19 15:05:55 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/20 13:01:56 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,11 @@ void	ms_export_print(char **envp, int fd);
 char	*ms_findpath(char *cmd);
 bool	ms_pathname_error(char *cmd_name);
 bool	ms_redirection_main(t_job *current);
+char	*ms_get_cmdpath(char *cmd);
+char	**ms_create_paths(void);
+bool	ms_cmdnotfound(char *cmd);
+bool	ms_nosuchfile(char *cmd);
+void	ms_return_fd(void);
+bool	ms_exec_fork(t_job *current, t_job *job_head, bool pipe);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 13:55:51 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:02:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,8 @@ void	ms_exec_main(t_job *job_head)
 		trimquotes_main(current);
 		g_ms.exec = 1;
 		ms_check_builtin(current, job_head, 1);
-		//if(ms_check_builtin(current, job_head, in_out[0], in_out[1] == false)
-		//if(ms_exec_fork(t_job *current, t_job *job_head, in_out) == false)
-		//{
-			//return;
-		//}
-		ms_return_fd();
+		if(ms_check_builtin(current, job_head, 1) == false)
+			ms_exec_fork(current, job_head, false);
 		if (current->next)
 			current = current->next;
 		else
