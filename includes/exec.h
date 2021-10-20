@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 17:12:12 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:05:55 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
-
-typedef struct s_job t_job;
+typedef struct s_job	t_job;
 int		ms_pwd_main(int fd);
 int		ms_cd_main(char **cmd);
 int		ms_echo_main(char **args, int fd);
@@ -30,8 +29,5 @@ void	ms_export_print(char **envp, int fd);
 char	*ms_findpath(char *cmd);
 bool	ms_pathname_error(char *cmd_name);
 bool	ms_redirection_main(t_job *current);
-bool	ms_exec_fork(char **cmd);
-void	ms_return_fd(void);
-char	*ms_get_cmdpath(char *cmd_name, char *cmd);
 
 #endif

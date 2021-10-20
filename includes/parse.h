@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 17:15:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:05:41 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_parser
 	t_state	state;
 }	t_parser;
 
-typedef struct	s_dollar
+typedef struct s_dollar
 {
 	char	*new_string;
 	char	*name;
@@ -39,19 +39,20 @@ typedef struct	s_dollar
 	int		found;
 }	t_dollar;
 
-typedef struct s_job t_job;
-int		find_closing_quote(t_parser *par, char quote);
-char	*trim_input(char *input);
-void	init_parser(t_parser *par, char *input);
-bool	find_token(t_parser *par, t_token *token);
-bool	tokenize_string(t_parser *par, t_token *token);
-bool	tokenize_operator(t_parser *par, t_token *token);
-bool	validate_tokens_syntax(t_token *head);
-void	add_token_to_list(t_parser *par, t_token *token);
-t_job	*parse_input(char *input, t_job *job_head);
-t_job	*build_job(t_token *token_head, t_job *job_head);
-t_job	*parse_input(char *input, t_job *job_head);
-void	dollarsign_main(t_job *current);
+typedef struct s_job	t_job;
+int			find_closing_quote(t_parser *par, char quote);
+char		*trim_input(char *input);
+void		init_parser(t_parser *par, char *input);
+bool		find_token(t_parser *par, t_token *token);
+bool		tokenize_string(t_parser *par, t_token *token);
+bool		tokenize_operator(t_parser *par, t_token *token);
+bool		validate_tokens_syntax(t_token *head);
+void		add_token_to_list(t_parser *par, t_token *token);
+t_job		*parse_input(char *input, t_job *job_head);
+t_job		*build_job(t_token *token_head, t_job *job_head);
+t_job		*parse_input(char *input, t_job *job_head);
+
+void		dollarsign_main(t_job *current);
 
 /* PARSE UTILITIES */
 

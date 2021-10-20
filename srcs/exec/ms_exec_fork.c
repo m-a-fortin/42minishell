@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 16:35:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:30:33 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,17 @@ bool	ms_fork(char **cmd)
 	if (execve(cmd[0], cmd, g_ms.env) == -1)
 	{
 		cmd_name = ft_strjoin("/", cmd);
-		if (cmd[0] != '/' || cmd[0] != '.')
+		if (ft_char_search(cmd[0], '/') == 0)
 			path = ms_get_cmdpath(cmd_name, cmd[0]);
 		else
-		{
 			path = ft_strdup(cmd[0]);
-			if (access(path, F_OK) != 0)
-				return (ms_nofiledir_error(path));
-		}
 		free (cmd_name);
-		if (access(path, F_OK) != 0)
 		if (!path)
 			return (ms_execve_error());
 	}
 }
 
-bool	ms_exec_fork(char **cmd)
+bool	ms_exec_fork(t_job *current, t_job *job_head, bool pipe)
 {
 	
 	pid_t	pid;
@@ -49,5 +44,8 @@ bool	ms_exec_fork(char **cmd)
 		return (false);
 	}
 	if (pid == 0)
-		ms_fork(cmd);
+	{
+		if (ms_check_builtin(current, job_head, 1) == false)
+			ms_fork(current->cmd);
+	}
 }

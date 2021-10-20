@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pwd_echo_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 10:23:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:01:39 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ms_pwd_main(int fd)
 
 void	ms_echo_loop(char **args, int index, int no_nl, int fd)
 {
+	if (no_nl == 1)
+		index++;
 	while (args[index])
 	{
 		ft_putstr_fd(args[index], fd);
@@ -35,6 +37,29 @@ void	ms_echo_loop(char **args, int index, int no_nl, int fd)
 	}
 	if (no_nl == 0)
 		ft_putchar_fd('\n', fd);
+}
+
+//Verifie le flag -n. Dans le cas ou -n est rencontrer:
+//pas de new line a la fin du echo. Plusieurs -n peuvent
+//etre chained. Si un char est different de n. Print le
+//flag aussi.
+int	ms_echo_flag(char *arg, int no_nl)
+{
+	int	x;
+
+	x = 0;
+	if (arg[x] == '-')
+	{
+		x++;
+		while (arg[x])
+		{
+			if (arg[x] != 'n' && arg[x] != '\0')
+				return (0);
+			x++;
+			no_nl = 1;
+		}
+	}
+	return (no_nl);
 }
 
 //ecrit dans fd les args, option -n = sans newline.
@@ -52,13 +77,7 @@ int	ms_echo_main(char **args, int fd)
 		ft_putchar_fd('\n', fd);
 		return (0);
 	}
-	if (ft_strncmp(args[index], "-n", 2) == 0)
-	{
-		if (argc == 2)
-			return (0);
-		index++;
-		no_nl++;
-	}
+	no_nl = ms_echo_flag(args[index], no_nl);
 	ms_echo_loop(args, index, no_nl, fd);
 	return (0);
 }
