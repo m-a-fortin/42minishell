@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 18:27:16 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:02:03 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,13 @@ int		ms_exit_main(t_job *job_head, t_job *current);
 bool	ms_check_builtin(t_job *current, t_job *job_head, int out);
 void	ms_export_print(char **envp, int fd);
 char	*ms_findpath(char *cmd);
-bool	ms_execve_error(char *pathname, char *cmd_name);
 bool	ms_pathname_error(char *cmd_name);
 bool	ms_redirection_main(t_job *current);
+char	*ms_get_cmdpath(char *cmd);
+char	**ms_create_paths(void);
+void	ms_cmdnotfound(char *cmd);
+void	ms_nosuchfile(char *cmd);
+void	ms_return_fd(void);
+bool	ms_exec_fork(t_job *current);
 
 #endif
