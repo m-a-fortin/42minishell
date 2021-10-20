@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 10:20:59 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:51:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ms_readline_loop(t_job *job_head)
 		}
 		add_history(input);
 		job_head = parse_input(input, job_head);
-		if (job_head)
+		if (job_head->cmd)
 		{
 			ms_exec_main(job_head);
 			ms_free_job(job_head, job_head);
