@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 15:07:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:20:28 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	ms_cmdispath(char **cmd)
 		ft_putendl_fd(": is a directory", 1);
 		exit (1);
 	}
+	execve(cmd[0], cmd, g_ms.env);
+	ms_nosuchfile(cmd[0] + 1);
+	
 }
 
 void	ms_fork(char **cmd)
@@ -37,30 +40,27 @@ void	ms_fork(char **cmd)
 		g_ms.exit = 127;
 		return (ms_nosuchfile(cmd[0]));
 	}
-	if (execve(cmd[0], cmd, g_ms.env) == -1)
+	execve(cmd[0], cmd, g_ms.env);
+	if (ft_char_search(cmd[0], '/') > 0)
+		ms_cmdispath(cmd);
+	path = ms_get_cmdpath(cmd[0]);
+	if (!path)
+		return ;
+	if (execve(path, cmd, g_ms.env) == -1)
 	{
-		//if (ft_char_search(cmd[0], '/') > 0)
-			//return (ms_cmdispath(cmd));
-		path = ms_get_cmdpath(cmd[0]);
-		if (!path)
-			return ;
-		if (execve(path, cmd, g_ms.env) == -1)
-		{
-			free(path);
-			return (ms_cmdnotfound(cmd[0]));
-		}
+		free(path);
+		return (ms_cmdnotfound(cmd[0]));
 	}
-}
+} 
 
 bool	ms_exec_fork(t_job *current)
 {
-	
 	pid_t	pid;
 	int		status;
 
 	pid = fork();
-	signal(SIGINT, NULL);
-	signal(SIGQUIT, NULL);
+	signal(SIGINT, ms_donothing);
+	signal(SIGQUIT, ms_donothing);
 	if (pid == -1)
 	{
 		ms_return_fd();
@@ -71,7 +71,8 @@ bool	ms_exec_fork(t_job *current)
 	if (pid == 0)
 		ms_fork(current->cmd);
 	waitpid(pid, &status, 0);
-	g_ms.exit = status;
+	if (WIFEXITED(status))
+		g_ms.exit = WEXITSTATUS(status);
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
 	if (g_ms.exit != 0)

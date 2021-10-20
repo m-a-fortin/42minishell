@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 15:06:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:11:16 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ms_nosuchfile(char *cmd)
 {
 	ms_return_fd();
 	ft_putstr_fd("Minishell: ", 1);
-	ft_putstr_fd(cmd + 1, 1);
+	ft_putstr_fd(cmd, 1);
 	ft_putendl_fd(": No such file or directory", 1);
-	exit (127);
+	exit (127U);
 }
 
 void	ms_cmdnotfound(char *cmd)
@@ -27,7 +27,7 @@ void	ms_cmdnotfound(char *cmd)
 	ft_putstr_fd("Minishell: ", 1);
 	ft_putstr_fd(cmd, 1);
 	ft_putendl_fd(": Command not found", 1);
-	exit (127);
+	exit (127U);
 }
 
 char	*ms_find_cmdpath(char *cmd_name, char **paths)
@@ -44,7 +44,7 @@ char	*ms_find_cmdpath(char *cmd_name, char **paths)
 		free(cmd_path);
 		index++;
 	}
-	ms_nosuchfile(cmd_name);
+	ms_cmdnotfound(cmd_name + 1);
 	return (NULL);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 15:30:10 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:04:28 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,9 @@ void	ms_export_print(char **envp, int fd)
 	print = ft_sort_strtab(envp);
 	ft_print_matrice_fd(print, fd);
 	ft_free_tab(print);
+}
+
+void	ms_donothing(int	signal)
+{
+	(void)signal;
 }

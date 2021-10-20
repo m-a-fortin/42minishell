@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 10:21:18 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:45:45 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ typedef struct s_job
 
 typedef struct s_exec
 {
-	char	**env;
-	bool	singlequote;
-	bool	doublequote;
-	int		stdin;
-	int		stdout;
-	int		in;
-	int		out;
-	int		exit;
-	int		exec;
+	char				**env;
+	bool				singlequote;
+	bool				doublequote;
+	int					stdin;
+	int					stdout;
+	int					in;
+	int					out;
+	unsigned int		exit;
+	int					exec;
 }			t_exec;
 
 extern t_exec	g_ms;

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 15:02:03 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:04:36 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void	ms_cmdnotfound(char *cmd);
 void	ms_nosuchfile(char *cmd);
 void	ms_return_fd(void);
 bool	ms_exec_fork(t_job *current);
+void	ms_donothing(int	signal);
 
 #endif
