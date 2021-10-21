@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 14:46:33 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:13:15 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	ms_pipe_in(t_job *current)
 		ms_pipedup_in();
 	else
 		ms_pipe_redir();
-	//if (ms_check_builtin(current) == false)
-	//{
+	if (ms_check_builtin(current) == false)
+	{
 		
-	//}
+	}
 }
 
 void	ms_pipe_out(t_job *current)
