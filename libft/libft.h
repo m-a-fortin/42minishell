@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 14:15:01 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:46:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ bool		ft_majchar(char c);
 char		*ft_strndup(const char *s1, size_t len);
 char		**ft_remove_line(char **matrice, int index);
 char		*ft_append_string(char *src, char c);
+char		*ft_add_newline(char *str);
+
 
 #endif

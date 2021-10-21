@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 14:02:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:11:45 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ bool		find_token(t_parser *par, t_token *token);
 bool		tokenize_string(t_parser *par, t_token *token);
 bool		tokenize_operator(t_parser *par, t_token *token);
 bool		validate_tokens_syntax(t_token *head);
-bool		find_heredoc(t_job *job);
-void		build_heredoc(char **hdoc);
+void		heredoc_inputs(t_token *token, t_job *job);
 void		add_token_to_list(t_parser *par, t_token *token);
+void		heredoc_inputs(t_token *token, t_job *job);
 t_job		*parse_input(char *input, t_job *job_head);
 t_job		*build_job(t_token *token_head, t_job *job_head);
 t_job		*parse_input(char *input, t_job *job_head);

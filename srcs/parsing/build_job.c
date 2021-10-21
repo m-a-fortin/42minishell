@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 14:03:20 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:03:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,6 @@
 // 	printf("\n");
 // }
 
-void	build_heredoc(char **hdoc)
-{
-	char	*input;
-	char	*
-	input = readline("> ");
-	
-	free(input);
-}
-
 void	build_redirection(t_token *tok, t_job *job)
 {
 	int	i;
@@ -68,6 +59,11 @@ void	build_redirection(t_token *tok, t_job *job)
 	{
 		count = count_redirections(tok);
 		job->redir = (char **)ft_calloc(count + 1, sizeof(char *));
+	}
+	if (tok->type == L_HDOC)
+	{
+		heredoc_inputs(tok, job);
+		return ;
 	}
 	while (job->redir[i])
 		i++;

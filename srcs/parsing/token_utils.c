@@ -6,29 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 14:04:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:03:30 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	find_heredoc(t_job *job)
-{
-	int	i;
-
-	i = 0;
-	while (job)
-	{
-		while (job->redir[i])
-		{
-			if (!ft_strncmp(job->redir[i], "<<", ft_strlen(job->redir[i]) + 1))
-				return (true);
-			i + 2;
-		}
-		job = job->next;
-	}
-	return (false);
-}
 
 bool	is_redirection(t_token *token)
 {
