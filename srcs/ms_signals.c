@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:32:43 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 11:07:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:02:46 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ms_exit_signal(int signal, char **envp)
 	exit (0);
 }
 
-void	ms_donothing(int	signal)
+void	ms_donothing(int signal)
 {
 	(void)signal;
 }

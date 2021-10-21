@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 11:17:59 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:24:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ms_cmdispath(char **cmd)
 {
-	struct stat info;
-	
+	struct stat	info;
+
 	stat(cmd[0], &info);
 	if (S_ISDIR(info.st_mode))
 	{
@@ -27,7 +27,6 @@ void	ms_cmdispath(char **cmd)
 	}
 	execve(cmd[0], cmd, g_ms.env);
 	ms_nosuchfile(cmd[0] + 1);
-	
 }
 
 void	ms_fork(char **cmd)
@@ -51,7 +50,7 @@ void	ms_fork(char **cmd)
 		free(path);
 		return (ms_cmdnotfound(cmd[0]));
 	}
-} 
+}
 
 void	ms_fork_signal(int status)
 {
@@ -66,7 +65,6 @@ void	ms_fork_signal(int status)
 	}
 	signal(SIGINT, ms_nl_signal);
 	signal(SIGQUIT, SIG_IGN);
-
 }
 
 bool	ms_exec_fork(t_job *current)

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 15:02:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:04:18 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,28 @@ void	ms_return_fd(void)
 	dup2(g_ms.stdout, 1);
 }
 
+bool	ms_exec_phase(t_job *current, t_job *job_head)
+{
+	bool	pipe;
+
+	g_ms.exec = 1;
+	if (current->next)
+		pipe = true;
+	else
+		pipe = false;
+	if (pipe == false)
+	{
+		if (ms_check_builtin(current, job_head, 1) == false)
+			return (ms_exec_fork(current));
+	}
+	return (ms_pipe_exec(current));
+}
+
 void	ms_exec_main(t_job *job_head)
 {
 	t_job	*current;
-	//bool	pipe;
-	
+
 	current = job_head;
-	//if (job_head->next)
-		//pipe = true;
-	//else
-		//pipe = false;
 	while (current)
 	{
 		ms_saved_fd();
@@ -44,15 +56,10 @@ void	ms_exec_main(t_job *job_head)
 			return ;
 		}
 		trimquotes_main(current);
-		g_ms.exec = 1;
-		if(ms_check_builtin(current, job_head, 1) == false)
-			ms_exec_fork(current);
+		if (ms_exec_phase(current, job_head) == false)
+			return (ms_return_fd());
 		if (current->next)
 			current = current->next;
-		else
-		{
-			ms_return_fd();
-			break ;
-		}
+		return (ms_return_fd());
 	}
 }
