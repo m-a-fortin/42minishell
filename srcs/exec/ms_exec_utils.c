@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 16:04:28 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:07:25 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,4 @@ void	ms_export_print(char **envp, int fd)
 	print = ft_sort_strtab(envp);
 	ft_print_matrice_fd(print, fd);
 	ft_free_tab(print);
-}
-
-void	ms_donothing(int	signal)
-{
-	(void)signal;
 }
