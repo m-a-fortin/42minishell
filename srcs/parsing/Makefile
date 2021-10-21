@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/10/15 11:59:43 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/21 11:55:21 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ GREY 			=	\033[37m
 UNDERLINE 		=	\033[4m
 NORMAL 			=	\033[0m
 
-LIBFT			=	$(MAKE) bonus -C $(LIBFT_DIR)
+LIBFT			=	$(MAKE) -C $(LIBFT_DIR)
 
 ## ----- ALL ACTION DEPENDENCIES AND RECIPE FOR MAIN PROGRAM ----- ##
 all: obj $(NAME)
@@ -86,7 +86,7 @@ $(NAME): $(OBJS)
 
 linux :	obj $(OBJS_PATH) $(OBJS)
 	@$(LIBFT)
-	@$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -lcurses -lreadline -o $(NAME)
+	@$(CC) $(OBJS) -L$(LIBFT_DIR) -lft -lcurses -lreadline -o $(NAME)
 	@echo "\\n\033[32;1m Compilation Complete \033[0m \\n"
 
 obj:
