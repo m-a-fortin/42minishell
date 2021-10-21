@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 16:11:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:21:49 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char	**ms_create_paths(void)
 	bool	found;
 
 	index = 0;
+	(void)found;
 	found = false;
 	while (g_ms.env[index])
 	{

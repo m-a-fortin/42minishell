@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 16:46:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:17:59 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ms_fork_signal(int status)
 {
 	if (WIFEXITED(status))
 		g_ms.exit = WEXITSTATUS(status);
-	if (WIFSIGNALED(signal))
+	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGINT)
 			ft_putendl_fd("", 1);
