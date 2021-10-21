@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 12:04:34 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/21 13:04:53 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	ms_unset_loop(char	*args)
 	while (g_ms.env[index])
 	{
 		if (ft_strncmp(name, g_ms.env[index], ft_strlen(name)) == 0)
-			{
-				g_ms.env = ft_remove_line(g_ms.env, index);
-				return ;
-			}
-			index++;
+		{
+			g_ms.env = ft_remove_line(g_ms.env, index);
+			return ;
+		}
+		index++;
 	}
 }
 

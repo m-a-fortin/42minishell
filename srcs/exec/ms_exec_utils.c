@@ -6,14 +6,15 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 11:07:25 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:23:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool ms_check_builtin2(t_job* current, t_job *job_head, int out)
+bool	ms_check_builtin2(t_job *current, t_job *job_head, int out)
 {
+	(void)job_head;
 	if (ft_strncmp(current->cmd[0], "export", 7) == 0)
 	{
 		g_ms.exit = ms_export_main(current->cmd, out);
@@ -31,7 +32,7 @@ bool ms_check_builtin2(t_job* current, t_job *job_head, int out)
 	}
 	if (ft_strncmp(current->cmd[0], "exit", 5) == 0)
 	{
-		g_ms.exit = ms_exit_main(job_head, current);//important de verifier les cas de pipe + redirection.
+		g_ms.exit = ms_exit_main(current);
 		return (true);
 	}
 	return (false);
@@ -39,7 +40,6 @@ bool ms_check_builtin2(t_job* current, t_job *job_head, int out)
 
 bool	ms_check_builtin(t_job *current, t_job *job_head, int out)
 {
-	
 	if (ft_strncmp(current->cmd[0], "cd", 3) == 0)
 	{
 		g_ms.exit = ms_cd_main(current->cmd);

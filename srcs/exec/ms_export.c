@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/15 22:25:45 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/21 13:13:33 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ms_setexp(char *args)
 	while (args[index] != '=')
 		index++;
 	name = ft_strndup(args, index + 1);
-	value = ft_strdup(args += index + 1);
+	value = ft_strdup(args + (index + 1));
 	g_ms.env = ms_setenv(name, value, g_ms.env);
 	free(name);
 	free(value);
@@ -73,6 +73,7 @@ bool	ms_export_loop(char **args, int index)
 	}
 	return (true);
 }
+
 //export prend "nom=valeur" en parametre et le met dans envp.
 //si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
 int	ms_export_main(char **args, int fd)
