@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 13:19:14 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:40:22 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ms_export_main(char **args, int fd);
 int		ms_unset_main(char **args);
 void	ms_exec_main(t_job *job_head);
 int		ms_exit_main(t_job *current);
-bool	ms_check_builtin(t_job *current, t_job *job_head, int out);
+bool	ms_check_builtin(t_job *current);
 void	ms_export_print(char **envp, int fd);
 //EXECVE
 char	*ms_findpath(char *cmd);
