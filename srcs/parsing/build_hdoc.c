@@ -6,23 +6,12 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 16:21:22 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/21 20:12:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*join_inputs(char *input, char *heredoc)
-{
-	char	*temp;
-	
-	temp = ft_strdup(heredoc);
-	temp = ft_strjoin(heredoc, input);
-	temp = ft_append_string(heredoc, '\n');
-	heredoc = temp;
-	free(temp);
-	return(heredoc);
-}
 
 int	count_hdoc(t_token *token)
 {
@@ -55,6 +44,16 @@ void	build_heredoc(t_job *job, char *heredoc, int size)
 		i++;
 	job->redir[i] = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
 	ft_strlcpy(job->redir[i], heredoc, ft_strlen(heredoc) + 1);
+}
+
+char	*join_inputs(char *input, char *heredoc)
+{
+	char	*temp;
+	
+	temp = ft_strjoin(heredoc, input);
+	temp = ft_append_string(temp, '\n');
+	free(heredoc);
+	return(temp);
 }
 
 void	heredoc_inputs(t_token *token, t_job *job)
