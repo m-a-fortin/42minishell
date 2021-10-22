@@ -6,35 +6,36 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/22 12:43:27 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:50:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*find_delimiter(t_token *token)
+bool	read_from_input(int *fd)
 {
-	token = token->next;
-	return(token->token);
-}
-
-void	add_hdoc_job(t_job *job, char *heredoc)
-{
-	job->hdoc = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
-	ft_strlcpy(job->hdoc, heredoc, ft_strlen(heredoc) + 1);
-}
-
-char	*join_inputs(char *input, char *heredoc)
-{
+	char	*line;
 	char	*temp;
-	
-	temp = ft_strjoin(heredoc, input);
-	temp = ft_append_string(temp, '\n');
-	free(heredoc);
-	return(temp);
+	char	buff[1];
+	int		ret;
+
+	line = NULL;
+	dup2(fd[0], 0);
+	while (true)
+	{
+		ret = read(0, &buff, 1);
+		if (ret < 0)
+			return (false);
+		else if (ret == 0)
+			break ;
+		temp = ft_append_string(line, buff[0]);
+	}
+	close(fd[0]);
+	ms_return_fd();
+	return (true);
 }
 
-void	heredoc_inputs(t_token *token, t_job *job)
+void	heredoc_inputs(t_token *token, t_job *job, int *fd)
 {
 	char	*heredoc;
 	char	*input;
@@ -47,7 +48,7 @@ void	heredoc_inputs(t_token *token, t_job *job)
 		input = readline("> ");
 		if (!ft_strncmp(input, delimiter, ft_strlen(input) + 1))
 		{
-			add_hdoc_job(job, heredoc);
+			add_hdoc_job(job, heredoc, fd);
 			break ;
 		}
 		heredoc = join_inputs(input, heredoc);
@@ -66,6 +67,7 @@ bool	build_heredoc(t_token *token, t_job *job)
 
 	if (!create_pipe(fd))
 		return (false);
+	ms_saved_fd();
 	pid = fork();
 	signal(SIGINT, ms_donothing);
 	signal(SIGQUIT, ms_donothing);
@@ -77,7 +79,7 @@ bool	build_heredoc(t_token *token, t_job *job)
 		return (false);
 	}
 	if (pid == 0)
-		heredoc_inputs(token, job);
+		heredoc_inputs(token, job, fd);
 	waitpid(pid, &status, 0);
 	ms_fork_signal(status);
 	if (g_ms.exit != 0)
