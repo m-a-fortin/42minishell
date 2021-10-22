@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 14:40:22 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/22 12:42:50 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,19 @@ char	**ms_create_paths(void);
 void	ms_cmdnotfound(char *cmd);
 void	ms_nosuchfile(char *cmd);
 bool	ms_exec_fork(t_job *current);
+void	ms_fork(char **cmd);
+bool	ms_pid_error(void);
+bool	ms_fork_exit(int status);
 //REDIRECTIONS
 void	ms_return_fd(void);
 bool	ms_redirection_main(t_job *current);
+void	ms_saved_fd(void);
 //PIPES
 bool	ms_create_pipe(t_job *current);
 void	ms_pipedup_out(void);
 void	ms_pipedup_in(void);
 bool	ms_pipe_exec(t_job *current);
+bool	ms_ifredir(char **redir);
+void	ms_pipe_redir(void);
 
 #endif
