@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 20:12:52 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/22 08:24:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	build_heredoc(t_job *job, char *heredoc, int size)
 	i = 0;
 	if (!job->hdoc)
 		job->hdoc = (char **)ft_calloc(size + 1, sizeof(char *));
-	while (job->redir[i])
+	while (job->hdoc[i])
 		i++;
-	job->redir[i] = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
-	ft_strlcpy(job->redir[i], heredoc, ft_strlen(heredoc) + 1);
+	job->hdoc[i] = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
+	ft_strlcpy(job->hdoc[i], heredoc, ft_strlen(heredoc) + 1);
 }
 
 char	*join_inputs(char *input, char *heredoc)
