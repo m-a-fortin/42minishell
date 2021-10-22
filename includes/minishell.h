@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 12:58:20 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:45:00 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ extern t_exec	g_ms;
 //SIGNALS
 void	ms_nl_signal(int signal);
 void	ms_donothing(int signal);
+void	ms_setsignals(void);
 //ENV
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
