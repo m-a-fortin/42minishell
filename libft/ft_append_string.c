@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_append_string.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:01:17 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/13 17:25:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:46:38 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
