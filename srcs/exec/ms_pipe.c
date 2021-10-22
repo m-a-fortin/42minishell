@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 12:49:45 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/22 13:46:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@ void	ms_pipe_in(t_job *current)
 void	ms_pipe_out(t_job *current, pid_t pid)
 {
 	int	status;
-	int	fd;
 
 	waitpid(pid, &status, 0);
-	if (fd < 0)
-		px_error_fd(infos, fd);
-	dup2(fd, 1);
 	ms_return_fd();
 	printf("ALLO\n");
 	if (ms_pipe_signal(status) == false)
