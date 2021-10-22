@@ -6,37 +6,55 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 13:10:31 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:46:33 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ms_pipedup_in(void)
+void	ms_pipe_redir(void)
 {
-	close(g_ms.pipes[0]);
-	dup2(g_ms.pipes[1], g_ms.stdout);
-	close(g_ms.pipes[1]);
+	g_ms.pipes[0] = 0;
+	g_ms.pipes[1] = 1;
 }
 
-void	ms_pipedup_out(void)
+void	ms_pipe_in(t_job *current)
 {
-	close(g_ms.pipes[1]);
-	dup2(g_ms.pipes[0], g_ms.stdin);
-	close(g_ms.pipes[0]);
+	if (!current->redir)
+		ms_pipedup_in();
+	else
+		ms_pipe_redir();
+	//if (ms_check_builtin(current) == false)
+	//{
+		
+	//}
 }
 
-bool	ms_create_pipe(t_job *current)
+void	ms_pipe_out(t_job *current)
 {
-	if (current->next == NULL)
-		return (true);
-	if (pipe(g_ms.pipes) == -1)
-		return (false);
-	return (true);
+	(void)current;
 }
 
 bool	ms_pipe_exec(t_job *current)
 {
-	(void)current;
+	pid_t	pid;
+
+	if (ms_create_pipe(current) == false)
+	{
+		perror("Minishell: ");
+		return (false);
+	}
+	pid = fork();
+	if (pid == -1)
+	{
+		ms_return_fd();
+		ft_putendl_fd("minishell: FATAL: fork error", 1);
+		g_ms.exit = 1;
+		return (false);
+	}
+	if (pid == 0)
+		ms_pipe_in(current);
+	else if (pid > 0)
+		ms_pipe_out(current);
 	return (false);
 }

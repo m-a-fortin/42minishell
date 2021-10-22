@@ -6,18 +6,17 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 13:23:44 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:40:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	ms_check_builtin2(t_job *current, t_job *job_head, int out)
+bool	ms_check_builtin2(t_job *current)
 {
-	(void)job_head;
 	if (ft_strncmp(current->cmd[0], "export", 7) == 0)
 	{
-		g_ms.exit = ms_export_main(current->cmd, out);
+		g_ms.exit = ms_export_main(current->cmd, 1);
 		return (true);
 	}
 	if (ft_strncmp(current->cmd[0], "unset", 6) == 0)
@@ -27,7 +26,7 @@ bool	ms_check_builtin2(t_job *current, t_job *job_head, int out)
 	}
 	if (ft_strncmp(current->cmd[0], "env", 4) == 0)
 	{
-		g_ms.exit = ms_env_main(current->cmd, out);
+		g_ms.exit = ms_env_main(current->cmd, 1);
 		return (true);
 	}
 	if (ft_strncmp(current->cmd[0], "exit", 5) == 0)
@@ -38,7 +37,7 @@ bool	ms_check_builtin2(t_job *current, t_job *job_head, int out)
 	return (false);
 }
 
-bool	ms_check_builtin(t_job *current, t_job *job_head, int out)
+bool	ms_check_builtin(t_job *current)
 {
 	if (ft_strncmp(current->cmd[0], "cd", 3) == 0)
 	{
@@ -52,10 +51,10 @@ bool	ms_check_builtin(t_job *current, t_job *job_head, int out)
 	}
 	if (ft_strncmp(current->cmd[0], "pwd", 4) == 0)
 	{
-		g_ms.exit = ms_pwd_main(out);
+		g_ms.exit = ms_pwd_main(1);
 		return (true);
 	}
-	return (ms_check_builtin2(current, job_head, out));
+	return (ms_check_builtin2(current));
 }
 
 //Si export n'a pas d'arguments, Il print envp avec "declare -x"
