@@ -6,29 +6,11 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 11:27:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:29:19 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ms_nosuchfile(char *cmd)
-{
-	ms_return_fd();
-	ft_putstr_fd("Minishell: ", 1);
-	ft_putstr_fd(cmd, 1);
-	ft_putendl_fd(": No such file or directory", 1);
-	exit (127U);
-}
-
-void	ms_cmdnotfound(char *cmd)
-{
-	ms_return_fd();
-	ft_putstr_fd("Minishell: ", 1);
-	ft_putstr_fd(cmd, 1);
-	ft_putendl_fd(": Command not found", 1);
-	exit (127U);
-}
 
 char	*ms_find_cmdpath(char *cmd_name, char **paths)
 {

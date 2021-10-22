@@ -6,39 +6,67 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 14:46:33 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/22 13:46:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ms_pipe_redir(void)
+bool	ms_pipe_signal(int	status)
 {
-	g_ms.pipes[0] = 0;
-	g_ms.pipes[1] = 1;
+	if (WIFEXITED(status))
+		g_ms.exit = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+		{
+			ft_putendl_fd("", 1);
+			exit (g_ms.exit);
+		}
+		if (WTERMSIG(status) == SIGQUIT)
+			exit (g_ms.exit);
+	}
+	if (g_ms.exit != 0)
+		return (false);
+	return (true);
 }
 
 void	ms_pipe_in(t_job *current)
 {
-	if (!current->redir)
+	if (ms_ifredir(current->redir) == false)
 		ms_pipedup_in();
 	else
 		ms_pipe_redir();
-	//if (ms_check_builtin(current) == false)
-	//{
-		
-	//}
+	if (ms_check_builtin(current) == false)
+		ms_fork(current->cmd);
 }
 
-void	ms_pipe_out(t_job *current)
+void	ms_pipe_out(t_job *current, pid_t pid)
 {
-	(void)current;
+	int	status;
+
+	waitpid(pid, &status, 0);
+	ms_return_fd();
+	printf("ALLO\n");
+	if (ms_pipe_signal(status) == false)
+		exit (g_ms.exit);
+	if (ms_ifredir(current->redir) == false)
+		ms_pipedup_out();
+	else
+		ms_pipe_redir();
+	if (ms_check_builtin(current) == false) 
+		ms_fork(current->cmd);
 }
 
 bool	ms_pipe_exec(t_job *current)
 {
 	pid_t	pid;
+	int		status;
 
+	status = 0;
+	signal(SIGINT, ms_donothing);
+	signal(SIGQUIT, ms_donothing);
+	ms_saved_fd();
 	if (ms_create_pipe(current) == false)
 	{
 		perror("Minishell: ");
@@ -46,15 +74,11 @@ bool	ms_pipe_exec(t_job *current)
 	}
 	pid = fork();
 	if (pid == -1)
-	{
-		ms_return_fd();
-		ft_putendl_fd("minishell: FATAL: fork error", 1);
-		g_ms.exit = 1;
-		return (false);
-	}
+		return(ms_pid_error());
 	if (pid == 0)
 		ms_pipe_in(current);
 	else if (pid > 0)
-		ms_pipe_out(current);
-	return (false);
+		ms_pipe_out(current, pid);
+	waitpid(pid, &status, 0);
+	return (ms_fork_exit(status));
 }
