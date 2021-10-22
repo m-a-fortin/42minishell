@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 15:11:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/22 12:43:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,9 @@ int			count_cmd_and_args(t_token *token);
 t_dollar	*dollarsign_name(char *string, t_dollar *d_sign);
 void		update_quotestatus(char type);
 void		trimquotes_main(t_job *current);
+
+/* HEREDOCS */
+
+bool	create_pipe(int fd);
 
 #endif

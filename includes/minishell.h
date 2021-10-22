@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 14:58:44 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/22 10:41:04 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_job
 {
 	char			**cmd;
 	char			**redir;
-	char			**hdoc;
+	char			*hdoc;
 	struct s_job	*next;
 }			t_job;
 
