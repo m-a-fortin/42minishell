@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 13:46:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/23 11:02:48 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,12 @@ bool	ms_pipe_signal(int	status)
 	return (true);
 }
 
-void	ms_pipe_in(t_job *current)
-{
-	if (ms_ifredir(current->redir) == false)
-		ms_pipedup_in();
-	else
-		ms_pipe_redir();
-	if (ms_check_builtin(current) == false)
-		ms_fork(current->cmd);
-}
-
-void	ms_pipe_out(t_job *current, pid_t pid)
-{
-	int	status;
-
-	waitpid(pid, &status, 0);
-	ms_return_fd();
-	printf("ALLO\n");
-	if (ms_pipe_signal(status) == false)
-		exit (g_ms.exit);
-	if (ms_ifredir(current->redir) == false)
-		ms_pipedup_out();
-	else
-		ms_pipe_redir();
-	if (ms_check_builtin(current) == false) 
-		ms_fork(current->cmd);
-}
-
 bool	ms_pipe_exec(t_job *current)
 {
 	pid_t	pid;
-	int		status;
+	//int		status;
 
-	status = 0;
+	//status = 0;
 	signal(SIGINT, ms_donothing);
 	signal(SIGQUIT, ms_donothing);
 	ms_saved_fd();
@@ -75,10 +48,5 @@ bool	ms_pipe_exec(t_job *current)
 	pid = fork();
 	if (pid == -1)
 		return(ms_pid_error());
-	if (pid == 0)
-		ms_pipe_in(current);
-	else if (pid > 0)
-		ms_pipe_out(current, pid);
-	waitpid(pid, &status, 0);
-	return (ms_fork_exit(status));
+	return (false);
 }

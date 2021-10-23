@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 10:56:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/23 10:58:17 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ms_cd_update_env(char *old_pwd)
 {
 	g_ms.env = ms_setenv("PWD=", getcwd(NULL, 0), g_ms.env);
 	g_ms.env = ms_setenv("OLDPWD=", old_pwd, g_ms.env);
+	g_ms.env = ms_setenv("PWD=", getcwd(NULL, 0), g_ms.export);
+	g_ms.env = ms_setenv("OLDPWD=", old_pwd, g_ms.export);
 	free (old_pwd);
 }
 
@@ -54,6 +56,8 @@ int	ms_cd_main(char **cmd)
 		ft_putstr_fd(cmd[1], 1);
 		ft_putstr_fd(": ", 1);
 		ft_putendl_fd(error, errno);
+		free(old_pwd);
+		free(error);
 		return (1);
 	}
 	else

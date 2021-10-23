@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 12:39:22 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 14:40:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/23 10:39:06 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	ms_check_builtin2(t_job *current)
 {
 	if (ft_strncmp(current->cmd[0], "export", 7) == 0)
 	{
-		g_ms.exit = ms_export_main(current->cmd, 1);
+		g_ms.exit = ms_export_main(current->cmd);
 		return (true);
 	}
 	if (ft_strncmp(current->cmd[0], "unset", 6) == 0)
@@ -55,14 +55,4 @@ bool	ms_check_builtin(t_job *current)
 		return (true);
 	}
 	return (ms_check_builtin2(current));
-}
-
-//Si export n'a pas d'arguments, Il print envp avec "declare -x"
-void	ms_export_print(char **envp, int fd)
-{
-	char	**print;
-
-	print = ft_sort_strtab(envp);
-	ft_print_matrice_fd(print, fd);
-	ft_free_tab(print);
 }
