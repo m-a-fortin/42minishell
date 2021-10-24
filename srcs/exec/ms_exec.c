@@ -57,8 +57,11 @@ void	ms_exec_main(t_job *job_head)
 			return ;
 		}
 		trimquotes_main(current);
-		if (ms_exec_phase(current) == false && !current->next)
-			return (ms_return_fd());
+		if (ms_exec_phase(current) == false)
+			break;
 		current = current->next;
+		if (!current->next)
+			break ;
 	}
+	return (ms_return_fd());
 }
