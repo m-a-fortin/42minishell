@@ -31,22 +31,54 @@ bool	ms_pipe_signal(int	status)
 	return (true);
 }
 
-bool	ms_pipe_exec(t_job *current)
+int		ms_pipe_number(t_job *job_head)
+{
+	int	nb;
+	t_job *node;
+
+	nb = 0;
+	node = job_head;
+	if (!node->next)
+		return (0);
+	while (node->next)
+	{
+		nb++;
+		node = node->next;
+	}
+	return (nb);
+}
+
+void	ms_pipe_exec(t_job *job_head, t_job *current)
+{
+	bool	redir;
+
+	redir = ms_ifredir(current);
+	if (current != job_head && redir == false)
+		ms_pipedup_in();
+	if (redir == false)
+		ms_pipe_dup_out();
+	if (ms_check_builtin(current) == false)
+		return(ms_fork(current));
+}
+
+bool	ms_pipe_main(t_job *job_head, t_job *current)
 {
 	pid_t	pid;
-	//int		status;
+	int		status;
 
-	//status = 0;
-	signal(SIGINT, ms_donothing);
-	signal(SIGQUIT, ms_donothing);
 	ms_saved_fd();
 	if (ms_create_pipe(current) == false)
 	{
 		perror("Minishell: ");
 		return (false);
 	}
+	signal(SIGINT, ms_donothing);
+	signal(SIGQUIT, ms_donothing);
 	pid = fork();
 	if (pid == -1)
 		return(ms_pid_error());
-	return (false);
+	if (pid == 0)
+		ms_pipe_exec(job_head, current);
+	waitpid(pid, &status, 0);
+	return (true);
 }

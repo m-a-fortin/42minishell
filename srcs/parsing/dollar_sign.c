@@ -99,13 +99,13 @@ char	*dollarsign_loop(char *string)
 void	dollarsign_main(t_job *current)
 {
 	int	index;
-
+	
 	index = 0;
 	while (current->cmd[index])
 	{
 		current->cmd[index] = dollarsign_loop(current->cmd[index]);
 		index++;
 	}
-	index = 0;
+	dollarsign_main(current->next);
 	//pas oublier de regarder les redirections
 }
