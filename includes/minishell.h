@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 18:19:48 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:20:51 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_exec
 
 extern t_exec	g_ms;
 //SIGNALS
+bool	ms_fork_signal(int status);
 void	ms_nl_signal(int signal);
 void	ms_donothing(int signal);
 void	ms_setsignals(void);
