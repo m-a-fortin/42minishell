@@ -51,17 +51,17 @@ void	ms_exec_main(t_job *job_head)
 	{
 		ms_saved_fd();
 		dollarsign_main(current);
+		trimquotes_main(current);
 		if (ms_redirection_main(current) == false)
 		{
 			g_ms.exit = 127;
 			return ;
 		}
-		trimquotes_main(current);
 		if (ms_exec_phase(current) == false)
 			break;
-		current = current->next;
 		if (!current->next)
 			break ;
+		current = current->next;
 	}
 	return (ms_return_fd());
 }

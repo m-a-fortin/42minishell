@@ -37,10 +37,11 @@ bool	ms_pipe_exec(t_job *current)
 	//int		status;
 
 	//status = 0;
+	(void)current;
 	signal(SIGINT, ms_donothing);
 	signal(SIGQUIT, ms_donothing);
 	ms_saved_fd();
-	if (ms_create_pipe(current) == false)
+	if (ms_create_pipe() == false)
 	{
 		perror("Minishell: ");
 		return (false);

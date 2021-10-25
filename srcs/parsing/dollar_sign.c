@@ -107,5 +107,18 @@ void	dollarsign_main(t_job *current)
 		index++;
 	}
 	index = 0;
-	//pas oublier de regarder les redirections
+	if (current->redir)
+	{
+		while (current->redir[index])
+		{
+			index++;
+			if (current->redir[index][0])
+				current->redir[index] = dollarsign_loop(current->redir[index]);
+			if (!current->redir[index + 1])
+				break;
+			index += 2;
+		}
+	}
+	if (current->next)
+		dollarsign_main(current->next);
 }
