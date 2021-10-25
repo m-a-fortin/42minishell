@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/22 14:50:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:25:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,20 @@ bool	read_from_input(int *fd)
 	return (true);
 }
 
+void	exitsignal(int sig)
+{
+	(void)sig;
+	ft_putendl_fd("",STDERR_FILENO);
+	exit (CTRL_C);
+}
+
 void	heredoc_inputs(t_token *token, t_job *job, int *fd)
 {
 	char	*heredoc;
 	char	*input;
 	char	*delimiter;
 
+	signal(SIGINT, exitsignal);
 	heredoc = ft_calloc(1, sizeof(char));
 	delimiter = find_delimiter(token);
 	while (true)
@@ -54,9 +62,9 @@ void	heredoc_inputs(t_token *token, t_job *job, int *fd)
 		heredoc = join_inputs(input, heredoc);
 		free(input);
 	}
-	
 	free(input);
 	free(heredoc);
+	exit(EXIT_SUCCESS);
 }
 
 bool	build_heredoc(t_token *token, t_job *job)
@@ -70,7 +78,6 @@ bool	build_heredoc(t_token *token, t_job *job)
 	ms_saved_fd();
 	pid = fork();
 	signal(SIGINT, ms_donothing);
-	signal(SIGQUIT, ms_donothing);
 	if (pid == -1)
 	{
 		ms_return_fd();
