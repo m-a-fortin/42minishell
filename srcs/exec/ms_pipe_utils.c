@@ -27,3 +27,20 @@ bool	ms_ifredir(char **redir)
 	}
 	return (false);
 }
+
+int		ms_pipe_number(t_job *job_head)
+{
+	int	nb;
+	t_job *node;
+
+	nb = 0;
+	node = job_head;
+	if (!node->next)
+		return (0);
+	while (node->next)
+	{
+		nb++;
+		node = node->next;
+	}
+	return (nb);
+}

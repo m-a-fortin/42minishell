@@ -45,10 +45,12 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state)
 	return (d_sign);
 }
 
-void	dollarsign_free(t_dollar *d_sign)
+void	dollarsign_free(t_dollar *d_sign, t_quote *state)
 {
 	if (d_sign->new_string)
 		free (d_sign->new_string);
+	if (state)
+		free (state);
 	if (d_sign)
 		free (d_sign);
 }

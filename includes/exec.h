@@ -13,6 +13,12 @@
 #ifndef EXEC_H
 # define EXEC_H
 
+typedef struct s_pipes
+{
+	int	**fd;
+	int	status;
+}	t_pipes;
+
 typedef struct s_job	t_job;
 //BUILTIN
 int		ms_pwd_main(int fd);

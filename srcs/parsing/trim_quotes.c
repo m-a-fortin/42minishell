@@ -82,6 +82,7 @@ char	*trimquotes_loop(char *string)
 		index++;
 	}
 	string = swap_trimmed(string, trimmed);
+	free(state);
 	return (string);
 }
 

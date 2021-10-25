@@ -31,23 +31,6 @@ bool	ms_pipe_signal(int	status)
 	return (true);
 }
 
-int		ms_pipe_number(t_job *job_head)
-{
-	int	nb;
-	t_job *node;
-
-	nb = 0;
-	node = job_head;
-	if (!node->next)
-		return (0);
-	while (node->next)
-	{
-		nb++;
-		node = node->next;
-	}
-	return (nb);
-}
-
 void	ms_pipe_exec(t_job *job_head, t_job *current)
 {
 	bool	redir;
@@ -63,14 +46,26 @@ void	ms_pipe_exec(t_job *job_head, t_job *current)
 		return(ms_fork(current->cmd));
 }
 
+bool	ms_create_pipes(t_job *job_head)
+{
+	t_job	*node;
+	int		nb;
+	
+	node = job_head;
+	nb = ms_pipe_number(job_head);
+
+}
+
 bool	ms_pipe_main(t_job *job_head)
 {
 	pid_t	pid;
 	int		status;
+	t_pipe	*save;
 	t_job	*current;
 
 	(void)job_head;
 	current = job_head;
+	save = malloc(sizeof(t_pipe));
 	//if (ms_create_pipe() == false)
 	//{
 		//perror("Minishell: ");
