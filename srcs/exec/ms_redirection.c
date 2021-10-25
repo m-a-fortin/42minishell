@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 13:10:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 08:43:55 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ bool	ms_redirection_in(char *sign, char *next)
 {	
 	int	fd_in;
 
+	fd_in = 0;
 	if (sign[1] == '\0')
 		 fd_in = open(next, O_RDONLY);
 	if (fd_in  == -1)
