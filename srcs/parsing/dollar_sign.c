@@ -90,7 +90,7 @@ char	*dollarsign_loop(char *string)
 	}
 	free (string);
 	string = ft_strdup(d_sign->new_string);
-	dollarsign_free(d_sign);
+	dollarsign_free(d_sign, state);
 	return (string);
 }
 

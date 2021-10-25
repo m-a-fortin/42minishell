@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/23 10:28:36 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/25 13:04:56 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ms_setsignals(void);
 //ENV
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
+char	**ms_set_noequal(char *name, char **export_ms);
 //LINKED LIST JOB
 void	ms_free_job(t_job *job_head, t_job *current);
 t_job	*init_node(t_job *node);
