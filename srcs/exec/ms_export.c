@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/23 10:45:16 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/25 13:04:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ms_setexp(char *args)
 	index = 0;
 	if (ft_char_search(args, '=') == 0)
 	{
-		g_ms.export = ms_setenv(args, "=''", g_ms.export);
+		g_ms.export = ms_set_noequal(args, g_ms.export);
 		return ;
 	}
 	while (args[index] != '=')

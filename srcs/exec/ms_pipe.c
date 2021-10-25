@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/23 11:02:48 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/25 13:06:00 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ bool	ms_create_pipes(t_job *job_head)
 	
 	node = job_head;
 	nb = ms_pipe_number(job_head);
-
+	return(true);
 }
 
 bool	ms_pipe_main(t_job *job_head)
 {
 	pid_t	pid;
 	int		status;
-	t_pipe	*save;
+	t_pipes	*save;
 	t_job	*current;
 
 	(void)job_head;
 	current = job_head;
-	save = malloc(sizeof(t_pipe));
+	save = malloc(sizeof(t_pipes));
 	//if (ms_create_pipe() == false)
 	//{
 		//perror("Minishell: ");
