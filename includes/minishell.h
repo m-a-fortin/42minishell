@@ -52,15 +52,9 @@ typedef struct s_exec
 {
 	char				**env;
 	char				**export;
-	bool				singlequote;
-	bool				doublequote;
-	int					stdin;
+	int					stdin;1
 	int					stdout;
-	int					in;
-	int					out;
-	int					pipes[2];
 	unsigned int		exit;
-	int					exec;
 }			t_exec;
 
 extern t_exec	g_ms;

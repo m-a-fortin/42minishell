@@ -52,21 +52,22 @@ void	ms_pipe_exec(t_job *job_head, t_job *current)
 {
 	bool	redir;
 
-	redir = ms_ifredir(current);
+	redir = ms_ifredir(current->redir);
 	if (current != job_head && redir == false)
 		ms_pipedup_in();
 	if (redir == false)
-		ms_pipe_dup_out();
+		ms_pipedup_out();
 	if (ms_check_builtin(current) == false)
-		return(ms_fork(current));
+		return(ms_fork(current->cmd));
 }
 
-bool	ms_pipe_main(t_job *job_head, t_job *current)
+bool	ms_pipe_main(t_job *job_head)
 {
 	pid_t	pid;
 	int		status;
+	t_job	*current;
 
-	ms_saved_fd();
+	current = job_head;
 	if (ms_create_pipe() == false)
 	{
 		perror("Minishell: ");

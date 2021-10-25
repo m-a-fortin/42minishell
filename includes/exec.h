@@ -27,6 +27,7 @@ void	ms_exec_main(t_job *job_head);
 int		ms_exit_main(t_job *current);
 bool	ms_check_builtin(t_job *current);
 //EXECVE
+bool	ms_exec_prep(t_job *current);
 char	*ms_findpath(char *cmd);
 bool	ms_pathname_error(char *cmd_name);
 char	*ms_get_cmdpath(char *cmd);
@@ -46,7 +47,7 @@ bool	ms_create_pipe(void);
 int		ms_pipe_number(t_job *job_head);
 void	ms_pipedup_out(void);
 void	ms_pipedup_in(void);
-bool	ms_pipe_main(t_job *job_head, t_job *current);
+bool	ms_pipe_main(t_job *job_head);
 bool	ms_ifredir(char **redir);
 void	ms_pipe_redir(void);
 

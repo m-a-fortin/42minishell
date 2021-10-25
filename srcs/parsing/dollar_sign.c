@@ -40,7 +40,7 @@ t_dollar	*dollarsign_join(t_dollar *d_sign)
 	return (d_sign);
 }
 
-t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
+t_dollar	*dollarsign_found(char *string, t_dollar *d_sign, t_quote *state)
 {
 	if (ft_isalpha(string[d_sign->index + 1]) == 0
 		&& string[d_sign->index + 1] != '_' && string[d_sign->index + 1] != '?')
@@ -52,7 +52,7 @@ t_dollar	*dollarsign_found(char *string, t_dollar *d_sign)
 	d_sign->found = 1;
 	if (string[d_sign->index] == '?')
 		return (dollarsign_exit(d_sign));
-	d_sign = dollarsign_name(string, d_sign);
+	d_sign = dollarsign_name(string, d_sign, state);
 	d_sign->value = ms_getenv(d_sign->name, g_ms.env);
 	free(d_sign->name);
 	d_sign->name = NULL;
@@ -65,16 +65,20 @@ char	*dollarsign_loop(char *string)
 {
 	t_dollar	*d_sign;
 	char		*temp;
+	t_quote		*state;
 
+	state = malloc(sizeof(t_quote));
+	state->singlequote = false;
+	state->doublequote = false;
 	d_sign = malloc(sizeof(t_dollar));
 	dollarstruct_init(d_sign);
 	while (string[d_sign->index])
 	{
 		d_sign->found = 0;
 		if (string[d_sign->index] == '\'' || string[d_sign->index] == '\"')
-			update_quotestatus(string[d_sign->index]);
-		if (string[d_sign->index] == '$' && g_ms.singlequote == false)
-			d_sign = dollarsign_found(string, d_sign);
+			update_quotestatus(string[d_sign->index], state);
+		if (string[d_sign->index] == '$' && state->singlequote == false)
+			d_sign = dollarsign_found(string, d_sign, state);
 		if (d_sign->found == 0)
 		{
 			temp = ft_append_string(d_sign->new_string,

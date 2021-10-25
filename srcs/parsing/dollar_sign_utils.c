@@ -20,7 +20,7 @@ void	dollarstruct_init(t_dollar *d_sign)
 	d_sign->index = 0;
 }
 
-t_dollar	*dollarsign_name(char *string, t_dollar *d_sign)
+t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state)
 {
 	char	*temp;
 	char	*equal;
@@ -29,7 +29,7 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign)
 	{
 		if (string[d_sign->index] == '\'')
 		{
-			update_quotestatus(string[d_sign->index]);
+			update_quotestatus(string[d_sign->index], state);
 			break ;
 		}
 		if (string[d_sign->index] == ' ' || string[d_sign->index] == '"'

@@ -24,28 +24,27 @@ void	ms_return_fd(void)
 	dup2(g_ms.stdout, 1);
 }
 
-bool	ms_exec_phase(t_job *current, int nb_exec)
+bool	ms_exec_phase(t_job *current)
 {
 	bool	pipe;
 
-	g_ms.exec = 1;
 	if (current->next)
 		pipe = true;
 	else
 		pipe = false;
 	if (pipe == false)
 	{
+		if (ms_exec_prep(current) == false)
+			return (false);
 		if (ms_check_builtin(current) == false)
 			return (ms_exec_fork(current));
 		return (true);
 	}
-	return (ms_pipe_exec(current));
+	return (ms_pipe_main(current));
 }
 
 bool	ms_exec_prep(t_job *current)
 {
-	ms_saved_fd();
-	dollarsign_main(current);
 	if (ms_redirection_main(current) == false)
 	{
 		g_ms.exit = 127;
@@ -57,28 +56,23 @@ bool	ms_exec_prep(t_job *current)
 
 void	ms_exec_main(t_job *job_head)
 {
-	t_job	*current;
-	int		**pipe_fd;
-	int		nb_exec;
+	bool	pipe;
 
-	nb_exec = 0;
-	current = job_head;
-	while (current)
+	pipe = false;
+	ms_saved_fd();
+	dollarsign_main(job_head);
+	if (job_head->next)
+		pipe = true;
+	else
+		pipe = false;
+	if (pipe == false)
 	{
-		ms_saved_fd();
-		dollarsign_main(current);
-		trimquotes_main(current);
-		if (ms_redirection_main(current) == false)
-		{
-			g_ms.exit = 127;
-			return ;
-		}
-		if (ms_exec_phase(current) == false)
-			break;
-		if (!current->next)
-			break ;
-		current = current->next;
-		nb_exec++;
+		if (ms_exec_prep(job_head) == false)
+			return (ms_return_fd());
+		if (ms_check_builtin(job_head) == false)
+			ms_exec_fork(job_head);
+		return (ms_return_fd());
 	}
-	return (ms_return_fd());
+	ms_pipe_main(job_head);
+	ms_return_fd();
 }
