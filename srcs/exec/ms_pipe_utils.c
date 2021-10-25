@@ -12,33 +12,6 @@
 
 #include "minishell.h"
 
-void	ms_pipedup_in(void)
-{
-	close(g_ms.pipes[0]);
-	dup2(g_ms.pipes[1], 1);
-	close(g_ms.pipes[1]);
-}
-
-void	ms_pipedup_out(void)
-{
-	close(g_ms.pipes[1]);
-	dup2(g_ms.pipes[0], 0);
-	close(g_ms.pipes[0]);
-}
-
-bool	ms_create_pipe(void)
-{
-	if (pipe(g_ms.pipes) == -1)
-		return (false);
-	return (true);
-}
-
-void	ms_pipe_redir(void)
-{
-	close(g_ms.pipes[0]);
-	close(g_ms.pipes[1]);
-}
-
 bool	ms_ifredir(char **redir)
 {
 	int	index;

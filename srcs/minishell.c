@@ -46,7 +46,6 @@ void	ms_readline_loop(t_job *job_head)
 	ms_setsignals();
 	while (true)
 	{
-		g_ms.exec = 0;
 		input = readline(PROMPT);
 		if (!input)
 			exit(g_ms.exit);

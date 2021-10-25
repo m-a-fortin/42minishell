@@ -43,10 +43,7 @@ void	ms_return_fd(void);
 bool	ms_redirection_main(t_job *current);
 void	ms_saved_fd(void);
 //PIPES
-bool	ms_create_pipe(void);
 int		ms_pipe_number(t_job *job_head);
-void	ms_pipedup_out(void);
-void	ms_pipedup_in(void);
 bool	ms_pipe_main(t_job *job_head);
 bool	ms_ifredir(char **redir);
 void	ms_pipe_redir(void);

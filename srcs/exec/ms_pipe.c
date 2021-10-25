@@ -52,11 +52,13 @@ void	ms_pipe_exec(t_job *job_head, t_job *current)
 {
 	bool	redir;
 
+	(void)redir;
+	(void)job_head;
 	redir = ms_ifredir(current->redir);
-	if (current != job_head && redir == false)
-		ms_pipedup_in();
-	if (redir == false)
-		ms_pipedup_out();
+	//if (current != job_head && redir == false)
+		//ms_pipedup_in();
+	//if (redir == false)
+		//ms_pipedup_out();
 	if (ms_check_builtin(current) == false)
 		return(ms_fork(current->cmd));
 }
@@ -67,12 +69,13 @@ bool	ms_pipe_main(t_job *job_head)
 	int		status;
 	t_job	*current;
 
+	(void)job_head;
 	current = job_head;
-	if (ms_create_pipe() == false)
-	{
-		perror("Minishell: ");
-		return (false);
-	}
+	//if (ms_create_pipe() == false)
+	//{
+		//perror("Minishell: ");
+		//return (false);
+	//}
 	signal(SIGINT, ms_donothing);
 	signal(SIGQUIT, ms_donothing);
 	pid = fork();

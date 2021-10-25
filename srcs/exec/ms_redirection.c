@@ -14,42 +14,46 @@
 
 bool	ms_redirection_in(char *sign, char *next)
 {	
+	int	fd_in;
+
 	if (sign[1] == '\0')
-		g_ms.in = open(next, O_RDONLY);
-	if (g_ms.in == -1)
+		 fd_in = open(next, O_RDONLY);
+	if (fd_in  == -1)
 	{
 		perror("Minishell:");
 		ft_putchar_fd('\n', 1);
 		return (false);
 	}
-	if (dup2(g_ms.in, 0) == -1)
+	if (dup2(fd_in , 0) == -1)
 	{
 		perror("Minishell:");
 		ft_putchar_fd('\n', 1);
 		return (false);
 	}
-	close(g_ms.in);
+	close(fd_in);
 	return (true);
 }
 
 bool	ms_redirection_out(char *sign, char *next)
 {
+	int fd_out;
+	
 	if (sign[1] == '\0')
-		g_ms.out = open(next, O_CREAT | O_RDWR | O_TRUNC, 0644);
+		fd_out = open(next, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	else
-		g_ms.out = open(next, O_CREAT | O_RDWR | O_APPEND, 0644);
-	if (g_ms.out == -1)
+		fd_out = open(next, O_CREAT | O_RDWR | O_APPEND, 0644);
+	if (fd_out == -1)
 	{
 		perror("Minishell");
 		return (false);
 	}
-	if (dup2(g_ms.out, 1) == -1)
+	if (dup2(fd_out, 1) == -1)
 	{
 		perror("Minishell");
 		return (false);
 	}
-	dup2(g_ms.out, 1);
-	close (g_ms.out);
+	dup2(fd_out, 1);
+	close (fd_out);
 	return (true);
 }
 
