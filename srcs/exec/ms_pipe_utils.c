@@ -6,26 +6,29 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:30:23 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 12:47:38 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:20:15 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ms_ifredir(char **redir)
+bool	ms_pipe_signal(int	status)
 {
-	int	index;
-
-	index = 0;
-	if (!redir)
-		return (false);
-	while (redir[index])
+	if (WIFEXITED(status))
+		g_ms.exit = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
 	{
-		if (ft_strncmp(redir[index], ">", 1) == 0)
-			return (true);
-		index++;
+		if (WTERMSIG(status) == SIGINT)
+		{
+			ft_putendl_fd("", 1);
+			exit (g_ms.exit);
+		}
+		if (WTERMSIG(status) == SIGQUIT)
+			exit (g_ms.exit);
 	}
-	return (false);
+	if (g_ms.exit != 0)
+		return (false);
+	return (true);
 }
 
 int		ms_pipe_number(t_job *job_head)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/23 10:58:17 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/25 16:15:20 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	ms_cd_update_env(char *old_pwd)
 {
-	g_ms.env = ms_setenv("PWD=", getcwd(NULL, 0), g_ms.env);
+	char *pwd;
+
+	pwd = getcwd(NULL, 0);
+	g_ms.env = ms_setenv("PWD=", pwd, g_ms.env);
 	g_ms.env = ms_setenv("OLDPWD=", old_pwd, g_ms.env);
-	g_ms.env = ms_setenv("PWD=", getcwd(NULL, 0), g_ms.export);
-	g_ms.env = ms_setenv("OLDPWD=", old_pwd, g_ms.export);
+	g_ms.export = ms_setenv("PWD=", pwd, g_ms.export);
+	g_ms.export = ms_setenv("OLDPWD=", old_pwd, g_ms.export);
+	free (pwd);
 	free (old_pwd);
 }
 
@@ -33,7 +37,7 @@ void	ms_cd_home(void)
 		ft_putstr_fd("minishell: cd: HOME not set\n", 1);
 		return ;
 	}
-	old_pwd = ft_strdup(getcwd(NULL, 0));
+	old_pwd = getcwd(NULL, 0);
 	chdir(new_pwd);
 	ms_cd_update_env(old_pwd);
 }
@@ -45,19 +49,21 @@ int	ms_cd_main(char **cmd)
 	char	*error;
 	char	*old_pwd;
 
-	error = 0;
-	old_pwd = ft_strdup(getcwd(NULL, 0));
+	(void)error;
+	old_pwd = getcwd(NULL, 0);
 	if (cmd[1] == NULL || ft_strncmp(cmd[1], "~", 1) == 0)
+	{
+		free(old_pwd);
 		ms_cd_home();
+	}
 	else if (chdir(cmd[1]) == -1)
 	{
+		free(old_pwd);
 		error = strerror(errno);
 		ft_putstr_fd("minishell: cd: ", 1);
 		ft_putstr_fd(cmd[1], 1);
 		ft_putstr_fd(": ", 1);
 		ft_putendl_fd(error, errno);
-		free(old_pwd);
-		free(error);
 		return (1);
 	}
 	else
