@@ -30,6 +30,12 @@ typedef struct s_parser
 	t_state	state;
 }	t_parser;
 
+typedef struct s_quote
+{
+	bool	singlequote;
+	bool	doublequote;
+}	t_quote;
+
 typedef struct s_dollar
 {
 	char	*new_string;
@@ -37,9 +43,12 @@ typedef struct s_dollar
 	char	*value;
 	int		index;
 	int		found;
+	t_quote	*state;
+
 }	t_dollar;
 
 typedef struct s_job	t_job;
+typedef struct s_quote  t_quote;
 int			find_closing_quote(t_parser *par, char quote);
 char		*trim_input(char *input);
 void		init_parser(t_parser *par, char *input);
@@ -51,7 +60,6 @@ void		add_token_to_list(t_parser *par, t_token *token);
 t_job		*parse_input(char *input, t_job *job_head);
 t_job		*build_job(t_token *token_head, t_job *job_head);
 t_job		*parse_input(char *input, t_job *job_head);
-
 void		dollarsign_main(t_job *current);
 
 /* PARSE UTILITIES */
@@ -65,9 +73,9 @@ void		dollarstruct_init(t_dollar *d_sign);
 void		dollarsign_free(t_dollar *d_sign);
 int			count_redirections(t_token *token);
 int			count_cmd_and_args(t_token *token);
-t_dollar	*dollarsign_name(char *string, t_dollar *d_sign);
-void		update_quotestatus(char type);
+t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
 void		trimquotes_main(t_job *current);
+void		update_quotestatus(char type, t_quote *state);
 
 /* HEREDOCS */
 

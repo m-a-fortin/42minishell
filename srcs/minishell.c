@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
 /*   Updated: 2021/10/22 19:47:02 by mmondell         ###   ########.fr       */
+=======
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
+/*   Updated: 2021/10/23 10:29:39 by hpst             ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +73,7 @@ int	main(int argc, char **argv, char **envp)
 		exit(-1);
 	}
 	g_ms.env = ft_matrice_cpy(envp);
+	g_ms.export = ft_sort_strtab(g_ms.env);
 	print_header();
 	ms_readline_loop(job_head);
 }

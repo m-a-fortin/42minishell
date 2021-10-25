@@ -12,56 +12,76 @@
 
 #include "../../includes/minishell.h"
 
-void	update_quotestatus(char type)
+void	update_quotestatus(char type, t_quote *state)
 {
 	if (type == '\"')
 	{
-		if (g_ms.doublequote == false && g_ms.singlequote == false)
+		if (state->doublequote == false && state->singlequote == false)
 		{
-			g_ms.doublequote = true;
+			state->doublequote = true;
 			return ;
 		}
-		if (g_ms.doublequote == true && g_ms.singlequote == false)
-			g_ms.doublequote = false;
+		if (state->doublequote == true && state->singlequote == false)
+			state->doublequote = false;
 	}
 	if (type == '\'')
 	{
-		if (g_ms.singlequote == false && g_ms.doublequote == false)
+		if (state->singlequote == false && state->doublequote == false)
 		{
-			g_ms.singlequote = true;
+			state->singlequote = true;
 			return ;
 		}
-		if (g_ms.singlequote == true && g_ms.doublequote == false)
-			g_ms.singlequote = false;
+		if (state->singlequote == true && state->doublequote == false)
+			state->singlequote = false;
 	}
+}
+
+char	*swap_trimmed(char *string, char *trimmed)
+{
+	free (string);
+	string = NULL;
+	if (!trimmed)
+		string = ft_strdup("\0");
+	else
+	{
+		string = ft_strdup(trimmed);
+		free (trimmed);
+	}
+	return (string);
+}
+
+char	*append_trimmed(char string, char *trimmed)
+{
+	char * temp;
+
+	temp = ft_append_string(trimmed, string);
+	trimmed = ft_strdup(temp);
+	free(temp);
+	temp = NULL;
+	return (trimmed);
 }
 
 char	*trimquotes_loop(char *string)
 {
 	char	*trimmed;
-	char	*temp;
+	t_quote	*state;
 	int		index;
 
+	state = malloc(sizeof(t_quote));
 	index = 0;
 	trimmed = NULL;
+	state->doublequote = false;
+	state->singlequote = false;
 	while (string[index])
 	{
-		if ((string[index] == '\'' && g_ms.doublequote == false)
-			|| (string[index] == '\"' && g_ms.singlequote == false))
-			update_quotestatus(string[index]);
+		if ((string[index] == '\'' && state->doublequote == false)
+			|| (string[index] == '\"' && state->singlequote == false))
+				update_quotestatus(string[index], state);
 		else
-		{
-			temp = ft_append_string(trimmed, string[index]);
-			trimmed = ft_strdup(temp);
-			free(temp);
-			temp = NULL;
-		}
+			trimmed = append_trimmed(string[index], trimmed);
 		index++;
 	}
-	free (string);
-	string = NULL;
-	string = ft_strdup(trimmed);
-	free(trimmed);
+	string = swap_trimmed(string, trimmed);
 	return (string);
 }
 
@@ -77,5 +97,16 @@ void	trimquotes_main(t_job *current)
 		index++;
 	}
 	index = 0;
-	//pas oublier de regarder les redirections
+	if (current->redir)
+	{
+		while (current->redir[index])
+		{
+			index++;
+			if (current->redir[index][0])
+				current->redir[index] = trimquotes_loop(current->redir[index]);
+			if (!current->redir[index + 1])
+				break;
+			index += 2;
+		}
+	}
 }

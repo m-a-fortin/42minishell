@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 13:46:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/23 11:02:48 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,54 +31,55 @@ bool	ms_pipe_signal(int	status)
 	return (true);
 }
 
-void	ms_pipe_in(t_job *current)
+int		ms_pipe_number(t_job *job_head)
 {
-	if (ms_ifredir(current->redir) == false)
+	int	nb;
+	t_job *node;
+
+	nb = 0;
+	node = job_head;
+	if (!node->next)
+		return (0);
+	while (node->next)
+	{
+		nb++;
+		node = node->next;
+	}
+	return (nb);
+}
+
+void	ms_pipe_exec(t_job *job_head, t_job *current)
+{
+	bool	redir;
+
+	redir = ms_ifredir(current->redir);
+	if (current != job_head && redir == false)
 		ms_pipedup_in();
-	else
-		ms_pipe_redir();
-	if (ms_check_builtin(current) == false)
-		ms_fork(current->cmd);
-}
-
-void	ms_pipe_out(t_job *current, pid_t pid)
-{
-	int	status;
-
-	waitpid(pid, &status, 0);
-	ms_return_fd();
-	printf("ALLO\n");
-	if (ms_pipe_signal(status) == false)
-		exit (g_ms.exit);
-	if (ms_ifredir(current->redir) == false)
+	if (redir == false)
 		ms_pipedup_out();
-	else
-		ms_pipe_redir();
-	if (ms_check_builtin(current) == false) 
-		ms_fork(current->cmd);
+	if (ms_check_builtin(current) == false)
+		return(ms_fork(current->cmd));
 }
 
-bool	ms_pipe_exec(t_job *current)
+bool	ms_pipe_main(t_job *job_head)
 {
 	pid_t	pid;
 	int		status;
+	t_job	*current;
 
-	status = 0;
-	signal(SIGINT, ms_donothing);
-	signal(SIGQUIT, ms_donothing);
-	ms_saved_fd();
-	if (ms_create_pipe(current) == false)
+	current = job_head;
+	if (ms_create_pipe() == false)
 	{
 		perror("Minishell: ");
 		return (false);
 	}
+	signal(SIGINT, ms_donothing);
+	signal(SIGQUIT, ms_donothing);
 	pid = fork();
 	if (pid == -1)
 		return(ms_pid_error());
 	if (pid == 0)
-		ms_pipe_in(current);
-	else if (pid > 0)
-		ms_pipe_out(current, pid);
+		ms_pipe_exec(job_head, current);
 	waitpid(pid, &status, 0);
-	return (ms_fork_exit(status));
+	return (true);
 }

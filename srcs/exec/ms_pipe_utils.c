@@ -26,10 +26,8 @@ void	ms_pipedup_out(void)
 	close(g_ms.pipes[0]);
 }
 
-bool	ms_create_pipe(t_job *current)
+bool	ms_create_pipe(void)
 {
-	if (current->next == NULL)
-		return (true);
 	if (pipe(g_ms.pipes) == -1)
 		return (false);
 	return (true);

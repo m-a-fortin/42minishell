@@ -40,14 +40,12 @@ bool	ms_redirection_out(char *sign, char *next)
 		g_ms.out = open(next, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (g_ms.out == -1)
 	{
-		perror("Minishell:");
-		ft_putchar_fd('\n', 1);
+		perror("Minishell");
 		return (false);
 	}
 	if (dup2(g_ms.out, 1) == -1)
 	{
-		perror("Minishell:");
-		ft_putchar_fd('\n', 1);
+		perror("Minishell");
 		return (false);
 	}
 	dup2(g_ms.out, 1);
