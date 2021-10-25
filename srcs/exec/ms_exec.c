@@ -64,9 +64,15 @@ void	ms_exec_main(t_job *job_head)
 	nb_exec = 0;
 	current = job_head;
 	while (current)
-	{	
-		if (ms_exec_prep(current) == false)
-			break;
+	{
+		ms_saved_fd();
+		dollarsign_main(current);
+		trimquotes_main(current);
+		if (ms_redirection_main(current) == false)
+		{
+			g_ms.exit = 127;
+			return ;
+		}
 		if (ms_exec_phase(current) == false)
 			break;
 		if (!current->next)

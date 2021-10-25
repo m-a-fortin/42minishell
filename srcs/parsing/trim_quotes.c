@@ -36,6 +36,20 @@ void	update_quotestatus(char type)
 	}
 }
 
+char	*swap_trimmed(char *string, char *trimmed)
+{
+	free (string);
+	string = NULL;
+	if (!trimmed)
+		string = ft_strdup("\0");
+	else
+	{
+		string = ft_strdup(trimmed);
+		free (trimmed);
+	}
+	return (string);
+}
+
 char	*trimquotes_loop(char *string)
 {
 	char	*trimmed;
@@ -48,7 +62,7 @@ char	*trimquotes_loop(char *string)
 	{
 		if ((string[index] == '\'' && g_ms.doublequote == false)
 			|| (string[index] == '\"' && g_ms.singlequote == false))
-			update_quotestatus(string[index]);
+				update_quotestatus(string[index]);
 		else
 		{
 			temp = ft_append_string(trimmed, string[index]);
@@ -58,11 +72,27 @@ char	*trimquotes_loop(char *string)
 		}
 		index++;
 	}
-	free (string);
-	string = NULL;
-	string = ft_strdup(trimmed);
-	free(trimmed);
+	string = swap_trimmed(string, trimmed);
 	return (string);
+}
+
+void	trimquotes_redir(t_job *current)
+{
+	int	index;
+
+	index = 0;
+	if (current->redir)
+	{
+		while (current->redir[index])
+		{
+			index++;
+			if (current->redir[index][0])
+				current->redir[index] = trimquotes_loop(current->redir[index]);
+			if (!current->redir[index + 1])
+				break;
+			index += 2;
+		}
+	}
 }
 
 void	trimquotes_main(t_job *current)
@@ -77,5 +107,7 @@ void	trimquotes_main(t_job *current)
 		index++;
 	}
 	index = 0;
-	//pas oublier de regarder les redirections
+	trimquotes_redir(current);
+	if (current->next)
+		trimquotes_main(current->next);
 }

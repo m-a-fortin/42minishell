@@ -67,7 +67,7 @@ bool	ms_pipe_main(t_job *job_head, t_job *current)
 	int		status;
 
 	ms_saved_fd();
-	if (ms_create_pipe(current) == false)
+	if (ms_create_pipe() == false)
 	{
 		perror("Minishell: ");
 		return (false);
