@@ -6,7 +6,7 @@
 /*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 18:52:26 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/23 11:01:49 by hpst             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ int	ms_exit_main(t_job *current)
 		check = ms_exit_check(cmd);
 	if (check == false)
 		return (1);
+	ft_free_tab(g_ms.env);
+	ft_free_tab(g_ms.export);
+	ms_free_job(current, current);
 	exit (g_ms.exit);
 }

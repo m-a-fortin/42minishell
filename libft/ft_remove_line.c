@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:29:46 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/08 16:27:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 13:42:50 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char	**ft_remove_line(char **matrice, int index)
 		x++;
 	}
 	ft_free_tab(matrice);
+	matrice = NULL;
 	return (new_matrice);
 }

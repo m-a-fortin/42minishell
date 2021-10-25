@@ -16,10 +16,6 @@
 void	ms_nl_signal(int signal)
 {	
 	(void)signal;
-	if (g_ms.exec == 0)
-		g_ms.exit = 1;
-	if (g_ms.exec == 1)
-		g_ms.exit = 130;
 	signal = g_ms.exit;
 	write(1, "\n", 2);
 	rl_on_new_line();

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 19:47:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:19:39 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ms_readline_loop(t_job *job_head)
 	ms_setsignals();
 	while (true)
 	{
-		g_ms.exec = 0;
 		input = readline(PROMPT);
 		if (!input)
 			exit(g_ms.exit);
@@ -59,13 +58,15 @@ int	main(int argc, char **argv, char **envp)
 	t_job		*job_head;
 
 	job_head = NULL;
-	argv++;
+	(void)argv;
 	if (argc > 1)
 	{
 		ft_putstr_fd("Error\nminishell: invalid number of arguments\n", 1);
 		exit(-1);
 	}
 	g_ms.env = ft_matrice_cpy(envp);
+	g_ms.export = ft_sort_strtab(g_ms.env);
+	ms_saved_fd();
 	print_header();
 	ms_readline_loop(job_head);
 }

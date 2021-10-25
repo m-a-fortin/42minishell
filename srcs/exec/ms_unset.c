@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/21 13:04:53 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:14:32 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,30 @@ bool	ms_valid_unset_name(char *args)
 	return (true);
 }
 
+void	ms_unset_export(char *name, char *args)
+{
+	int	index;
+
+	index = 0;
+	while (g_ms.export[index])
+	{
+		if (ft_char_search(g_ms.export[index], '=') == 0)
+		{
+			if (ft_strncmp(args, g_ms.export[index], ft_strlen(g_ms.export[index])) == 0)
+			{
+				g_ms.export = ft_remove_line(g_ms.export , index);
+				return ;
+			}
+		}
+		if (ft_strncmp(name, g_ms.export[index], ft_strlen(name)) == 0)
+		{
+			g_ms.export = ft_remove_line(g_ms.export, index);
+			return ;
+		}
+		index++;
+	}
+}
+
 void	ms_unset_loop(char	*args)
 {	
 	int		index;
@@ -48,10 +72,12 @@ void	ms_unset_loop(char	*args)
 		if (ft_strncmp(name, g_ms.env[index], ft_strlen(name)) == 0)
 		{
 			g_ms.env = ft_remove_line(g_ms.env, index);
-			return ;
+			break ;
 		}
 		index++;
 	}
+	ms_unset_export(name, args);
+	free(name);
 }
 
 //Look in envp if value ARG is set. Change value if it is.

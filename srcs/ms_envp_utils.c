@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 11:52:27 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:05:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,46 @@ char	**ms_setenv_addback(char *name, char *value, char **envp_ms)
 	return (new_envp);
 }
 
+char	**ms_set_noequal(char *name, char **export_ms)
+{
+	int	index;
+	char	*new_name;
+
+	index = 0;
+	while (export_ms[index])
+	{
+		if (ft_strncmp(name, export_ms[index], ft_strlen(export_ms[index])) == 0)
+			return (export_ms);
+		index++;
+	}
+	new_name = ft_strjoin(name, "=");
+	index = 0;
+	while (export_ms[index])
+	{
+		if (ft_strncmp(new_name, export_ms[index], ft_strlen(new_name)) == 0)
+			return (export_ms);
+		index++;
+	}
+	return(ms_setenv_addback(name, "", export_ms));
+}
+
+char	**ms_setequal(char *name, char **envp_ms, int index)
+{
+	size_t	len;
+	char	**new_ms;
+
+	len = ft_strlen(name);
+	if (ft_strncmp(envp_ms[index], name, len - 1) == 0)
+	{
+		if (ft_strlen(envp_ms[index]) == len - 1)
+		{
+			new_ms = ft_remove_line(envp_ms, index);
+			return (new_ms);
+		}
+	}
+	return (envp_ms);
+}
+
 char	**ms_setenv(char *name, char *value, char **envp_ms)
 {
 	int		index;
@@ -62,17 +102,21 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 	done = 0;
 	while (envp_ms[index])
 	{
-		if (ft_strncmp(envp_ms[index], name, ft_strlen(name)) == 0)
+		if (ft_char_search(envp_ms[index], '=') == 0 && envp_ms[index][0] != '\0')
+		{
+			envp_ms = ms_setequal(name, envp_ms, index);
+			if (envp_ms[index] == NULL)
+				break ;
+		}
+		else if (ft_strncmp(envp_ms[index], name, ft_strlen(name)) == 0)
 		{
 			new_line = ft_strjoin(name, value);
 			free(envp_ms[index]);
 			envp_ms[index] = ft_strdup(new_line);
 			free(new_line);
-			done++;
+			return (envp_ms);
 		}
 		index++;
 	}
-	if (done == 0)
-		return (ms_setenv_addback(name, value, envp_ms));
-	return (envp_ms);
+	return (ms_setenv_addback(name, value, envp_ms));
 }

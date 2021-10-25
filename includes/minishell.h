@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 19:47:15 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:19:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,10 @@ typedef struct s_job
 typedef struct s_exec
 {
 	char				**env;
-	bool				singlequote;
-	bool				doublequote;
+	char				**export;
 	int					stdin;
 	int					stdout;
-	int					in;
-	int					out;
-	int					pipes[2];
 	unsigned int		exit;
-	int					exec;
 }			t_exec;
 
 extern t_exec	g_ms;
@@ -71,6 +66,7 @@ void	ms_setsignals(void);
 //ENV
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
+char	**ms_set_noequal(char *name, char **export_ms);
 //LINKED LIST JOB
 void	ms_free_job(t_job *job_head, t_job *current);
 t_job	*init_node(t_job *node);
