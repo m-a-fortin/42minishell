@@ -6,40 +6,54 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/22 15:25:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:49:50 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	read_from_input(int *fd)
+void	exitsignal(int sig)
+{
+	(void)sig;
+	ft_putendl_fd("", STDERR_FILENO);
+	exit(CTRL_C);
+}
+
+void	add_hdoc_job(t_job *job, char *heredoc, int *fd)
+{
+	// close(fd[0]);
+	if (job->hdoc)
+		free(job->hdoc);
+	job->hdoc = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
+	ft_strlcpy(job->hdoc, heredoc, ft_strlen(heredoc) + 1);
+	printf("%s\n", job->hdoc);
+	ft_putstr_fd(heredoc, fd[1]);
+}
+
+bool	read_from_input(int *fd, t_job *job)
 {
 	char	*line;
 	char	*temp;
-	char	buff[1];
+	char	buff[2];
 	int		ret;
 
+	close(fd[1]);
 	line = NULL;
-	dup2(fd[0], 0);
 	while (true)
 	{
-		ret = read(0, &buff, 1);
+		ret = read(fd[0], &buff, 1);
+		buff[1] = '\0';
+		printf("buff value: %s\n", buff);
 		if (ret < 0)
 			return (false);
 		else if (ret == 0)
 			break ;
 		temp = ft_append_string(line, buff[0]);
+		line = temp;
 	}
+	job->hdoc = line;
 	close(fd[0]);
-	ms_return_fd();
 	return (true);
-}
-
-void	exitsignal(int sig)
-{
-	(void)sig;
-	ft_putendl_fd("",STDERR_FILENO);
-	exit (CTRL_C);
 }
 
 void	heredoc_inputs(t_token *token, t_job *job, int *fd)
@@ -54,7 +68,7 @@ void	heredoc_inputs(t_token *token, t_job *job, int *fd)
 	while (true)
 	{
 		input = readline("> ");
-		if (!ft_strncmp(input, delimiter, ft_strlen(input) + 1))
+		if (!ft_strcmp(input, delimiter))
 		{
 			add_hdoc_job(job, heredoc, fd);
 			break ;
@@ -78,17 +92,14 @@ bool	build_heredoc(t_token *token, t_job *job)
 	ms_saved_fd();
 	pid = fork();
 	signal(SIGINT, ms_donothing);
-	if (pid == -1)
-	{
-		ms_return_fd();
-		ft_putendl_fd("minishell: FATAL: fork error", 1);
-		g_ms.exit = 1;
+	if (invalid_process_id(pid))
 		return (false);
-	}
 	if (pid == 0)
 		heredoc_inputs(token, job, fd);
 	waitpid(pid, &status, 0);
 	ms_fork_signal(status);
+	read_from_input(fd, job);
+	ms_return_fd();
 	if (g_ms.exit != 0)
 		return (false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/22 14:25:00 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 11:42:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void		update_quotestatus(char type, t_quote *state);
 
 /* HEREDOCS */
 
-bool	create_pipe(int fd);
+bool	build_heredoc(t_token *token, t_job *job);
+bool	create_pipe(int *fd);
+bool	invalid_process_id(int pid);
 char	*find_delimiter(t_token *token);
 char	*join_inputs(char *input, char *heredoc);
 void	add_hdoc_job(t_job *job, char *heredoc, int *fd);
