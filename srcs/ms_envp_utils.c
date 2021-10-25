@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 13:26:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:05:17 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,15 @@ char	**ms_set_noequal(char *name, char **export_ms)
 char	**ms_setequal(char *name, char **envp_ms, int index)
 {
 	size_t	len;
+	char	**new_ms;
 
 	len = ft_strlen(name);
 	if (ft_strncmp(envp_ms[index], name, len - 1) == 0)
 	{
 		if (ft_strlen(envp_ms[index]) == len - 1)
 		{
-			envp_ms = ft_remove_line(envp_ms, index);
-			return (envp_ms);
+			new_ms = ft_remove_line(envp_ms, index);
+			return (new_ms);
 		}
 	}
 	return (envp_ms);
@@ -101,8 +102,12 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 	done = 0;
 	while (envp_ms[index])
 	{
-		if (ft_char_search(envp_ms[index], '=') == 0)
+		if (ft_char_search(envp_ms[index], '=') == 0 && envp_ms[index][0] != '\0')
+		{
 			envp_ms = ms_setequal(name, envp_ms, index);
+			if (envp_ms[index] == NULL)
+				break ;
+		}
 		else if (ft_strncmp(envp_ms[index], name, ft_strlen(name)) == 0)
 		{
 			new_line = ft_strjoin(name, value);

@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 13:04:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:05:32 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void	ms_setexp(char *args)
 	g_ms.env = ms_setenv(name, value, g_ms.env);
 	g_ms.export = ms_setenv(name, value, g_ms.export);
 	free(name);
+	name = NULL;
 	free(value);
+	value = NULL;
 }
 
 bool	ms_export_loop(char **args, int index)
