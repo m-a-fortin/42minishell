@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 14:49:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:22:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exitsignal(int sig)
 
 void	add_hdoc_job(t_job *job, char *heredoc, int *fd)
 {
-	// close(fd[0]);
+	close(fd[0]);
 	if (job->hdoc)
 		free(job->hdoc);
 	job->hdoc = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
@@ -43,7 +43,6 @@ bool	read_from_input(int *fd, t_job *job)
 	{
 		ret = read(fd[0], &buff, 1);
 		buff[1] = '\0';
-		printf("buff value: %s\n", buff);
 		if (ret < 0)
 			return (false);
 		else if (ret == 0)
@@ -89,7 +88,6 @@ bool	build_heredoc(t_token *token, t_job *job)
 
 	if (!create_pipe(fd))
 		return (false);
-	ms_saved_fd();
 	pid = fork();
 	signal(SIGINT, ms_donothing);
 	if (invalid_process_id(pid))

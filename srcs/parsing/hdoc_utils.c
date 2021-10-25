@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:40:01 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 11:35:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:18:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*find_delimiter(t_token *token)
 char	*join_inputs(char *input, char *heredoc)
 {
 	char	*temp;
-	
+
 	temp = ft_strjoin(heredoc, input);
 	temp = ft_append_string(temp, '\n');
 	free(heredoc);
