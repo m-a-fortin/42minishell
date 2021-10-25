@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 14:29:08 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:14:32 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	ms_unset_export(char *name, char *args)
 	{
 		if (ft_char_search(g_ms.export[index], '=') == 0)
 		{
-			if (ft_strncmp(args, g_ms.export[index], ft_strlen(g_ms.export[index]) == 0)
+			if (ft_strncmp(args, g_ms.export[index], ft_strlen(g_ms.export[index])) == 0)
 			{
-				g_ms.export[]
+				g_ms.export = ft_remove_line(g_ms.export , index);
+				return ;
+			}
 		}
 		if (ft_strncmp(name, g_ms.export[index], ft_strlen(name)) == 0)
 		{
