@@ -52,7 +52,7 @@ typedef struct s_exec
 {
 	char				**env;
 	char				**export;
-	int					stdin;1
+	int					stdin;
 	int					stdout;
 	unsigned int		exit;
 }			t_exec;
