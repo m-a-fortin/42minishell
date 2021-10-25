@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 08:43:55 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:26:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	ms_redirection_in(char *sign, char *next)
 	fd_in = 0;
 	if (sign[1] == '\0')
 		 fd_in = open(next, O_RDONLY);
-	if (fd_in  == -1)
+	if (fd_in == -1)
 	{
 		perror("Minishell:");
 		ft_putchar_fd('\n', 1);

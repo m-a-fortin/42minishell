@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 12:14:09 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:27:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ms_setsignals(void);
 //ENV
 char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
+char	**ms_set_noequal(char *name, char **export_ms);
 //LINKED LIST JOB
 void	ms_free_job(t_job *job_head, t_job *current);
 t_job	*init_node(t_job *node);

@@ -70,7 +70,7 @@ char		*reset_parser(t_parser *par, char *input);
 void		check_state(t_parser *par, int index);
 bool		input_is_not_empty(char *input);
 void		dollarstruct_init(t_dollar *d_sign);
-void		dollarsign_free(t_dollar *d_sign);
+void		dollarsign_free(t_dollar *d_sign, t_quote *state);
 int			count_redirections(t_token *token);
 int			count_cmd_and_args(t_token *token);
 t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
