@@ -6,14 +6,14 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 14:02:25 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/25 14:38:55 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/26 10:08:17 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= libft.a
 
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -g
+CFLAGS 	= -Wall -Wextra -Werror
 
 OBJS_DIR	= objs/
 
