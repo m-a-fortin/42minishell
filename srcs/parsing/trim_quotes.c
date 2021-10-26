@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trim_quotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 10:43:19 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/18 10:26:34 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:42:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*swap_trimmed(char *string, char *trimmed)
 
 char	*append_trimmed(char string, char *trimmed)
 {
-	char * temp;
+	char	*temp;
 
 	temp = ft_append_string(trimmed, string);
 	trimmed = ft_strdup(temp);
@@ -76,7 +76,7 @@ char	*trimquotes_loop(char *string)
 	{
 		if ((string[index] == '\'' && state->doublequote == false)
 			|| (string[index] == '\"' && state->singlequote == false))
-				update_quotestatus(string[index], state);
+			update_quotestatus(string[index], state);
 		else
 			trimmed = append_trimmed(string[index], trimmed);
 		index++;
@@ -106,7 +106,7 @@ void	trimquotes_main(t_job *current)
 			if (current->redir[index][0])
 				current->redir[index] = trimquotes_loop(current->redir[index]);
 			if (!current->redir[index + 1])
-				break;
+				break ;
 			index += 2;
 		}
 	}

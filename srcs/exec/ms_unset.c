@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:29:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:41:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,25 @@ bool	ms_valid_unset_name(char *args)
 
 void	ms_unset_export(char *name, char *args)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	while (g_ms.export[index])
+	i = 0;
+	while (g_ms.export[i])
 	{
-		if (ft_char_search(g_ms.export[index], '=') == 0)
+		if (!ft_char_search(g_ms.export[i], '='))
 		{
-			if (ft_strncmp(args, g_ms.export[index], ft_strlen(g_ms.export[index])) == 0)
+			if (!ft_strncmp(args, g_ms.export[i], ft_strlen(g_ms.export[i])))
 			{
-				g_ms.export = ft_remove_line(g_ms.export , index);
+				g_ms.export = ft_remove_line(g_ms.export, i);
 				return ;
 			}
 		}
-		if (ft_strncmp(name, g_ms.export[index], ft_strlen(name)) == 0)
+		if (ft_strncmp(name, g_ms.export[i], ft_strlen(name)) == 0)
 		{
-			g_ms.export = ft_remove_line(g_ms.export, index);
+			g_ms.export = ft_remove_line(g_ms.export, i);
 			return ;
 		}
-		index++;
+		i++;
 	}
 }
 

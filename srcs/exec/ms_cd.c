@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:26:37 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:37:58 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ms_cd_update_env(char *old_pwd)
 {
-	char *pwd;
+	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
 	g_ms.env = ms_setenv("PWD=", pwd, g_ms.env);

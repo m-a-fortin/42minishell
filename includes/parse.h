@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/26 08:43:55 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:43:26 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_dollar
 }	t_dollar;
 
 typedef struct s_job	t_job;
-typedef struct s_quote  t_quote;
+typedef struct s_quote	t_quote;
 int			find_closing_quote(t_parser *par, char quote);
 char		*trim_input(char *input);
 void		init_parser(t_parser *par, char *input);
@@ -81,11 +81,11 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
 
 /* HEREDOCS */
 
-bool	build_heredoc(t_token *token, t_job *job);
-bool	create_pipe(int *fd);
-bool	invalid_process_id(int pid);
-char	*find_delimiter(t_token *token);
-char	*join_inputs(char *input, char *heredoc);
-void	add_hdoc_job(t_job *job, char *heredoc, int *fd);
+bool		build_heredoc(t_token *token, t_job *job);
+bool		create_pipe(int *fd);
+bool		invalid_process_id(int pid);
+char		*find_delimiter(t_token *token);
+char		*join_inputs(char *input, char *heredoc);
+void		add_hdoc_job(t_job *job, char *heredoc, int *fd);
 
 #endif

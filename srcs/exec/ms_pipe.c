@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:28:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:38:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ms_pipe_dup(t_job *current, int **fd, int index)
 {
 	int	fd_in;
 	int	fd_out;
-	
+
 	if (index == 0)
 		fd_in = 0;
 	else
@@ -43,10 +43,10 @@ bool	ms_create_pipes(t_job *job_head, t_pipes *save)
 {
 	int		nb;
 	int		index;
-	
+
 	index = 0;
 	nb = ms_pipe_number(job_head);
-	save->fd_pipe = ft_calloc(sizeof(int) , nb + 1);
+	save->fd_pipe = ft_calloc(sizeof(int), nb + 1);
 	while (nb > 0)
 	{
 		save->fd_pipe[index] = malloc(sizeof(int) * 2);
@@ -61,7 +61,7 @@ bool	ms_create_pipes(t_job *job_head, t_pipes *save)
 			return (true);
 		index++;
 	}
-	return(true);
+	return (true);
 }
 
 void	ms_pipe_exec(t_job *job_head, t_job *current, t_pipes *save)
@@ -87,7 +87,7 @@ void	ms_pipe_loop(t_job *job_head, t_pipes *save)
 		ms_pipe_dup(current, save->fd_pipe, index);
 		ms_exec_prep(current);
 		pid = fork();
-		if (invalid_process_id(pid));
+		if (invalid_process_id(pid))
 			return ;
 		if (pid == 0)
 			ms_pipe_exec(job_head, current, save);

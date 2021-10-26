@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:31:11 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:37:30 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ char	**ms_setenv_addback(char *name, char *value, char **envp_ms)
 
 char	**ms_set_noequal(char *name, char **export_ms)
 {
-	int	index;
+	int		index;
 	char	*new_name;
 
 	index = 0;
 	while (export_ms[index])
 	{
-		if (ft_strncmp(name, export_ms[index], ft_strlen(export_ms[index])) == 0)
+		if (!ft_strncmp(name, export_ms[index], ft_strlen(export_ms[index])))
 			return (export_ms);
 		index++;
 	}
@@ -72,7 +72,7 @@ char	**ms_set_noequal(char *name, char **export_ms)
 			return (export_ms);
 		index++;
 	}
-	return(ms_setenv_addback(name, "", export_ms));
+	return (ms_setenv_addback(name, "", export_ms));
 }
 
 char	**ms_setequal(char *name, char **envp_ms, int index)
@@ -100,7 +100,7 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 	index = 0;
 	while (envp_ms[index])
 	{
-		if (ft_char_search(envp_ms[index], '=') == 0 && envp_ms[index][0] != '\0')
+		if (!ft_char_search(envp_ms[index], '=') && envp_ms[index][0] != '\0')
 		{
 			envp_ms = ms_setequal(name, envp_ms, index);
 			if (envp_ms[index] == NULL)
