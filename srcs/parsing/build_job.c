@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_job.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 15:13:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:03:46 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ void	build_redirection(t_token *tok, t_job *job)
 	i = 0;
 	if (tok->type == L_HDOC)
 	{
-		if (build_heredoc(tok, job))
-		{
-			printf("HDOC: %s\n", job->hdoc);
+		if (build_heredoc(tok, job) == false)
 			return ;
-		}
 	}
 	if (!job->redir)
 	{

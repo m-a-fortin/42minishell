@@ -6,13 +6,13 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/20 15:10:07 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:29:04 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//ecrit le current working directory. Se sert de notre envp_ms pour ca.
+//*ecrit le current working directory. Se sert de notre envp_ms pour ca.
 int	ms_pwd_main(int fd)
 {
 	char	*pwd_line;
@@ -39,10 +39,10 @@ void	ms_echo_loop(char **args, int index, int no_nl, int fd)
 		ft_putchar_fd('\n', fd);
 }
 
-//Verifie le flag -n. Dans le cas ou -n est rencontrer:
-//pas de new line a la fin du echo. Plusieurs -n peuvent
-//etre chained. Si un char est different de n. Print le
-//flag aussi.
+//*Verifie le flag -n. Dans le cas ou -n est rencontrer:
+//*pas de new line a la fin du echo. Plusieurs -n peuvent
+//*etre chained. Si un char est different de n. Print le
+//*flag aussi.
 int	ms_echo_flag(char *arg, int no_nl)
 {
 	int	x;
@@ -62,7 +62,7 @@ int	ms_echo_flag(char *arg, int no_nl)
 	return (no_nl);
 }
 
-//ecrit dans fd les args, option -n = sans newline.
+//*ecrit dans fd les args, option -n = sans newline.
 int	ms_echo_main(char **args, int fd)
 {
 	int	argc;
@@ -82,8 +82,8 @@ int	ms_echo_main(char **args, int fd)
 	return (0);
 }
 
-//print la variable envp_ms dans le fd (sans arguments)
-//envp_ms est une copie de envp du main et est update avec les cmds.
+//*print la variable envp_ms dans le fd (sans arguments)
+//*envp_ms est une copie de envp du main et est update avec les cmds.
 int	ms_env_main(char **args, int fd)
 {
 	int	count;

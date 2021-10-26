@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 11:42:29 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:43:18 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_dollar
 }	t_dollar;
 
 typedef struct s_job	t_job;
-typedef struct s_quote  t_quote;
+typedef struct s_quote	t_quote;
 int			find_closing_quote(t_parser *par, char quote);
 char		*trim_input(char *input);
 void		init_parser(t_parser *par, char *input);
@@ -73,17 +73,19 @@ void		dollarstruct_init(t_dollar *d_sign);
 void		dollarsign_free(t_dollar *d_sign, t_quote *state);
 int			count_redirections(t_token *token);
 int			count_cmd_and_args(t_token *token);
-t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
 void		trimquotes_main(t_job *current);
 void		update_quotestatus(char type, t_quote *state);
+t_dollar	*dollarsign_exit(t_dollar *d_sign);
+t_dollar	*dollarsign_join(t_dollar *d_sign);
+t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
 
 /* HEREDOCS */
 
-bool	build_heredoc(t_token *token, t_job *job);
-bool	create_pipe(int *fd);
-bool	invalid_process_id(int pid);
-char	*find_delimiter(t_token *token);
-char	*join_inputs(char *input, char *heredoc);
-void	add_hdoc_job(t_job *job, char *heredoc, int *fd);
+bool		build_heredoc(t_token *token, t_job *job);
+bool		create_pipe(int *fd);
+bool		invalid_process_id(int pid);
+char		*find_delimiter(t_token *token);
+char		*join_inputs(char *input, char *heredoc);
+void		add_hdoc_job(t_job *job, char *heredoc, int *fd);
 
 #endif

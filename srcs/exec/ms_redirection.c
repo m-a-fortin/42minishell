@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 15:26:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:00:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 bool	ms_hdocs_write(t_job *current)
 {
-	int	fd;
-
-	fd = dup(0);
-	if (fd == -1)
-	{
-		perror("Minishell:");
-		g_ms.exit = 1;
+	if (pipe(current->hdoc_fd) == -1)
 		return (false);
-	}
-	ft_putstr_fd(current->hdoc, fd);
+	dup2(current->hdoc_fd[0], 0);
+	ft_putstr_fd(current->hdoc, current->hdoc_fd[1]);
+	close(current->hdoc_fd[0]);
+	close(current->hdoc_fd[1]);
 	return (true);
 }
 
@@ -43,7 +39,7 @@ bool	ms_redirection_in(char *sign, char *next, t_job *current)
 		ft_putchar_fd('\n', 1);
 		return (false);
 	}
-	if (dup2(fd_in , 0) == -1)
+	if (dup2(fd_in, 0) == -1)
 	{
 		perror("Minishell:");
 		ft_putchar_fd('\n', 1);
@@ -55,8 +51,8 @@ bool	ms_redirection_in(char *sign, char *next, t_job *current)
 
 bool	ms_redirection_out(char *sign, char *next)
 {
-	int fd_out;
-	
+	int	fd_out;
+
 	if (sign[1] == '\0')
 		fd_out = open(next, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	else
@@ -86,9 +82,9 @@ bool	ms_redirection_loop(char *sign, char *next, t_job *current)
 	return (false);
 }
 
-//A l'aide de dup2. Change le stdout/in pour 
-//un nouveau fd (g_ms.in ou g_ms.out). Fonctionne dans une loop
-//pour les cas de plusieurs redirection.
+//*A l'aide de dup2. Change le stdout/in pour 
+//*un nouveau fd (g_ms.in ou g_ms.out). Fonctionne dans une loop
+//*pour les cas de plusieurs redirection.
 bool	ms_redirection_main(t_job *current)
 {
 	int		x;

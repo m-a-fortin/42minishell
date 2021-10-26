@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_hdoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 15:22:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:47:08 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	add_hdoc_job(t_job *job, char *heredoc, int *fd)
 		free(job->hdoc);
 	job->hdoc = ft_calloc(ft_strlen(heredoc) + 1, sizeof(char));
 	ft_strlcpy(job->hdoc, heredoc, ft_strlen(heredoc) + 1);
-	printf("%s\n", job->hdoc);
 	ft_putstr_fd(heredoc, fd[1]);
 }
 
@@ -98,7 +97,5 @@ bool	build_heredoc(t_token *token, t_job *job)
 	ms_fork_signal(status);
 	read_from_input(fd, job);
 	ms_return_fd();
-	if (g_ms.exit != 0)
-		return (false);
 	return (true);
 }

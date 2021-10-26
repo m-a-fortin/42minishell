@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 17:53:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:30:18 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	print_header(void)
 	printf("\n\n\n");
 }
 
-//loop de readline qui envoie les infos au parsing et qui execute 
-//le retour du parsing.
+//*loop de readline qui envoie les infos au parsing et qui execute 
+//*le retour du parsing.
 void	ms_readline_loop(t_job *job_head)
 {
 	char	*input;

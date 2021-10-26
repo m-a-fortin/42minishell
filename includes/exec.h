@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 17:20:49 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:54:51 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ms_return_fd(void);
 bool	ms_redirection_main(t_job *current);
 void	ms_saved_fd(void);
 //PIPES
-bool	ms_pipe_signal(int	status);
+bool	ms_pipe_signal(int status);
 int		ms_pipe_number(t_job *job_head);
 bool	ms_pipe_main(t_job *job_head);
 

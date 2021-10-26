@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
+#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/22 19:47:51 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/26 13:54:43 by mafortin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJS_PATH 	=	objs/
 SRCS_PATH 	=	srcs/
 LIB_PATH 	=	lib/
 CC 			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra
 RM			=	rm -rf
 
 LIBFT_PATH	=	libft/
@@ -31,10 +31,13 @@ EXEC_FILES	=	ms_cd.c ms_export.c ms_pwd_echo_env.c ms_unset.c ms_exec.c\
 				ms_exit.c ms_exec_utils.c ms_exec_error.c ms_redirection.c\
 				ms_exec_fork.c ms_exec_fork_utils.c ms_pipe.c ms_pipe_utils.c\
 				ms_fork_error.c
+				
 PARSE_FILES	=	parse_input.c parse_utils.c token_lst_utils.c token_utils.c\
 				tokens.c syntax.c dollar_sign.c dollar_sign_utils.c build_job.c\
 				build_utils.c trim_quotes.c hdoc_utils.c build_hdoc.c
-				
+
+MAKELIBFT	=	$(MAKE) --no-print-directory -C $(LIBFT_PATH)
+
 EXEC_PATH	= 	$(SRCS_PATH)exec
 PARSE_PATH	=	$(SRCS_PATH)parsing
 
@@ -50,23 +53,30 @@ OBJS 		=	$(addprefix $(OBJS_PATH), $(OBJS_FILES))
 VPATH		=	$(SRCS_PATH) $(PARSE_PATH) $(EXEC_PATH)
 
 $(OBJS_PATH)%.o: %.c
-	$(CC) $(CFLAGS) -I$(INC_PATH) -I$(LIBFT_PATH) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC_PATH) -I$(LIBFT_PATH) -c $< -o $@
+
+all:	CFLAGS += -O2
+all:	$(NAME)
 
 $(NAME):	$(OBJS_PATH) $(OBJS)
-	@make re --no-print-directory -C $(LIBFT_PATH)
-	@$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -L$(LIB_PATH) -lreadline -lcurses -o $(NAME)
+	@echo "\n\033[96m Compiling MINISHELL \033[0m\n"
+	@$(MAKELIBFT)
+	$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -L$(LIB_PATH) -lreadline -lcurses -o $(NAME)
 	@echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
-	@echo Created: Object directory
+	@echo "\033[34;1m Created Object Directory \033[0m"
 
-all:	$(NAME)
 
 linux :	$(OBJS_PATH) $(OBJS)
-	@make re --no-print-directory -C $(LIBFT_PATH)
-	@$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -lcurses -lreadline -o $(NAME)
+	@echo "\033[95m Compiling MINISHELL \033[0m"
+	$(MAKELIBFT)
+	$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -lcurses -lreadline -o $(NAME)
 	@echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
+
+debug:	CFLAGS += -g
+debug:	$(NAME)
 
 clean:
 	@make clean --no-print-directory -C ./libft

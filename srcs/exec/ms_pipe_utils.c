@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:30:23 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 17:20:15 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:38:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ms_pipe_signal(int	status)
+bool	ms_pipe_signal(int status)
 {
 	if (WIFEXITED(status))
 		g_ms.exit = WEXITSTATUS(status);
@@ -31,10 +31,10 @@ bool	ms_pipe_signal(int	status)
 	return (true);
 }
 
-int		ms_pipe_number(t_job *job_head)
+int	ms_pipe_number(t_job *job_head)
 {
-	int	nb;
-	t_job *node;
+	int		nb;
+	t_job	*node;
 
 	nb = 0;
 	node = job_head;

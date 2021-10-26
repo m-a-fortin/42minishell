@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 16:05:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:07:26 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,41 @@ bool	ms_exit_check(char **cmd)
 	return (false);
 }
 
-//Exit avec un code de retour. Set g_ms.exit au chiffre 
-//entrer en arguments de exit. 0 si aucun argument,
-//1 si il y + que un argument et 255
-//si l'argument n'est pas un chiffre.
-// N'exit pas minishell si exit est dans un pipe.
+void	ms_exit_exit(t_job *current)
+{
+	ft_free_tab(g_ms.env);
+	ft_free_tab(g_ms.export);
+	ms_free_job(current, current);
+	ft_putendl_fd("Exit", 1);
+	exit (g_ms.exit);
+}
+//*Exit avec un code de retour. Set g_ms.exit au chiffre 
+//*entrer en arguments de exit. 0 si aucun argument,
+//*1 si il y + que un argument et 255
+//*si l'argument n'est pas un chiffre.
+//* N'exit pas minishell si exit est dans un pipe.
 int	ms_exit_main(t_job *current)
 {
 	int		depth;
 	char	**cmd;
-	int		check;
+	bool	check;
 
+	check = true;
 	cmd = current->cmd;
 	depth = ft_matrice_size(cmd);
-	if (depth > 2)
-	{
-		ft_putendl_fd("exit: too many arguments", 1);
-		g_ms.exit = 1;
-		check = false;
-	}
-	if (depth == 1)
-	{
-		g_ms.exit = 0;
-		check = true;
-	}
-	else
+	if (current->cmd[1])
 		check = ms_exit_check(cmd);
 	if (check == false)
+	{
+		g_ms.exit = 255;
+		ms_exit_exit(current);
+	}
+	if (depth > 2)
+	{
+		ft_putendl_fd("Exit\nMinishell: exit: too many arguments", 1);
+		g_ms.exit = 1;
 		return (1);
-	ft_free_tab(g_ms.env);
-	ft_free_tab(g_ms.export);
-	ms_free_job(current, current);
-	exit (g_ms.exit);
+	}
+	ms_exit_exit(current);
+	return (42);
 }

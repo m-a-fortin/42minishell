@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 16:15:20 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:37:58 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ms_cd_update_env(char *old_pwd)
 {
-	char *pwd;
+	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
 	g_ms.env = ms_setenv("PWD=", pwd, g_ms.env);
@@ -25,7 +25,7 @@ void	ms_cd_update_env(char *old_pwd)
 	free (old_pwd);
 }
 
-//cd dans home si il est set. Si unset retourne un message d'erreur.
+//*cd dans home si il est set. Si unset retourne un message d'erreur.
 void	ms_cd_home(void)
 {
 	char	*new_pwd;
@@ -42,8 +42,8 @@ void	ms_cd_home(void)
 	ms_cd_update_env(old_pwd);
 }
 
-//Si le path est bon, chdir dans le path et update l'envp_ms.
-//Sinon retourne un message d'erreur comme bash.
+//*Si le path est bon, chdir dans le path et update l'envp_ms.
+//*Sinon retourne un message d'erreur comme bash.
 int	ms_cd_main(char **cmd)
 {
 	char	*error;
