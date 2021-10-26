@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 12:14:14 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:07:14 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ms_exec_main(t_job *job_head)
 	bool	pipe;
 
 	pipe = false;
-	ms_saved_fd();
 	dollarsign_main(job_head);
 	if (job_head->next)
 		pipe = true;

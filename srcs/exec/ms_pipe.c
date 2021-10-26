@@ -6,78 +6,112 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 13:06:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:37:23 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ms_pipe_signal(int	status)
+void	ms_pipe_dup(t_job *current, int **fd, int index)
 {
-	if (WIFEXITED(status))
-		g_ms.exit = WEXITSTATUS(status);
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == SIGINT)
-		{
-			ft_putendl_fd("", 1);
-			exit (g_ms.exit);
-		}
-		if (WTERMSIG(status) == SIGQUIT)
-			exit (g_ms.exit);
-	}
-	if (g_ms.exit != 0)
-		return (false);
-	return (true);
-}
-
-void	ms_pipe_exec(t_job *job_head, t_job *current)
-{
-	bool	redir;
-
-	(void)redir;
-	(void)job_head;
-	redir = ms_ifredir(current->redir);
-	//if (current != job_head && redir == false)
-		//ms_pipedup_in();
-	//if (redir == false)
-		//ms_pipedup_out();
-	if (ms_check_builtin(current) == false)
-		return(ms_fork(current->cmd));
-}
-
-bool	ms_create_pipes(t_job *job_head)
-{
-	t_job	*node;
-	int		nb;
+	int	fd_in;
+	int	fd_out;
 	
-	node = job_head;
+	if (index == 0)
+		fd_in = 0;
+	else
+		fd_in = fd[index - 1][0];
+	if (current->next)
+		fd_out = fd[index][1];
+	if (index == 0)
+		close(fd_in);
+	else
+	{
+		dup2(fd_in, 0);
+		close(fd_in);
+	}
+	if (current->next)
+	{
+		dup2(fd_out, 1);
+		close(fd_out);
+	}
+	if (current->next == NULL)
+		dup2(g_ms.stdout, 1);
+}
+
+bool	ms_create_pipes(t_job *job_head, t_pipes *save)
+{
+	int		nb;
+	int		index;
+	
+	index = 0;
 	nb = ms_pipe_number(job_head);
+	save->fd_pipe = ft_calloc(sizeof(int) , nb + 1);
+	while (nb > 0)
+	{
+		save->fd_pipe[index] = malloc(sizeof(int) * 2);
+		if (pipe(save->fd_pipe[index]) == -1)
+		{
+			perror("Minishell");
+			g_ms.exit = 1;
+			return (false);
+		}
+		nb --;
+		if (nb == 0)
+			return (true);
+		index++;
+	}
 	return(true);
+}
+
+void	ms_pipe_exec(t_job *job_head, t_job *current, t_pipes *save, int index)
+{
+	index = 0;
+	(void)save;
+	(void)job_head;
+	if (ms_check_builtin(current) == false)
+		ms_fork(current->cmd);
+	exit(g_ms.exit);
+}
+
+void	ms_pipe_loop(t_job *job_head, t_pipes *save)
+{
+	pid_t	pid;
+	t_job	*current;
+	int		index;
+
+	index = 0;
+	current = job_head;
+	(void)job_head;
+	while (current)
+	{
+		ms_exec_prep(current);
+		ms_pipe_dup(current, save->fd_pipe, index);
+		pid = fork();
+		if (pid == -1)
+			return;
+		if (pid == 0)
+			ms_pipe_exec(job_head, current, save, index);
+		waitpid(pid, &save->status, 0);
+		ms_return_fd();
+		if (ms_pipe_signal(save->status) == false)
+			break ;
+		if (current->next == NULL)
+			break ;
+		index++;
+		current = current->next;
+	}
 }
 
 bool	ms_pipe_main(t_job *job_head)
 {
-	pid_t	pid;
-	int		status;
 	t_pipes	*save;
-	t_job	*current;
 
-	(void)job_head;
-	current = job_head;
 	save = malloc(sizeof(t_pipes));
-	//if (ms_create_pipe() == false)
-	//{
-		//perror("Minishell: ");
-		//return (false);
-	//}
 	signal(SIGINT, ms_donothing);
 	signal(SIGQUIT, ms_donothing);
-	pid = fork();
-	if (pid == -1)
-		return(ms_pid_error());
-	if (pid == 0)
-		ms_pipe_exec(job_head, current);
-	waitpid(pid, &status, 0);
+	ms_create_pipes(job_head, save);
+	ms_pipe_loop(job_head, save);
+	ms_setsignals();
 	return (true);
 }

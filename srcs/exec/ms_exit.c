@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/23 11:01:49 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/25 16:05:41 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	ms_exit_check(char **cmd)
 	ft_putstr_fd("exit: ", 1);
 	ft_putstr_fd(cmd[1], 1);
 	ft_putendl_fd(": numeric argument required", 1);
-	exit(g_ms.exit);
+	return (false);
 }
 
 //Exit avec un code de retour. Set g_ms.exit au chiffre 

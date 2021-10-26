@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/23 10:39:17 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/25 17:20:49 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_pipes
 {
-	int	**fd;
+	int	**fd_pipe;
 	int	status;
 }	t_pipes;
 
@@ -49,9 +49,8 @@ void	ms_return_fd(void);
 bool	ms_redirection_main(t_job *current);
 void	ms_saved_fd(void);
 //PIPES
+bool	ms_pipe_signal(int	status);
 int		ms_pipe_number(t_job *job_head);
 bool	ms_pipe_main(t_job *job_head);
-bool	ms_ifredir(char **redir);
-void	ms_pipe_redir(void);
 
 #endif
