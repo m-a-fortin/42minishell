@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 14:07:26 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:27:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ms_exit_exit(t_job *current)
 	ft_putendl_fd("Exit", 1);
 	exit (g_ms.exit);
 }
+
 //*Exit avec un code de retour. Set g_ms.exit au chiffre 
 //*entrer en arguments de exit. 0 si aucun argument,
 //*1 si il y + que un argument et 255

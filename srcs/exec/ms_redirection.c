@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 15:00:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:27:22 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	ms_redirection_in(char *sign, char *next, t_job *current)
 	fd_in = 0;
 	(void)current;
 	if (sign[1] == '\0')
-		 fd_in = open(next, O_RDONLY);
+		fd_in = open(next, O_RDONLY);
 	else
 		return (ms_hdocs_write(current));
 	if (fd_in == -1)
@@ -94,8 +94,8 @@ bool	ms_redirection_main(t_job *current)
 		return (true);
 	while (current->redir[x])
 	{
-		if (ms_redirection_loop(current->redir[x], current->redir[x + 1], current)
-			== false)
+		if (ms_redirection_loop(current->redir[x],
+				current->redir[x + 1], current) == false)
 			return (false);
 		if (!current->redir[x + 1])
 			break ;
