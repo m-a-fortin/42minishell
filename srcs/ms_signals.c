@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:32:43 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 11:45:59 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:31:30 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//Fonctions qui gere le signal envoyer quand ctrl+c est entree au clavier.
+//*Fonctions qui gere le signal envoyer quand ctrl+c est entree au clavier.
 void	ms_nl_signal(int signal)
 {	
 	(void)signal;

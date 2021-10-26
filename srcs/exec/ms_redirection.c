@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 15:26:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:29:18 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ bool	ms_redirection_loop(char *sign, char *next)
 	return (false);
 }
 
-//A l'aide de dup2. Change le stdout/in pour 
-//un nouveau fd (g_ms.in ou g_ms.out). Fonctionne dans une loop
-//pour les cas de plusieurs redirection.
+//*A l'aide de dup2. Change le stdout/in pour 
+//*un nouveau fd (g_ms.in ou g_ms.out). Fonctionne dans une loop
+//*pour les cas de plusieurs redirection.
 bool	ms_redirection_main(t_job *current)
 {
 	int		x;

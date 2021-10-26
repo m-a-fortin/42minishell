@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 18:46:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:28:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	ms_pipe_loop(t_job *job_head, t_pipes *save)
 		ms_pipe_dup(current, save->fd_pipe, index);
 		ms_exec_prep(current);
 		pid = fork();
-		if (pid == -1)
-			return;//faire fonction d'erreur pid.
+		if (invalid_process_id(pid));
+			return ;
 		if (pid == 0)
 			ms_pipe_exec(job_head, current, save);
 		waitpid(pid, &save->status, 0);

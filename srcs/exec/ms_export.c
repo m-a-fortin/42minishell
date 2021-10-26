@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:19:26 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 14:05:32 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:27:21 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-//valide si la valeur de export est imprimable
+//*valide si la valeur de export est imprimable
 bool	ms_valid_exp_value(char *args, int index)
 {
 	while (args[index])
@@ -24,7 +24,7 @@ bool	ms_valid_exp_value(char *args, int index)
 	return (true);
 }
 
-//valide si le nom de export commence par une lettre et est alpha numerique
+//*valide si le nom de export commence par une lettre et est alpha numerique
 bool	ms_valid_exp_name(char *args)
 {
 	int	index;
@@ -43,7 +43,7 @@ bool	ms_valid_exp_name(char *args)
 	return (true);
 }
 
-//fonction qui set le nom et la valeur de export dans envp
+//*fonction qui set le nom et la valeur de export dans envp
 void	ms_setexp(char *args)
 {
 	char	*name;
@@ -80,8 +80,8 @@ bool	ms_export_loop(char **args, int index)
 	return (true);
 }
 
-//export prend "nom=valeur" en parametre et le met dans envp.
-//si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
+//*export prend "nom=valeur" en parametre et le met dans envp.
+//*si la valeur existe il change la valeur, si il n'existe pas il le rajoute.
 int	ms_export_main(char **args)
 {
 	int	x;

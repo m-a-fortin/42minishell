@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:06:01 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 15:14:32 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:29:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ms_unset_loop(char	*args)
 	free(name);
 }
 
-//Look in envp if value ARG is set. Change value if it is.
+//*Look in envp if value ARG is set. Change value if it is.
 int	ms_unset_main(char **args)
 {
 	int		x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:46:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 16:05:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:27:08 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ bool	ms_exit_check(char **cmd)
 	return (false);
 }
 
-//Exit avec un code de retour. Set g_ms.exit au chiffre 
-//entrer en arguments de exit. 0 si aucun argument,
-//1 si il y + que un argument et 255
-//si l'argument n'est pas un chiffre.
-// N'exit pas minishell si exit est dans un pipe.
+//*Exit avec un code de retour. Set g_ms.exit au chiffre 
+//*entrer en arguments de exit. 0 si aucun argument,
+//*1 si il y + que un argument et 255
+//*si l'argument n'est pas un chiffre.
+//* N'exit pas minishell si exit est dans un pipe.
 int	ms_exit_main(t_job *current)
 {
 	int		depth;

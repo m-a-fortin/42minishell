@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:18:07 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:22:49 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ char	*dollarsign_loop(char *string)
 	return (string);
 }
 
-//fonction qui gere les arguments $. Si l'argument suivi de $ est dans env, il
-//changer la valeur. Sinon il retourne une string vide.
-// La regle des quotes et double quotes agis comme dans bash.
-//Si ce qui suit $ n'est pas un nom de variable
-//avec une syntax valide, il skip le premier char
-// et ajoute le reste a la string
+//*fonction qui gere les arguments $. Si l'argument suivi de $ est dans env, il
+//*changer la valeur. Sinon il retourne une string vide.
+//*La regle des quotes et double quotes agis comme dans bash.
+//*Si ce qui suit $ n'est pas un nom de variable
+//*avec une syntax valide, il skip le premier char
+//*et ajoute le reste a la string
 void	dollarsign_main(t_job *current)
 {
 	int	index;
