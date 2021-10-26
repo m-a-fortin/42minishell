@@ -12,13 +12,31 @@
 
 #include "../../includes/minishell.h"
 
-bool	ms_redirection_in(char *sign, char *next)
+bool	ms_hdocs_write(t_job *current)
+{
+	int	fd;
+
+	fd = dup(0);
+	if (fd == -1)
+	{
+		perror("Minishell:");
+		g_ms.exit = 1;
+		return (false);
+	}
+	ft_putstr_fd(current->hdoc, fd);
+	return (true);
+}
+
+bool	ms_redirection_in(char *sign, char *next, t_job *current)
 {	
 	int	fd_in;
 
 	fd_in = 0;
+	(void)current;
 	if (sign[1] == '\0')
 		 fd_in = open(next, O_RDONLY);
+	else
+		return (ms_hdocs_write(current));
 	if (fd_in == -1)
 	{
 		perror("Minishell:");
@@ -58,12 +76,13 @@ bool	ms_redirection_out(char *sign, char *next)
 	return (true);
 }
 
-bool	ms_redirection_loop(char *sign, char *next)
+bool	ms_redirection_loop(char *sign, char *next, t_job *current)
 {	
+	(void)current;
 	if (sign[0] == '>')
 		return (ms_redirection_out(sign, next));
 	if (sign[0] == '<')
-		return (ms_redirection_in(sign, next));
+		return (ms_redirection_in(sign, next, current));
 	return (false);
 }
 
@@ -79,7 +98,7 @@ bool	ms_redirection_main(t_job *current)
 		return (true);
 	while (current->redir[x])
 	{
-		if (ms_redirection_loop(current->redir[x], current->redir[x + 1])
+		if (ms_redirection_loop(current->redir[x], current->redir[x + 1], current)
 			== false)
 			return (false);
 		if (!current->redir[x + 1])
