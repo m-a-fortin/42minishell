@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_envp_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 14:05:17 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:49:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,8 @@ char	**ms_setenv(char *name, char *value, char **envp_ms)
 {
 	int		index;
 	char	*new_line;
-	int		done;
 
 	index = 0;
-	done = 0;
 	while (envp_ms[index])
 	{
 		if (ft_char_search(envp_ms[index], '=') == 0 && envp_ms[index][0] != '\0')

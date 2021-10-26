@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 18:37:23 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/25 18:46:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool	ms_create_pipes(t_job *job_head, t_pipes *save)
 			g_ms.exit = 1;
 			return (false);
 		}
-		nb --;
+		nb--;
 		if (nb == 0)
 			return (true);
 		index++;
@@ -64,9 +64,8 @@ bool	ms_create_pipes(t_job *job_head, t_pipes *save)
 	return(true);
 }
 
-void	ms_pipe_exec(t_job *job_head, t_job *current, t_pipes *save, int index)
+void	ms_pipe_exec(t_job *job_head, t_job *current, t_pipes *save)
 {
-	index = 0;
 	(void)save;
 	(void)job_head;
 	if (ms_check_builtin(current) == false)
@@ -85,13 +84,13 @@ void	ms_pipe_loop(t_job *job_head, t_pipes *save)
 	(void)job_head;
 	while (current)
 	{
-		ms_exec_prep(current);
 		ms_pipe_dup(current, save->fd_pipe, index);
+		ms_exec_prep(current);
 		pid = fork();
 		if (pid == -1)
-			return;
+			return;//faire fonction d'erreur pid.
 		if (pid == 0)
-			ms_pipe_exec(job_head, current, save, index);
+			ms_pipe_exec(job_head, current, save);
 		waitpid(pid, &save->status, 0);
 		ms_return_fd();
 		if (ms_pipe_signal(save->status) == false)

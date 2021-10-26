@@ -59,7 +59,7 @@ bool	ms_redirection_out(char *sign, char *next)
 }
 
 bool	ms_redirection_loop(char *sign, char *next)
-{
+{	
 	if (sign[0] == '>')
 		return (ms_redirection_out(sign, next));
 	if (sign[0] == '<')
