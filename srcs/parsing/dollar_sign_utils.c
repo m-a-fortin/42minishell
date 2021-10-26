@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 09:51:50 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/14 16:00:36 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 08:43:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_dollar	*dollarsign_exit(t_dollar *d_sign)
+{
+	char	*temp;
+
+	d_sign->value = ft_itoa(g_ms.exit);
+	temp = ft_strjoin(d_sign->new_string, d_sign->value);
+	free (d_sign->new_string);
+	d_sign->new_string = temp;
+	d_sign->index++;
+	return (d_sign);
+}
+
+t_dollar	*dollarsign_join(t_dollar *d_sign)
+{
+	char	*temp;
+
+	temp = NULL;
+	if (d_sign->new_string)
+	{
+		temp = ft_strjoin(d_sign->new_string, d_sign->value);
+		free(d_sign->new_string);
+		d_sign->new_string = temp;
+	}
+	else
+		d_sign->new_string = ft_strdup(d_sign->value);
+	return (d_sign);
+}
 
 void	dollarstruct_init(t_dollar *d_sign)
 {

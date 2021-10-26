@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 11:42:29 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 08:43:55 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ void		dollarstruct_init(t_dollar *d_sign);
 void		dollarsign_free(t_dollar *d_sign, t_quote *state);
 int			count_redirections(t_token *token);
 int			count_cmd_and_args(t_token *token);
-t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
 void		trimquotes_main(t_job *current);
 void		update_quotestatus(char type, t_quote *state);
+t_dollar	*dollarsign_exit(t_dollar *d_sign);
+t_dollar	*dollarsign_join(t_dollar *d_sign);
+t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
 
 /* HEREDOCS */
 
