@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 14:02:25 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/26 10:08:17 by mmondell         ###   ########.fr        #
+#    Updated: 2021/10/26 10:47:03 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,14 +47,14 @@ HEADER	= libft.h
 
 all: 		obj ${NAME}
 
-$(NAME):	$(OBJS)
-				ar rc ${NAME} $(OBJS)
+$(NAME): $(OBJS)
+			@ar rc ${NAME} $(OBJS)
 
 $(OBJS_DIR)%.o:%.c
-	$(CC) $(CFLAGS) -o $@ -c $< 
+	@$(CC) $(CFLAGS) -o $@ -c $< 
 
 bonus:		${OBJS} ${OBJS_B}
-					ar rc ${NAME} ${OBJS} ${OBJS_B}
+			@ar rc ${NAME} ${OBJS} ${OBJS_B}
 
 obj:
 	@mkdir -p $(OBJS_DIR)
