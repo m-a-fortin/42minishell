@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/25 15:13:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 09:50:01 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	build_redirection(t_token *tok, t_job *job)
 	if (tok->type == L_HDOC)
 	{
 		if (build_heredoc(tok, job))
-		{
-			printf("HDOC: %s\n", job->hdoc);
 			return ;
-		}
 	}
 	if (!job->redir)
 	{
