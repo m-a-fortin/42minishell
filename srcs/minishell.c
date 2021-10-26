@@ -44,7 +44,7 @@ void	ms_readline_loop(t_job *job_head)
 			exit(g_ms.exit);
 		add_history(input);
 		job_head = parse_input(input, job_head);
-		if (job_head->cmd)
+		if (job_head && job_head->cmd)
 		{
 			ms_exec_main(job_head);
 			ms_free_job(job_head, job_head);

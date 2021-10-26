@@ -56,7 +56,7 @@ bool	ms_create_pipes(t_job *job_head, t_pipes *save)
 			g_ms.exit = 1;
 			return (false);
 		}
-		nb --;
+		nb--;
 		if (nb == 0)
 			return (true);
 		index++;
@@ -84,11 +84,11 @@ void	ms_pipe_loop(t_job *job_head, t_pipes *save)
 	(void)job_head;
 	while (current)
 	{
-		ms_exec_prep(current);
 		ms_pipe_dup(current, save->fd_pipe, index);
+		ms_exec_prep(current);
 		pid = fork();
 		if (pid == -1)
-			return;
+			return;//faire fonction d'erreur pid.
 		if (pid == 0)
 			ms_pipe_exec(job_head, current, save);
 		waitpid(pid, &save->status, 0);
