@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:38:15 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:52:06 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ms_pipe_dup(t_job *current, int **fd, int index)
 		fd_in = fd[index - 1][0];
 	if (current->next)
 		fd_out = fd[index][1];
-	if (index == 0)
-		close(fd_in);
+	//if (index == 0)
+		//close(fd_in);
 	else
 	{
 		dup2(fd_in, 0);
