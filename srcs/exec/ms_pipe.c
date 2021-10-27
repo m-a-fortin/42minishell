@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 16:52:06 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/26 20:20:08 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,22 @@ void	ms_pipe_dup(t_job *current, int **fd, int index)
 	int	fd_in;
 	int	fd_out;
 
-	if (index == 0)
-		fd_in = 0;
-	else
-		fd_in = fd[index - 1][0];
-	if (current->next)
-		fd_out = fd[index][1];
-	//if (index == 0)
-		//close(fd_in);
-	else
+	if (index > 0)
 	{
+		fd_in = fd[index - 1][0];
 		dup2(fd_in, 0);
-		close(fd_in);
 	}
 	if (current->next)
 	{
+		fd_out = fd[index][1];
 		dup2(fd_out, 1);
 		close(fd_out);
+		close(fd_in);
 	}
 	if (current->next == NULL)
+	{
 		dup2(g_ms.stdout, 1);
+	}
 }
 
 bool	ms_create_pipes(t_job *job_head, t_pipes *save)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:30:23 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:38:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/26 20:03:16 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ bool	ms_pipe_signal(int status)
 		if (WTERMSIG(status) == SIGINT)
 		{
 			ft_putendl_fd("", 1);
-			exit (g_ms.exit);
+			return (false);
 		}
 		if (WTERMSIG(status) == SIGQUIT)
-			exit (g_ms.exit);
+			return (false);
 	}
 	if (g_ms.exit != 0)
 		return (false);
