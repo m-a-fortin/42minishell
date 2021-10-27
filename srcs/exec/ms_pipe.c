@@ -71,31 +71,46 @@ void	ms_pipe_exec(t_job *job_head, t_job *current, t_pipes *save)
 
 void	ms_pipe_loop(t_job *job_head, t_pipes *save)
 {
-	pid_t	pid;
+	pid_t	*pid;
+	int		nb_pipe;
+	int		nb_pipesave;
 	t_job	*current;
 	int		index;
 
 	index = 0;
 	current = job_head;
+	nb_pipe = ms_pipe_number(job_head);
+	nb_pipesave = nb_pipe;
+	(void)nb_pipesave;
+	pid = malloc(sizeof(int) * nb_pipe);
 	(void)job_head;
-	while (current)
+	while (nb_pipe > 0)
 	{
-		ms_pipe_dup(current, save->fd_pipe, index);
-		ms_exec_prep(current);
-		pid = fork();
-		if (invalid_process_id(pid))
+		pid[index] = fork();
+		if (invalid_process_id(pid[index]))
 			return ;
-		if (pid == 0)
+		if (pid[index] == 0)
+		{
+			ms_pipe_dup(current, save->fd_pipe, index);
+			ms_exec_prep(current);
 			ms_pipe_exec(job_head, current, save);
-		waitpid(pid, &save->status, 0);
-		ms_return_fd();
-		if (ms_pipe_signal(save->status) == false)
-			break ;
+		}
 		if (current->next == NULL)
 			break ;
-		index++;
 		current = current->next;
-	}
+		index++;
+		nb_pipe--;
+		pid[index] = fork();
+		if (pid[index] == 0)
+		{
+			ms_pipe_exec(job_head, current, save);
+			ms_pipe_dup(current, save->fd_pipe, index);
+			ms_exec_prep(current);
+		}
+	}		
+	waitpid(pid[nb_pipe], &save->status, 0);
+	ms_return_fd();
+	free(pid);
 }
 
 bool	ms_pipe_main(t_job *job_head)
