@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:22:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/27 19:07:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	dollarsign_main(t_job *current)
 	index = 0;
 	if (current->redir)
 	{
-		while (current->redir[index++])
+		while (current->redir[index])
 		{
 			if (current->redir[index][0])
 				current->redir[index] = dollarsign_loop(current->redir[index]);

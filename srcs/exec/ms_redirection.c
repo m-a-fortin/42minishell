@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 20:17:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:54:29 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ bool	ms_redirection_out(char *sign, char *next)
 	if (dup2(fd_out, 1) == -1)
 	{
 		perror("Minishell");
+		close(fd_out);
 		return (false);
 	}
-	dup2(fd_out, 1);
 	close (fd_out);
 	return (true);
 }
@@ -75,6 +75,8 @@ bool	ms_redirection_out(char *sign, char *next)
 bool	ms_redirection_loop(char *sign, char *next, t_job *current)
 {	
 	(void)current;
+	if (!sign)
+		return (true);
 	if (sign[0] == '>')
 		return (ms_redirection_out(sign, next));
 	if (sign[0] == '<')
@@ -92,12 +94,14 @@ bool	ms_redirection_main(t_job *current)
 	x = 0;
 	if (!current->redir)
 		return (true);
-	while (current->redir[x])
-	{
+	while (current->redir[x] != 0)
+	{	
 		if (ms_redirection_loop(current->redir[x],
 				current->redir[x + 1], current) == false)
 			return (false);
-		if (!current->redir[x + 1])
+		if (current->redir[x + 1] == NULL)
+			break ;
+		if (current->redir[x + 2] == NULL)
 			break ;
 		x += 2;
 	}

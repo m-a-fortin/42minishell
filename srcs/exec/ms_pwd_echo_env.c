@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pwd_echo_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:29:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:06:16 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,34 @@ int	ms_pwd_main(int fd)
 	return (0);
 }
 
+//*Verifie le flag -n. Dans le cas ou -n est rencontrer:
+//*pas de new line a la fin du echo. Plusieurs -n peuvent
+//*etre chained. Si un char est different de n. Print le
+//*flag aussi.
+bool	ms_echo_flag(char **args, bool no_nl, int *index)
+{
+	int	x;
+
+	while (args[*index])
+	{
+		x = 0;
+		if (args[*index][x] != '-')
+			break ;
+		x++;
+		while (args[*index][x])
+		{
+			if (args[*index][x] != 'n')
+				return(no_nl);
+			x++;
+		}
+		no_nl = true;
+		*index += 1;
+	}
+	return (no_nl);
+}
+
 void	ms_echo_loop(char **args, int index, int no_nl, int fd)
 {
-	if (no_nl == 1)
-		index++;
 	while (args[index])
 	{
 		ft_putstr_fd(args[index], fd);
@@ -36,49 +60,28 @@ void	ms_echo_loop(char **args, int index, int no_nl, int fd)
 		index++;
 	}
 	if (no_nl == 0)
-		ft_putchar_fd('\n', fd);
-}
-
-//*Verifie le flag -n. Dans le cas ou -n est rencontrer:
-//*pas de new line a la fin du echo. Plusieurs -n peuvent
-//*etre chained. Si un char est different de n. Print le
-//*flag aussi.
-int	ms_echo_flag(char *arg, int no_nl)
-{
-	int	x;
-
-	x = 0;
-	if (arg[x] == '-')
-	{
-		x++;
-		while (arg[x])
-		{
-			if (arg[x] != 'n' && arg[x] != '\0')
-				return (0);
-			x++;
-			no_nl = 1;
-		}
-	}
-	return (no_nl);
+		ft_putchar_fd('\n', fd);           
 }
 
 //*ecrit dans fd les args, option -n = sans newline.
 int	ms_echo_main(char **args, int fd)
 {
 	int	argc;
-	int	no_nl;
-	int	index;
+	bool	no_nl;
+	int	*index;
 
-	no_nl = 0;
-	index = 1;
+	no_nl = false;
+	index = malloc(sizeof(int) * 1);
 	argc = ft_matrice_size(args);
 	if (argc == 1)
 	{
 		ft_putchar_fd('\n', fd);
 		return (0);
 	}
-	no_nl = ms_echo_flag(args[index], no_nl);
-	ms_echo_loop(args, index, no_nl, fd);
+	*index = 1;
+	no_nl = ms_echo_flag(args, no_nl, index);
+	ms_echo_loop(args, *index, no_nl, fd);
+	free(index);
 	return (0);
 }
 

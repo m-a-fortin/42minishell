@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 09:51:50 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 08:43:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/27 19:08:51 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state)
 		}
 		if (string[d_sign->index] == ' ' || string[d_sign->index] == '"'
 			|| string[d_sign->index] == '\0' || string[d_sign->index] == '$'
-			|| string[d_sign->index] == '=')
+			|| string[d_sign->index] == '=' || string)
 			break ;
 		temp = ft_append_string(d_sign->name, string[d_sign->index]);
 		d_sign->name = temp;

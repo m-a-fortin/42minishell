@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trim_quotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 10:43:19 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:42:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:52:39 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,9 @@ void	trimquotes_main(t_job *current)
 	{
 		while (current->redir[index])
 		{
-			index++;
 			if (current->redir[index][0])
-				current->redir[index] = trimquotes_loop(current->redir[index]);
-			if (!current->redir[index + 1])
+				current->redir[index + 1] = trimquotes_loop(current->redir[index + 1]);
+			if (!current->redir[index + 2])
 				break ;
 			index += 2;
 		}

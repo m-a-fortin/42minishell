@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:30:23 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 20:03:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:05:07 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ bool	ms_pipe_signal(int status)
 		if (WTERMSIG(status) == SIGQUIT)
 			return (false);
 	}
-	if (g_ms.exit != 0)
-		return (false);
 	return (true);
 }
 
