@@ -37,6 +37,7 @@ t_dollar	*dollarsign_join(t_dollar *d_sign)
 	}
 	else
 		d_sign->new_string = ft_strdup(d_sign->value);
+	d_sign->index--;
 	return (d_sign);
 }
 
@@ -60,10 +61,10 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state)
 			update_quotestatus(string[d_sign->index], state);
 			break ;
 		}
-		if (string[d_sign->index] == ' ' || string[d_sign->index] == '"'
-			|| string[d_sign->index] == '\0' || string[d_sign->index] == '$'
-			|| string[d_sign->index] == '=' || string)
+		if (ft_isalpha(string[d_sign->index]) == 0 && string[d_sign->index] != '_')
+		{
 			break ;
+		}
 		temp = ft_append_string(d_sign->name, string[d_sign->index]);
 		d_sign->name = temp;
 		d_sign->index++;
