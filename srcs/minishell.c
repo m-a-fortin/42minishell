@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/27 18:18:25 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:37:00 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ms_readline_loop(t_job *job_head)
 		input = readline(PROMPT);
 		if (!input)
 		{
-			printf("Exit\n");
+			ft_putendl_fd("Exit", 2);
 			exit(g_ms.exit);
 		}
 		add_history(input);
