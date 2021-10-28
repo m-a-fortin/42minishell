@@ -6,18 +6,12 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:58:58 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 13:54:51 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:58:28 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
-
-typedef struct s_pipes
-{
-	int	**fd_pipe;
-	int	status;
-}	t_pipes;
 
 typedef struct s_job	t_job;
 //BUILTIN
