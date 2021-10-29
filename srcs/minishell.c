@@ -53,7 +53,6 @@ void	ms_readline_loop(t_job *job_head)
 			ms_exec_main(job_head);
 		//ms_free_job(job_head);
 		job_head = ms_new_job();
-		printf("%d\n", ms_pipe_number(job_head));
 		free (input);
 		input = NULL;
 	}

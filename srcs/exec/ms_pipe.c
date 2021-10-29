@@ -81,6 +81,7 @@ bool	ms_pipe_main(t_job *job_head)
 	t_job *current;
 	t_pipe *data;
 
+	printf("BEFORE PIPES\n");
 	data = malloc(sizeof(t_pipe));
 	current = job_head;
 	data->nb_pipe = ms_pipe_number(current);
@@ -91,5 +92,6 @@ bool	ms_pipe_main(t_job *job_head)
 	data->pids = NULL;
 	free(data);
 	data = NULL;
+	printf("AFTER PIPES\n");
 	return (true);
 }
