@@ -76,6 +76,5 @@ void	ms_exec_main(t_job *job_head)
 		return (ms_return_fd());
 	}
 	ms_pipe_main(job_head);
-	printf("NB:%d\n", ms_pipe_number(job_head));
 	ms_return_fd();
 }
