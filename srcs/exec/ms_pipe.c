@@ -17,13 +17,21 @@ void	ms_pipe_dup(t_job *current, t_pipe *data, int index)
 
 	if (index > 0)
 	{
-		dup2(data->prev_pipe[0], 0);
+		if (dup2(data->prev_pipe[0], 0) == -1)
+		{
+			perror("Minishell:");
+			exit (1);
+		}
 		close(data->prev_pipe[0]);
 		close(data->prev_pipe[1]);
 	}
 	if (current->next)
 	{
-		dup2(data->pipe_fd[1], 1);
+		if (dup2(data->pipe_fd[1], 1) == -1)
+		{
+			perror("Minishell:");
+			exit (1);
+		}
 		close(data->pipe_fd[1]);
 		close(data->pipe_fd[0]);
 	}
@@ -62,7 +70,10 @@ void	ms_pipe_loop(t_job *current, t_pipe *data)
 	while (index <= data->nb_pipe)
 	{
 		if (index < data->nb_pipe)
-			pipe(data->pipe_fd);
+		{
+			if (pipe(data->pipe_fd) == -1)
+				return(perror("Minishell:"));
+		}
 		data->pids[index] = fork();
 		if (invalid_process_id(data->pids[index]))
 			return ;
@@ -81,7 +92,6 @@ bool	ms_pipe_main(t_job *job_head)
 	t_job *current;
 	t_pipe *data;
 
-	printf("BEFORE PIPES\n");
 	data = malloc(sizeof(t_pipe));
 	current = job_head;
 	data->nb_pipe = ms_pipe_number(current);
@@ -92,6 +102,5 @@ bool	ms_pipe_main(t_job *job_head)
 	data->pids = NULL;
 	free(data);
 	data = NULL;
-	printf("AFTER PIPES\n");
 	return (true);
 }
