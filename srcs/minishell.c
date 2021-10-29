@@ -50,7 +50,7 @@ void	ms_readline_loop(t_job *job_head)
 		if (job_head && job_head->cmd)
 		{
 			ms_exec_main(job_head);
-			//ms_free_job(job_head, job_head);
+			ms_free_job(job_head, job_head);
 		}
 		free (input);
 	}

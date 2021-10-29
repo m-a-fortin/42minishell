@@ -46,7 +46,13 @@ int	ms_pipe_number(t_job *job_head)
 	return (nb);
 }
 
-void	ms_close_pipe(int	pipe_fd[2])
+void	ms_pipe_save(t_pipe *data)
+{
+	data->prev_pipe[0] = data->pipe_fd[0];
+	data->prev_pipe[1] = data->pipe_fd[1];
+}
+
+void	ms_close_pipe(int pipe_fd[2])
 {
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);

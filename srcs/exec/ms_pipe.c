@@ -12,96 +12,84 @@
 
 #include "minishell.h"
 
-void	ms_pipe_dup(t_job *current, int **fd, int index)
+void	ms_pipe_dup(t_job *current, t_pipe *data, int index)
 {
 
 	if (index > 0)
 	{
-		dup2(fd[index - 1][0], 0);
-		close(fd[index - 1][0]);
-		close(fd[index - 1][1]);
+		dup2(data->prev_pipe[0], 0);
+		close(data->prev_pipe[0]);
+		close(data->prev_pipe[1]);
 	}
 	if (current->next)
 	{
-		dup2(fd[index][1], 1);
-		close(fd[index][1]);
-		close(fd[index][0]);
+		dup2(data->pipe_fd[1], 1);
+		close(data->pipe_fd[1]);
+		close(data->pipe_fd[0]);
 	}
 }
 
-void	ms_pipe_exec(t_job *current, int **fd_pipe, int index)
+void	ms_pipe_exec(t_job *current, t_pipe *data, int index)
 {
-	ms_pipe_dup(current, fd_pipe ,index);
+	ms_pipe_dup(current, data, index);
 	ms_exec_prep(current);
 	if (ms_check_builtin(current) == false)
 		ms_fork(current->cmd);
 	exit(g_ms.exit);
 }
 
-void	ms_pipe_wait(pid_t *pid, int nb_pipe)
+void	ms_pipe_wait(t_pipe *data)
 {
-	int	status[nb_pipe];
+	int	status[data->nb_pipe];
 	int	index;
 
 	(void)status;
 	index = 0;
-	while (index <= nb_pipe)
+	while (index <= data->nb_pipe)
 	{
-		waitpid(pid[index], &status[index], 0);
+		waitpid(data->pids[index], &status[index], 0);
 		index++;
 	}
-	if (WIFEXITED(status[nb_pipe]))
-		g_ms.exit = WEXITSTATUS(status[nb_pipe]);
+	if (WIFEXITED(status[data->nb_pipe]))
+		g_ms.exit = WEXITSTATUS(status[data->nb_pipe]);
 }
 
-void	ms_pipe_loop(t_job *current, int nb_pipe, int **pipe_fd, pid_t *pid)
+void	ms_pipe_loop(t_job *current, t_pipe *data)
 {
-	int		index;
+	int	index;
 
 	index = 0;
-	while (index <= nb_pipe)
+	while (index <= data->nb_pipe)
 	{
-		if (index < nb_pipe)
-		{
-			pipe_fd[index] = ft_calloc(sizeof(int), 2);
-			pipe(pipe_fd[index]);
-		}
-		pid[index] = fork();
-		if (invalid_process_id(pid[index]))
+		if (index < data->nb_pipe)
+			pipe(data->pipe_fd);
+		data->pids[index] = fork();
+		if (invalid_process_id(data->pids[index]))
 			return ;
-		if (!pid[index])
-			ms_pipe_exec(current, pipe_fd, index);
+		if (!data->pids[index])
+			ms_pipe_exec(current, data, index);
 		if (index > 0)
-			ms_close_pipe(pipe_fd[index - 1]);
+			ms_close_pipe(data->prev_pipe);
 		if (current->next == NULL)
-			break ;
+			return ;
 		current = current->next;
+		ms_pipe_save(data);
 		index++;
 	}
 }
 
 bool	ms_pipe_main(t_job *job_head)
 {
-	int	nb_pipe;
-	int	index;
-	int	**pipe_fd;
 	t_job *current;
-	pid_t	*pid;
+	t_pipe *data;
 
-	index = 0;
+	data = malloc(sizeof(t_pipe));
 	current = job_head;
-	nb_pipe = ms_pipe_number(current);
-	pipe_fd = ft_calloc(sizeof(int), nb_pipe + 1);
-	pid = malloc(sizeof(int) * nb_pipe);
-	ms_pipe_loop(current, nb_pipe, pipe_fd, pid);
-	ms_pipe_wait(pid, nb_pipe);
-	free(pid);
-	while (index < nb_pipe - 1)
-	{
-		if (pipe_fd[index])
-			free(pipe_fd[index]);
-		index++;
-	}
-	free(pipe_fd);
+	data->nb_pipe = ms_pipe_number(current);
+	data->pids = malloc(sizeof(int) * data->nb_pipe);
+	ms_pipe_loop(current, data);
+	ms_pipe_wait(data);
+	free(data->pids);
+	free(data);
 	return (true);
 }

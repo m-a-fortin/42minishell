@@ -13,6 +13,15 @@
 #ifndef EXEC_H
 # define EXEC_H
 
+typedef struct s_pipe
+{
+	int	nb_pipe;
+	int	pipe_fd[2];
+	int	prev_pipe[2];
+	int	*pids;
+	int	index;
+}	t_pipe;
+
 typedef struct s_job	t_job;
 //BUILTIN
 int		ms_pwd_main(int fd);
@@ -47,5 +56,6 @@ bool	ms_pipe_signal(int status);
 int		ms_pipe_number(t_job *job_head);
 bool	ms_pipe_main(t_job *job_head);
 void	ms_close_pipe(int pipe_fd[2]);
+void	ms_pipe_save(t_pipe *data);
 
 #endif
