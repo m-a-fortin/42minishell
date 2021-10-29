@@ -34,7 +34,7 @@ void	print_header(void)
 //*le retour du parsing.
 void	ms_readline_loop(t_job *job_head)
 {
-	char	*input;
+	char 	*input;
 
 	ms_setsignals();
 	while (true)
@@ -45,7 +45,8 @@ void	ms_readline_loop(t_job *job_head)
 			ft_putendl_fd("Exit", 2);
 			exit(g_ms.exit);
 		}
-		add_history(input);
+		if (input[0] != '\0')
+			add_history(input);
 		job_head = parse_input(input, job_head);
 		if (job_head && job_head->cmd)
 			ms_exec_main(job_head);

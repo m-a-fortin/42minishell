@@ -14,7 +14,7 @@
 
 t_job	*ms_job_lastnode(t_job *job)
 {
-	while (job)
+	while (job != NULL)
 	{
 		if (job->next == NULL)
 			return (job);
@@ -44,7 +44,10 @@ t_job	*ms_new_job(void)
 
 	new = ft_calloc(1, sizeof(t_job));
 	if (!new)
+	{
+		perror("Minishell:");
 		return (NULL);
+	}
 	new->next = NULL;
 	return (new);
 }
@@ -64,16 +67,15 @@ void	ms_free_value(t_job *current)
 
 void	ms_free_job(t_job *job_head)
 {	
-	t_job *current;
-	t_job *next;
+	t_job *save;
 
-	current = job_head;
-	while (current != NULL)
+	while (job_head != NULL)
 	{
-		next = current->next;
-		ms_free_value(current);
-		free(current);
-		current = next;
+		save = job_head;
+		job_head = job_head->next;
+		ms_free_value(save);
+		free(save);
+		save = NULL;
 	}
 	job_head = NULL;
 

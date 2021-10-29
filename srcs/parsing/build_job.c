@@ -80,5 +80,6 @@ t_job	*build_job(t_token *token, t_job *job)
 		token = token->next;
 	}
 	free_list(token_head);
+	token_head = NULL;
 	return (job_head);
 }
