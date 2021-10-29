@@ -42,7 +42,7 @@ void	ms_exit_exit(t_job *current)
 {
 	ft_free_tab(g_ms.env);
 	ft_free_tab(g_ms.export);
-	ms_free_job(current, current);
+	ms_free_job(current);
 	ft_putendl_fd("Exit", 1);
 	exit (g_ms.exit);
 }
