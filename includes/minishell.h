@@ -70,7 +70,7 @@ char	*ms_getenv(char *name, char **envp_ms);
 char	**ms_setenv(char *name, char *value, char **envp_ms);
 char	**ms_set_noequal(char *name, char **export_ms);
 //LINKED LIST JOB
-void	ms_free_job(t_job *job_head, t_job *current);
+void	ms_free_job(t_job *job_head);
 t_job	*init_node(t_job *node);
 t_job	*ms_new_job(void);
 void	ms_job_addback(t_job **job, t_job *new);

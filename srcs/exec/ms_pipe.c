@@ -70,8 +70,6 @@ void	ms_pipe_loop(t_job *current, t_pipe *data)
 			ms_pipe_exec(current, data, index);
 		if (index > 0)
 			ms_close_pipe(data->prev_pipe);
-		if (current->next == NULL)
-			return ;
 		current = current->next;
 		ms_pipe_save(data);
 		index++;
@@ -90,6 +88,8 @@ bool	ms_pipe_main(t_job *job_head)
 	ms_pipe_loop(current, data);
 	ms_pipe_wait(data);
 	free(data->pids);
+	data->pids = NULL;
 	free(data);
+	data = NULL;
 	return (true);
 }

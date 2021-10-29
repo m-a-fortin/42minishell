@@ -22,10 +22,14 @@ void	ft_free_tab(char **tab)
 		while (tab[i])
 		{
 			if (tab[i] != NULL)
+			{
 				free(tab[i]);
+				tab[i] = NULL;
+			}
 			i++;
 		}
 		free (tab);
+		tab = NULL;
 	}
 	return ;
 }

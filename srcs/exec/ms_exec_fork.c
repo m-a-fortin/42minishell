@@ -39,7 +39,6 @@ void	ms_fork(char **cmd)
 		g_ms.exit = 127;
 		return (ms_nosuchfile(cmd[0]));
 	}
-	execve(cmd[0], cmd, g_ms.env);
 	if (ft_char_search(cmd[0], '/') > 0)
 		ms_cmdispath(cmd);
 	path = ms_get_cmdpath(cmd[0]);

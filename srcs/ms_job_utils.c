@@ -49,18 +49,32 @@ t_job	*ms_new_job(void)
 	return (new);
 }
 
-void	ms_free_job(t_job *job_head, t_job *current)
-{	
-	if (!current)
-		return ;
-	if (current->next)
-		ms_free_job(job_head, current->next);
+void	ms_free_value(t_job *current)
+{
+	if (current->cmd)
+		ft_free_tab(current->cmd);
 	if (current->redir)
 		ft_free_tab(current->redir);
 	if (current->hdoc)
+	{
 		free(current->hdoc);
-	if (current->cmd)
-		ft_free_tab(current->cmd);
-	if (current)
+		current->hdoc = NULL;
+	}
+}
+
+void	ms_free_job(t_job *job_head)
+{	
+	t_job *current;
+	t_job *next;
+
+	current = job_head;
+	while (current != NULL)
+	{
+		next = current->next;
+		ms_free_value(current);
 		free(current);
+		current = next;
+	}
+	job_head = NULL;
+
 }
