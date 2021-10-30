@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 13:09:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:38:47 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_token	*tokenize_operator(t_parser *par, t_token *token)
 	token = add_token_to_list(par, token);
 	if (!token->token)
 		token->token = NULL;
+	while (token->next)
+		token = token->next;
 	token->type = set_operator_type(token->token);
 	return (token);
 }

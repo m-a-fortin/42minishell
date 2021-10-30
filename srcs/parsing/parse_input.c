@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 13:14:58 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:32:54 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 t_token	*rewind_list(t_token *token)
 {
-	while (token->prev)
-		token = token->prev;
+	if (!token)
+		return (NULL);
+	if (token->prev)
+	{
+		while (token->prev)
+			token = token->prev;	
+	}
 	return (token);
 }
 

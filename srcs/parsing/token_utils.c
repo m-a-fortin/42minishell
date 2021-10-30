@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 12:42:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:41:08 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ bool	is_redirection(t_token *token)
 
 int	set_operator_type(char *str)
 {
-	if (ft_strncmp(str, ">>", ft_strlen(str) + 1) == 0)
+	if (!ft_strcmp(str, ">>"))
 		return (R_HDOC);
-	else if (ft_strncmp(str, "<<", ft_strlen(str) + 1) == 0)
+	else if (!ft_strcmp(str, "<<"))
 		return (L_HDOC);
-	else if (ft_strncmp(str, ">", ft_strlen(str) + 1) == 0)
+	else if (!ft_strcmp(str, ">"))
 		return (R_REDIR);
-	else if (ft_strncmp(str, "<", ft_strlen(str) + 1) == 0)
+	else if (!ft_strcmp(str, "<"))
 		return (L_REDIR);
-	else if (ft_strncmp(str, "|", ft_strlen(str) + 1) == 0)
+	else if (!ft_strcmp(str, "|"))
 		return (PIPE);
 	return (EMPTY);
 }

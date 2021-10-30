@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/18 11:52:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 14:02:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*next_token(t_token *token)
 		return (R_REDIR_TOKEN);
 	else if (token->type == L_HDOC)
 		return (L_HDOC_TOKEN);
+	else if (token->type == PIPE)
+		return (PIPE_TOKEN);
 	else
 		return (R_HDOC_TOKEN);
 }

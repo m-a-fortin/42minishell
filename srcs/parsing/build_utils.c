@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:59:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/14 15:07:17 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:53:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ int	count_cmd_and_args(t_token *token)
 	{
 		if (token->type == PIPE)
 			break ;
-		if (is_redirection(token))
+		else if (is_redirection(token))
 			token = token->next->next;
-		if (token->type == STRING)
+		else if (token->type == STRING)
 			i++;
+		if (!token)
+			break ;
 		token = token->next;
 	}
 	return (i);
