@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpst <hpst@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/19 11:21:21 by hpst             ###   ########.fr       */
+/*   Updated: 2021/10/29 21:30:59 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_token
 /* LIST UTILITIES */
 t_token	*token_lst_last(t_token *token);
 t_token	*token_lst_addnew(void	*token);
-t_type	set_operator_type(char *str);
+int		set_operator_type(char *str);
 bool	is_redirection(t_token *token);
 bool	find_redirection(t_token *token);
 void	token_lst_addback(t_token **token, t_token *new);

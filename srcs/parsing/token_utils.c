@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/21 15:03:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/29 21:30:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	is_redirection(t_token *token)
 	return (false);
 }
 
-t_type	set_operator_type(char *str)
+int	set_operator_type(char *str)
 {
 	if (ft_strncmp(str, ">>", ft_strlen(str) + 1) == 0)
 		return (R_HDOC);
