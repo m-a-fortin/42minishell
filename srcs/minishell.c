@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/30 18:36:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 18:51:00 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_header(void)
 //*le retour du parsing.
 void	ms_readline_loop(t_job *job_head)
 {
-	char 	*input;
+	char	*input;
 
 	ms_setsignals();
 	while (true)

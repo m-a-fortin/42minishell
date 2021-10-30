@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 17:46:15 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/30 18:52:19 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ms_pipe_dup(t_job *current, t_pipe *data, int index)
 {
-
 	if (index > 0)
 	{
 		if (dup2(data->prev_pipe[0], 0) == -1)
@@ -51,8 +50,8 @@ void	ms_pipe_exec(t_job *current, t_pipe *data, int index)
 
 void	ms_pipe_wait(t_job *job_head, t_pipe *data)
 {
-	t_job *current;
-	int	index;
+	t_job	*current;
+	int		index;
 
 	current = job_head;
 	(void)job_head;
@@ -78,7 +77,7 @@ void	ms_pipe_loop(t_job *current, t_job *job_head, t_pipe *data)
 		if (index < data->nb_pipe)
 		{
 			if (pipe(data->pipe_fd) == -1)
-				return(perror("Minishell Pipe:"));
+				return (perror("Minishell Pipe:"));
 		}
 		current->pid = fork();
 		if (invalid_process_id(current->pid))
@@ -88,7 +87,7 @@ void	ms_pipe_loop(t_job *current, t_job *job_head, t_pipe *data)
 		if (index > 0)
 			ms_close_pipe(data->prev_pipe);
 		if (current->next == NULL)
-			break;
+			break ;
 		current = current->next;
 		ms_pipe_save(data);
 		index++;
@@ -99,8 +98,8 @@ void	ms_pipe_loop(t_job *current, t_job *job_head, t_pipe *data)
 
 bool	ms_pipe_main(t_job *job_head)
 {
-	t_job *current;
-	t_pipe *data;
+	t_job	*current;
+	t_pipe	*data;
 
 	data = malloc(sizeof(t_pipe));
 	current = job_head;
