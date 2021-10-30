@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/26 13:54:43 by mafortin         ###   ########.fr        #
+#    Updated: 2021/10/29 19:40:40 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 	@echo "\033[34;1m Created Object Directory \033[0m"
 
-
+linux : CFLAGS += -g
 linux :	$(OBJS_PATH) $(OBJS)
 	@echo "\033[95m Compiling MINISHELL \033[0m"
 	$(MAKELIBFT)
