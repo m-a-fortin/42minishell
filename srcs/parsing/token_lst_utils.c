@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:59:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 10:00:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 12:47:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ t_token	*token_lst_addnew(void	*token)
 	new = ft_calloc(1, sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->token = token;
+	if (token)
+		new->token = ft_strdup(token);
 	new->type = EMPTY;
 	new->prev = NULL;
 	new->next = NULL;

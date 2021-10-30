@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_job.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/26 13:03:46 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:17:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_job	*build_job(t_token *token, t_job *job)
 	job = ft_calloc(1, sizeof(t_job));
 	job_head = job;
 	token_head = token;
-	while (token->next != NULL)
+	while (token)
 	{
 		if (token->type == PIPE)
 		{

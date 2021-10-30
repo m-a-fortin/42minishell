@@ -6,11 +6,18 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/20 14:27:57 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:14:58 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_token	*rewind_list(t_token *token)
+{
+	while (token->prev)
+		token = token->prev;
+	return (token);
+}
 
 char	*new_input(t_parser *par, char *input)
 {
@@ -22,7 +29,7 @@ char	*new_input(t_parser *par, char *input)
 	return (temp);
 }
 
-bool	find_token(t_parser *par, t_token *token)
+t_token	*find_token(t_parser *par, t_token *token)
 {
 	if (ft_strchr(OPERATORS, index_char(par)))
 		return (tokenize_operator(par, token));
@@ -37,7 +44,8 @@ bool	find_token(t_parser *par, t_token *token)
 			if (par->index < 0)
 			{
 				bad_quotes_syntax(par);
-				return (false);
+				free_list(token);
+				return (NULL);
 			}
 		}
 		par->index++;
@@ -48,26 +56,24 @@ bool	find_token(t_parser *par, t_token *token)
 t_job	*parse_input(char *input, t_job *job_head)
 {
 	t_token		*token;
-	t_token		*head;
 	t_parser	par;
 	char		*temp;
 
-	token = token_lst_addnew(NULL);
-	head = token;
+	token = NULL;
 	temp = trim_input(input);
 	while (input_is_not_empty(temp))
 	{
 		temp = reset_parser(&par, temp);
-		if (find_token(&par, token))
+		token = find_token(&par, token);
+		if (token)
 		{
 			temp = new_input(&par, temp);
-			token = token->next;
 			continue ;
 		}
-		break ;
+		return (NULL);
 	}
 	free(temp);
-	if (!validate_tokens_syntax(head))
+	if (!validate_tokens_syntax(rewind_list(token)))
 		return (NULL);
-	return (build_job(head, job_head));
+	return (build_job(rewind_list(token), job_head));
 }

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:56:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/29 21:27:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 13:09:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ int	find_closing_quote(t_parser *par, char quote)
 	return (-1);
 }	
 
-bool	tokenize_string(t_parser *par, t_token *token)
+t_token	*tokenize_string(t_parser *par, t_token *token)
 {
-	add_token_to_list(par, token);
+	token = add_token_to_list(par, token);
+	while (token->next)
+		token = token->next;
 	token->type = STRING;
-	return (true);
+	return (token);
 }
 
-bool	tokenize_operator(t_parser *par, t_token *token)
+t_token	*tokenize_operator(t_parser *par, t_token *token)
 {
 	char	op;
 
@@ -41,9 +43,9 @@ bool	tokenize_operator(t_parser *par, t_token *token)
 	par->index++;
 	if (index_char(par) == op)
 		par->index++;
-	add_token_to_list(par, token);
+	token = add_token_to_list(par, token);
 	if (!token->token)
 		token->token = NULL;
 	token->type = set_operator_type(token->token);
-	return (true);
+	return (token);
 }
