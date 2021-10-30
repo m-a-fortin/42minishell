@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 09:51:50 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/27 19:08:51 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:31:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_dollar	*dollarsign_join(t_dollar *d_sign)
 	}
 	else
 		d_sign->new_string = ft_strdup(d_sign->value);
+	d_sign->index--;
 	return (d_sign);
 }
 
@@ -60,9 +61,8 @@ t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state)
 			update_quotestatus(string[d_sign->index], state);
 			break ;
 		}
-		if (string[d_sign->index] == ' ' || string[d_sign->index] == '"'
-			|| string[d_sign->index] == '\0' || string[d_sign->index] == '$'
-			|| string[d_sign->index] == '=' || string)
+		if (ft_isalpha(string[d_sign->index]) == 0
+			&& string[d_sign->index] != '_')
 			break ;
 		temp = ft_append_string(d_sign->name, string[d_sign->index]);
 		d_sign->name = temp;

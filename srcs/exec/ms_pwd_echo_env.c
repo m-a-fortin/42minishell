@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/27 18:06:16 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:29:51 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	ms_echo_flag(char **args, bool no_nl, int *index)
 		while (args[*index][x])
 		{
 			if (args[*index][x] != 'n')
-				return(no_nl);
+				return (no_nl);
 			x++;
 		}
 		no_nl = true;
@@ -60,15 +60,15 @@ void	ms_echo_loop(char **args, int index, int no_nl, int fd)
 		index++;
 	}
 	if (no_nl == 0)
-		ft_putchar_fd('\n', fd);           
+		ft_putchar_fd('\n', fd);
 }
 
 //*ecrit dans fd les args, option -n = sans newline.
 int	ms_echo_main(char **args, int fd)
 {
-	int	argc;
+	int		argc;
 	bool	no_nl;
-	int	*index;
+	int		*index;
 
 	no_nl = false;
 	index = malloc(sizeof(int) * 1);

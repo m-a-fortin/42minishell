@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 10:43:19 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/27 18:52:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:30:06 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void	trimquotes_main(t_job *current)
 		while (current->redir[index])
 		{
 			if (current->redir[index][0])
-				current->redir[index + 1] = trimquotes_loop(current->redir[index + 1]);
+				current->redir[index + 1]
+					= trimquotes_loop(current->redir[index + 1]);
 			if (!current->redir[index + 2])
 				break ;
 			index += 2;
