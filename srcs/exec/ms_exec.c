@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 17:37:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/30 18:35:50 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ms_exec_main(t_job *job_head)
 	bool	pipe;
 	t_job	*current;
 
+	if (!job_head->cmd)
+		return ;
 	pipe = false;
 	current = job_head;
 	dollarsign_main(current);

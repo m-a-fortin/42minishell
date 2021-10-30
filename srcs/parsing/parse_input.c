@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 13:32:54 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 18:36:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_job	*parse_input(char *input, t_job *job_head)
 			temp = new_input(&par, temp);
 			continue ;
 		}
+		free(temp);
 		return (NULL);
 	}
 	free(temp);
