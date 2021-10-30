@@ -6,7 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/30 14:25:44 by mmondell         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/28 17:42:38 by mafortin         ###   ########.fr       */
+>>>>>>> exec
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +38,7 @@ void	print_header(void)
 //*le retour du parsing.
 void	ms_readline_loop(t_job *job_head)
 {
-	char	*input;
+	char 	*input;
 
 	ms_setsignals();
 	while (true)
@@ -53,11 +57,12 @@ void	ms_readline_loop(t_job *job_head)
 		add_history(input);
 		job_head = parse_input(input, job_head);
 		if (job_head && job_head->cmd)
-		{
 			ms_exec_main(job_head);
-			ms_free_job(job_head, job_head);
-		}
+		ms_free_job(job_head);
+		job_head->next = NULL;
+		job_head = NULL;
 		free (input);
+		input = NULL;
 	}
 }
 

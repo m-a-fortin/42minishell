@@ -21,6 +21,8 @@ char	*ms_find_cmdpath(char *cmd_name, char **paths)
 	while (paths[index])
 	{
 		cmd_path = ft_strjoin(paths[index], cmd_name);
+		if (!cmd_path)
+			perror("Minishell");
 		if (access(cmd_path, F_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);

@@ -60,7 +60,7 @@ t_job	*build_job(t_token *token, t_job *job)
 	t_job	*job_head;
 	t_token	*token_head;
 
-	job = ft_calloc(1, sizeof(t_job));
+	job = ms_new_job();
 	job_head = job;
 	token_head = token;
 	while (token)
@@ -80,5 +80,6 @@ t_job	*build_job(t_token *token, t_job *job)
 		token = token->next;
 	}
 	free_list(token_head);
+	token_head = NULL;
 	return (job_head);
 }

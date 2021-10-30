@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/27 18:56:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:37:43 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ bool	ms_exec_phase(t_job *current)
 
 bool	ms_exec_prep(t_job *current)
 {
+	(void)current;
 	if (ms_redirection_main(current) == false)
 	{
 		g_ms.exit = 127;
@@ -57,9 +58,11 @@ bool	ms_exec_prep(t_job *current)
 void	ms_exec_main(t_job *job_head)
 {
 	bool	pipe;
+	t_job	*current;
 
 	pipe = false;
-	dollarsign_main(job_head);
+	current = job_head;
+	dollarsign_main(current);
 	if (job_head->next)
 		pipe = true;
 	else
@@ -73,5 +76,6 @@ void	ms_exec_main(t_job *job_head)
 		return (ms_return_fd());
 	}
 	ms_pipe_main(job_head);
+	ms_pipe_number(job_head);
 	ms_return_fd();
 }

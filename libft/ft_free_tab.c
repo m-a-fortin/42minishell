@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 18:12:46 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/04 13:23:42 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:37:59 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ void	ft_free_tab(char **tab)
 		while (tab[i])
 		{
 			if (tab[i] != NULL)
+			{
 				free(tab[i]);
+				tab[i] = NULL;
+			}
 			i++;
 		}
 		free (tab);
+		tab = NULL;
 	}
 	return ;
 }

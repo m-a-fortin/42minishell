@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_job_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/25 08:47:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:40:52 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_job	*ms_job_lastnode(t_job *job)
 {
-	while (job)
+	while (job != NULL)
 	{
 		if (job->next == NULL)
 			return (job);
@@ -44,23 +44,39 @@ t_job	*ms_new_job(void)
 
 	new = ft_calloc(1, sizeof(t_job));
 	if (!new)
+	{
+		perror("Minishell:");
 		return (NULL);
+	}
+	new->next = NULL;
 	return (new);
 }
 
-void	ms_free_job(t_job *job_head, t_job *current)
-{	
-	if (!current)
-		return ;
-	if (current->next)
-		ms_free_job(job_head, current->next);
+void	ms_free_value(t_job *current)
+{
 	if (current->cmd)
 		ft_free_tab(current->cmd);
 	if (current->redir)
 		ft_free_tab(current->redir);
 	if (current->hdoc)
+	{
 		free(current->hdoc);
-	job_head = current;
-	if (current)
-		free(current);
+		current->hdoc = NULL;
+	}
+}
+
+void	ms_free_job(t_job *job_head)
+{	
+	t_job *save;
+
+	while (job_head != NULL)
+	{
+		save = job_head;
+		job_head = job_head->next;
+		ms_free_value(save);
+		free(save);
+		save = NULL;
+	}
+	job_head = NULL;
+
 }
