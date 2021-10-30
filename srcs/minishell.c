@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/30 13:35:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/30 14:25:44 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ void	ms_readline_loop(t_job *job_head)
 			ft_putendl_fd("Exit", 2);
 			exit(g_ms.exit);
 		}
-		add_history(input);
-		if (!ft_strcmp(input, ""))
+		if (input[0] == '\0')
+		{
+			free(input);
 			continue ;
+		}
+		add_history(input);
 		job_head = parse_input(input, job_head);
 		if (job_head && job_head->cmd)
 		{
