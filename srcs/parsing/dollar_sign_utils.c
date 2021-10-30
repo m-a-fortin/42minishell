@@ -20,7 +20,6 @@ t_dollar	*dollarsign_exit(t_dollar *d_sign)
 	temp = ft_strjoin(d_sign->new_string, d_sign->value);
 	free (d_sign->new_string);
 	d_sign->new_string = temp;
-	d_sign->index++;
 	return (d_sign);
 }
 

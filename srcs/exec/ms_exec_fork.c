@@ -45,10 +45,7 @@ void	ms_fork(char **cmd)
 	if (!path)
 		return ;
 	if (execve(path, cmd, g_ms.env) == -1)
-	{
 		free(path);
-		return (ms_cmdnotfound(cmd[0]));
-	}
 }
 
 bool	ms_fork_signal(int status)

@@ -47,6 +47,8 @@ typedef struct s_job
 	char			**redir;
 	char			*hdoc;
 	int				hdoc_fd[2];
+	pid_t			pid;
+	int				status;
 	struct s_job	*next;
 }			t_job;
 
