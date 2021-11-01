@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 13:03:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:31:03 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	*dollarsign_loop(char *string)
 	state->doublequote = false;
 	d_sign = malloc(sizeof(t_dollar));
 	dollarstruct_init(d_sign);
+	if (!string[d_sign->index])
+		temp = ft_strdup("\0");
 	while (string[d_sign->index])
 	{
 		d_sign->found = 0;

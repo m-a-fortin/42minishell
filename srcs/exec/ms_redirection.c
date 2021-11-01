@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/27 18:54:29 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:33:13 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ bool	ms_redirection_in(char *sign, char *next, t_job *current)
 		return (ms_hdocs_write(current));
 	if (fd_in == -1)
 	{
-		perror("Minishell:");
+		ft_putstr_fd("Minishell: ", 2);
+		perror(next);
 		ft_putchar_fd('\n', 1);
 		return (false);
 	}
