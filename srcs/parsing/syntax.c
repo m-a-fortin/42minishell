@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 08:45:14 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:39:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ bool	validate_pipe(t_token *token)
 	if (!token->next)
 		p_error(SHELL, NULL, UNXP_TOKEN, PIPE_TOKEN);
 	else if (token->next->type == STRING || is_redirection(token->next))
-	{
-		if (!token->next->next)
-		{
-			p_error(SHELL, NULL, UNXP_TOKEN, NEWLINE_TOKEN);
-			return (false);
-		}
 		return (true);
+	else if (!token->next->next)
+	{
+		p_error(SHELL, NULL, UNXP_TOKEN, NEWLINE_TOKEN);
+		return (false);
 	}
 	return (false);
 }
@@ -60,7 +58,7 @@ bool	validate_tokens_syntax(t_token *head)
 		else if (token->type != STRING)
 		{
 			if (validate_pipe(token) || validate_redir(token))
-				token = token->next->next;
+				token = token->next;
 			else
 			{
 				g_ms.exit = BAD_SYNTAX;
