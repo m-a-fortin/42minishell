@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:40:01 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/26 09:41:52 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:25:59 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,19 @@ bool	create_pipe(int *fd)
 
 char	*find_delimiter(t_token *token)
 {
+	char	*temp;
+
+	temp = NULL;
 	token = token->next;
+	if (token->token[0] == '\'')
+		temp = ft_strtrim(token->token, "\'");
+	else if (token->token[0] == '\"')
+		temp = ft_strtrim(token->token, "\"");
+	if (temp)
+	{
+		token->token = ft_strdup(temp);
+		free(temp);
+	}
 	return (token->token);
 }
 
