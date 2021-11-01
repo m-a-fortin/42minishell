@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 10:54:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:48:47 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ char	*manage_variable(t_dollar *d_sign, t_quote *state, char *string)
 	if (string[d_sign->index] == '\'' || string[d_sign->index] == '\"')
 		update_quotestatus(string[d_sign->index], state);
 	if (string[d_sign->index] == '$' && state->singlequote == false)
-		d_sign = dollarsign_found(string, d_sign, state);
+	{
+		if (string[d_sign->index + 1] != '\0')
+			d_sign = dollarsign_found(string, d_sign, state);
+	}
 	if (d_sign->found == 0)
 	{
 		temp = ft_append_string(d_sign->new_string,
