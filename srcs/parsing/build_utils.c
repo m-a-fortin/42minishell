@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:59:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 13:53:52 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 08:28:22 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	count_redirections(t_token *token)
 		if (is_redirection(token))
 		{
 			i++;
+			if (!token->next)
+				return (i);
 			if (token->next->type == STRING)
 				i++;
 			token = token->next->next;

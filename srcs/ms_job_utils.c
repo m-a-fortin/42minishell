@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:49:51 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/30 18:51:09 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 08:46:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,4 @@ void	ms_free_job(t_job *job_head)
 		save = NULL;
 	}
 	job_head = NULL;
-
 }

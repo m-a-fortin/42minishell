@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/30 18:52:19 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 08:46:20 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	ms_pipe_loop(t_job *current, t_job *job_head, t_pipe *data)
 		ms_pipe_save(data);
 		index++;
 	}
-	//waitpid(current->pid, &status, 0);
 	ms_pipe_wait(job_head, data);
 }
 
