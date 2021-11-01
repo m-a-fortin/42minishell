@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 11:46:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:24:51 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ void	ms_fork(char **cmd)
 		ms_cmdispath(cmd);
 	path = ms_get_cmdpath(cmd[0]);
 	if (!path)
-		return ;
+		exit(1);
 	if (execve(path, cmd, g_ms.env) == -1)
+	{
 		free(path);
+		ms_nosuchfile(cmd[0]);
+	}
 }
 
 bool	ms_fork_signal(int status)

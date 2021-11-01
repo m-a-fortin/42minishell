@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_lst_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:59:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 12:47:27 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:04:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ t_token	*token_lst_addnew(void	*token)
 	if (!new)
 		return (NULL);
 	if (token)
+	{
 		new->token = ft_strdup(token);
+		free(token);
+	}
 	new->type = EMPTY;
 	new->prev = NULL;
 	new->next = NULL;

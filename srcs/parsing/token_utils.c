@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 13:41:08 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 13:53:55 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_token	*add_token_to_list(t_parser *par, t_token *token)
 	}
 	string[i] = '\0';
 	token_lst_addback(&token, token_lst_addnew(string));
-	free(string);
 	return (token);
 }
 

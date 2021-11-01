@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 11:48:47 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/01 13:47:15 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,18 +125,9 @@ void	dollarsign_main(t_job *current)
 			index++;
 		}
 	}
-	index = 0;
-	if (current->redir)
-	{
-		while (current->redir[index])
-		{
-			if (current->redir[index][0])
-				current->redir[index] = dollarsign_loop(current->redir[index]);
-			if (!current->redir[index + 1])
-				break ;
-			index += 2;
-		}
-	}
+	current = dollarsign_redir(current);
+	if (current->hdoc)
+		current->hdoc = dollarsign_loop(current->hdoc);
 	if (current->next)
 		dollarsign_main(current->next);
 }

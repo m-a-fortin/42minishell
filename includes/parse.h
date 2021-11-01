@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 09:39:34 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 13:27:48 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ int			count_redirections(t_token *token);
 int			count_cmd_and_args(t_token *token);
 void		trimquotes_main(t_job *current);
 void		update_quotestatus(char type, t_quote *state);
+t_job		*dollarsign_redir(t_job *current);
 t_dollar	*dollarsign_exit(t_dollar *d_sign);
 t_dollar	*dollarsign_join(t_dollar *d_sign);
 t_dollar	*dollarsign_name(char *string, t_dollar *d_sign, t_quote *state);
+char		*dollarsign_loop(char *string);
 
 /* HEREDOCS */
 

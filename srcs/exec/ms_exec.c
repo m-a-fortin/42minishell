@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 09:39:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:20:26 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ void	ms_exec_main(t_job *job_head)
 		return ;
 	pipe = false;
 	current = job_head;
-	if (find_dollarsign(job_head))
-		dollarsign_main(current);
+	dollarsign_main(current);
 	if (job_head->next)
 		pipe = true;
 	if (pipe == false)
@@ -77,6 +76,5 @@ void	ms_exec_main(t_job *job_head)
 		return (ms_return_fd());
 	}
 	ms_pipe_main(job_head);
-	ms_pipe_number(job_head);
 	ms_return_fd();
 }

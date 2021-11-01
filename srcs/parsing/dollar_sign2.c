@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   dollar_sign2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/27 18:12:46 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 12:02:56 by mafortin         ###   ########.fr       */
+/*   Created: 2021/11/01 13:21:59 by mafortin          #+#    #+#             */
+/*   Updated: 2021/11/01 15:11:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_free_tab(char **tab)
+t_job	*dollarsign_redir(t_job *current)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	if (tab)
+	index = 0;
+	if (current->redir)
 	{
-		while (tab[i])
+		while (current->redir[index])
 		{
-			if (tab[i] != NULL)
-				free(tab[i]);
-			i++;
+			if (current->redir[index][0])
+				current->redir[index] = dollarsign_loop(current->redir[index]);
+			index++;
 		}
-		free (tab);
 	}
-	return ;
+	return (current);
 }

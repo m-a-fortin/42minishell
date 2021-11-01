@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
+#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/10/29 19:40:40 by mmondell         ###   ########.fr        #
+#    Updated: 2021/11/01 13:24:07 by mafortin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ EXEC_FILES	=	ms_cd.c ms_export.c ms_pwd_echo_env.c ms_unset.c ms_exec.c\
 				
 PARSE_FILES	=	parse_input.c parse_utils.c token_lst_utils.c token_utils.c\
 				tokens.c syntax.c dollar_sign.c dollar_sign_utils.c build_job.c\
-				build_utils.c trim_quotes.c hdoc_utils.c build_hdoc.c
+				build_utils.c trim_quotes.c hdoc_utils.c build_hdoc.c dollar_sign2.c
 
 MAKELIBFT	=	$(MAKE) --no-print-directory -C $(LIBFT_PATH)
 
