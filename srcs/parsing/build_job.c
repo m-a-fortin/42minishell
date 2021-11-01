@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 11:31:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:15:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ t_job	*build_job(t_token *token, t_job *job)
 		else if (is_redirection(token))
 		{
 			build_redirection(token, job);
-			if (!token->next)
-				break ;
 			token = token->next;
 		}
+		if (!token->next)
+			break ;
 		token = token->next;
 	}
 	free_list(rewind_list(token));
