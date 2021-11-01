@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 10:51:18 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:31:50 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ t_job	*build_job(t_token *token, t_job *job)
 		}
 		token = token->next;
 	}
-	for (int i = 0; job_head->cmd[i]; i++)
-		printf("%s\n", job_head->cmd[i]);
 	free_list(rewind_list(token));
 	return (job_head);
 }
