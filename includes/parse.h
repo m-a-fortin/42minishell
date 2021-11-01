@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 12:44:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 09:39:34 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_token		*add_token_to_list(t_parser *par, t_token *token);
 t_job		*parse_input(char *input, t_job *job_head);
 t_job		*build_job(t_token *token_head, t_job *job_head);
 t_job		*parse_input(char *input, t_job *job_head);
+bool		find_dollarsign(t_job *job_head);
 void		dollarsign_main(t_job *current);
 
 /* PARSE UTILITIES */

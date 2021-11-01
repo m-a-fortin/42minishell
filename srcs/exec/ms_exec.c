@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/30 18:35:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 09:39:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ void	ms_exec_main(t_job *job_head)
 		return ;
 	pipe = false;
 	current = job_head;
-	dollarsign_main(current);
+	if (find_dollarsign(job_head))
+		dollarsign_main(current);
 	if (job_head->next)
 		pipe = true;
-	else
-		pipe = false;
 	if (pipe == false)
 	{
 		if (ms_exec_prep(job_head) == false)

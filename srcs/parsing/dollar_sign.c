@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 13:03:00 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/01 09:58:14 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+bool	find_dollarsign(t_job *job_head)
+{
+	t_job	*tmp;
+	int		i;
+	int		j;
+
+	tmp = job_head;
+	while (tmp)
+	{
+		i = 0;
+		while (tmp->cmd[i])
+		{
+			j = 0;
+			while (tmp->cmd[i][j])
+			{
+				if (tmp->cmd[i][j] == '$')
+					return (true);
+				j++;
+			}
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	return (false);
+}
 
 t_dollar	*dollarsign_found(char *string, t_dollar *d_sign, t_quote *state)
 {
