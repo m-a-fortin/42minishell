@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hdoc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:40:01 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 15:11:52 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:48:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*find_delimiter(t_token *token)
 		temp = ft_strtrim(token->token, "\"");
 	if (temp)
 	{
+		if (token->token)
+			free(token->token);
 		token->token = ft_strdup(temp);
 		free(temp);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 14:01:31 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:49:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_token	*find_token(t_parser *par, t_token *token)
 		if (par->state != TEXT)
 		{
 			par->index = find_closing_quote(par, index_char(par));
-			check_state(par, par->input[par->index]);
 			if (par->index < 0)
 			{
 				bad_quotes_syntax(par);
