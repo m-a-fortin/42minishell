@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 09:51:50 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 12:31:11 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:35:04 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	dollarsign_free(t_dollar *d_sign, t_quote *state)
 		free (d_sign->new_string);
 	if (state)
 		free (state);
+	if (d_sign->value)
+		free (d_sign->value);
 	if (d_sign)
 		free (d_sign);
 }

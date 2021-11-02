@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 13:47:15 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:36:37 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ bool	find_dollarsign(t_job *job_head)
 
 t_dollar	*dollarsign_found(char *string, t_dollar *d_sign, t_quote *state)
 {
+	char	*value_env;
+
 	if (ft_isalpha(string[d_sign->index + 1]) == 0
 		&& string[d_sign->index + 1] != '_' && string[d_sign->index + 1] != '?')
 	{
@@ -52,7 +54,9 @@ t_dollar	*dollarsign_found(char *string, t_dollar *d_sign, t_quote *state)
 	if (string[d_sign->index] == '?')
 		return (dollarsign_exit(d_sign));
 	d_sign = dollarsign_name(string, d_sign, state);
-	d_sign->value = ms_getenv(d_sign->name, g_ms.env);
+	value_env = ms_getenv(d_sign->name, g_ms.env);
+	if (value_env)
+		d_sign->value = ft_strdup(value_env);
 	free(d_sign->name);
 	d_sign->name = NULL;
 	if (!d_sign->value)
