@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:21:05 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/02 11:36:37 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:02:04 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ t_dollar	*dollarsign_found(char *string, t_dollar *d_sign, t_quote *state)
 		&& string[d_sign->index + 1] != '_' && string[d_sign->index + 1] != '?')
 	{
 		d_sign->found = 0;
-		d_sign->index += 2;
+		if (!string[d_sign->index + 1])
+			d_sign->index++;
+		else
+			d_sign->index += 2;
 		return (d_sign);
 	}
 	d_sign->index++;
@@ -102,6 +105,8 @@ char	*dollarsign_loop(char *string)
 	{
 		d_sign->found = 0;
 		temp = manage_variable(d_sign, state, string);
+		if (!string[d_sign->index])
+			break ;
 		d_sign->index++;
 	}
 	free (string);

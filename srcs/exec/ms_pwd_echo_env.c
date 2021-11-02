@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pwd_echo_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:31:21 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 12:29:51 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:07:25 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ms_echo_main(char **args, int fd)
 	if (argc == 1)
 	{
 		ft_putchar_fd('\n', fd);
+		free(index);
 		return (0);
 	}
 	*index = 1;
