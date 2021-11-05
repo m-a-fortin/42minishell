@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 08:46:20 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/05 13:59:28 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ms_pipe_wait(t_job *job_head, t_pipe *data)
 			current = current->next;
 		index++;
 	}
-	g_ms.exit = WEXITSTATUS(current->status);
+	ms_fork_signal(current->status);
 }
 
 void	ms_pipe_loop(t_job *current, t_job *job_head, t_pipe *data)
@@ -103,6 +103,8 @@ bool	ms_pipe_main(t_job *job_head)
 	data = malloc(sizeof(t_pipe));
 	current = job_head;
 	data->nb_pipe = ms_pipe_number(current);
+	signal(SIGINT, ms_donothing);
+	signal(SIGQUIT, ms_donothing);
 	ms_pipe_loop(current, job_head, data);
 	free(data);
 	data = NULL;
