@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_envp_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:21:31 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:37:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/08 12:31:35 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,13 @@ char	**ms_set_noequal(char *name, char **export_ms)
 	while (export_ms[index])
 	{
 		if (ft_strncmp(new_name, export_ms[index], ft_strlen(new_name)) == 0)
+		{
+			free(new_name);
 			return (export_ms);
+		}
 		index++;
 	}
+	free(new_name);
 	return (ms_setenv_addback(name, "", export_ms));
 }
 
