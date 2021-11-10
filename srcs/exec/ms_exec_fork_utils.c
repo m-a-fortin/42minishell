@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/22 11:29:19 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/10 14:04:24 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@ char	*ms_find_cmdpath(char *cmd_name, char **paths)
 		if (!cmd_path)
 			perror("Minishell");
 		if (access(cmd_path, F_OK) == 0)
+		{
+			free (cmd_name);
 			return (cmd_path);
+		}
 		free(cmd_path);
 		index++;
 	}
 	ms_cmdnotfound(cmd_name + 1);
+	free(cmd_name);
+	ft_free_tab(paths);
+	if (cmd_path)
+		free(cmd_path);
 	return (NULL);
 }
 
