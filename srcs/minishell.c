@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 15:16:57 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/08 12:38:50 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_header(void)
 	printf("\e[96m\\ _________________\e[92m____________________ /\e[0m\n");
 	printf("______________________________________________\n");
 	printf("Created by: Marc-Andre Fortin & Maxime Mondello\n");
-	printf("Version: 1.0\n");
+	printf("Version: 1.2\n");
 	printf("______________________________________________");
 	printf("\n\n\n");
 }
