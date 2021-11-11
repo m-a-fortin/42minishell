@@ -3,26 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   build_job.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 15:12:35 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/11 12:53:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	build_redirection(t_token *tok, t_job *job)
+t_job	*build_or_free(t_token *head, t_job *job_head)
+{
+	t_token	*tmp;
+
+	if (g_ms.exit == 0)
+		return (job_head);
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp->token);
+		free(tmp);
+	}
+	if (job_head)
+		ms_free_job(job_head);
+	return (NULL);
+}
+
+void	allocate_and_copy(t_token *tok, t_job *job, int i)
+{
+	job->redir[i] = ft_calloc(ft_strlen(tok->token) + 1, sizeof(char));
+	ft_strlcpy(job->redir[i], tok->token, ft_strlen(tok->token) + 1);
+}
+
+bool	build_redirection(t_token *tok, t_job *job)
 {
 	int	i;
 	int	count;
 
 	i = 0;
 	if (tok->type == L_HDOC)
-	{
-		if (build_heredoc(tok, job) == false)
-			return ;
-	}
+		return (build_heredoc(tok, job));
 	if (!job->redir)
 	{
 		count = count_redirections(tok);
@@ -30,14 +51,13 @@ void	build_redirection(t_token *tok, t_job *job)
 	}
 	while (job->redir[i])
 		i++;
-	job->redir[i] = ft_calloc(ft_strlen(tok->token) + 1, sizeof(char));
-	ft_strlcpy(job->redir[i], tok->token, ft_strlen(tok->token) + 1);
+	allocate_and_copy(tok, job, i);
 	i++;
 	if (!tok->next)
-		return ;
+		return (true);
 	tok = tok->next;
-	job->redir[i] = ft_calloc(ft_strlen(tok->token) + 1, sizeof(char));
-	ft_strlcpy(job->redir[i], tok->token, ft_strlen(tok->token) + 1);
+	allocate_and_copy(tok, job, i);
+	return (true);
 }
 
 void	build_cmd_and_args(t_token *tok, t_job *job)
@@ -74,13 +94,13 @@ t_job	*build_job(t_token *token, t_job *job)
 			build_cmd_and_args(token, job);
 		else if (is_redirection(token))
 		{
-			build_redirection(token, job);
+			if (!build_redirection(token, job))
+				break ;
 			token = token->next;
 		}
 		if (!token->next)
 			break ;
 		token = token->next;
 	}
-	free_list(rewind_list(token));
-	return (job_head);
+	return (build_or_free(rewind_list(token), job_head));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_hdoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/26 12:47:08 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/11 12:29:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,7 @@ bool	build_heredoc(t_token *token, t_job *job)
 	ms_fork_signal(status);
 	read_from_input(fd, job);
 	ms_return_fd();
+	if (g_ms.exit == CTRL_C)
+		return (false);
 	return (true);
 }
