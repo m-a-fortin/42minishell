@@ -6,33 +6,34 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 13:32:11 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:13:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_job	*build_or_free(t_token *head, t_job *job_head)
+t_job	*build_or_free(t_token *token, t_job *job_head)
 {
+	t_token *head;
 	t_token	*tmp;
 
-	while (head)
+	head = token;
+	while (token)
 	{
-		if (head->interupt == true)
+		if (token->interupt == true)
 		{
-			head = rewind_list(head);
-			while (head)
-			{
-				tmp = head;
-				head = head->next;
-				free(tmp->token);
-				free(tmp);
-			}
 			if (job_head)
 				ms_free_job(job_head);
 			return (NULL);
 		}
+		token = token->next;
+	}
+	while (head)
+	{
+		tmp = head;
 		head = head->next;
+		free(tmp->token);
+		free(tmp);
 	}
 	return (job_head);
 }
