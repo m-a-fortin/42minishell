@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 12:29:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:30:14 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ bool	build_heredoc(t_token *token, t_job *job)
 	read_from_input(fd, job);
 	ms_return_fd();
 	if (g_ms.exit == CTRL_C)
+	{
+		token->interupt = true;
 		return (false);
+	}
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 12:53:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:32:11 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,25 @@ t_job	*build_or_free(t_token *head, t_job *job_head)
 {
 	t_token	*tmp;
 
-	if (g_ms.exit == 0)
-		return (job_head);
 	while (head)
 	{
-		tmp = head;
+		if (head->interupt == true)
+		{
+			head = rewind_list(head);
+			while (head)
+			{
+				tmp = head;
+				head = head->next;
+				free(tmp->token);
+				free(tmp);
+			}
+			if (job_head)
+				ms_free_job(job_head);
+			return (NULL);
+		}
 		head = head->next;
-		free(tmp->token);
-		free(tmp);
 	}
-	if (job_head)
-		ms_free_job(job_head);
-	return (NULL);
+	return (job_head);
 }
 
 void	allocate_and_copy(t_token *tok, t_job *job, int i)

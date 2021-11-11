@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 13:25:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/11 13:30:11 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef enum e_type
 typedef struct s_token
 {
 	struct s_token	*prev;
+	bool			interupt;
 	char			*token;
 	t_type			type;
 	struct s_token	*next;
