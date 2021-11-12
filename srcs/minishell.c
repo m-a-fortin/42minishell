@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/08 12:38:50 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:39:03 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,24 @@ void	ms_readline_loop(t_job *job_head)
 	}
 }
 
+char	**ms_export_cpy(char **env)
+{
+	int		x;
+	int		len;
+	char	**export;
+
+	x = 0;
+	len = ft_matrice_size(env);
+	export = (char **)ft_calloc(len + 1, sizeof(char *));
+	while (env[x])
+	{
+		if (ft_strncmp(env[x], "_=", 2) != 0)
+			export[x] = ft_strdup(env[x]);
+		x++;
+	}
+	return (export);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_job		*job_head;
@@ -71,8 +89,8 @@ int	main(int argc, char **argv, char **envp)
 		exit(-1);
 	}
 	g_ms.env = ft_matrice_cpy(envp);
-	g_ms.export = ft_sort_strtab(g_ms.env);
-	ms_saved_fd();
+	g_ms.export = ms_export_cpy(g_ms.env);
+	g_ms.export = ft_sort_strtab(g_ms.export);
 	print_header();
 	ms_readline_loop(job_head);
 }
