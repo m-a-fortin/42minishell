@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/14 13:51:40 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:04:06 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_header(void)
 
 bool	ms_empty_input(char *input)
 {
-	char *trim;
+	char	*trim;
 
 	trim = ft_trim_string(input, ' ');
 	if (trim[0] == '\0')
@@ -64,7 +64,7 @@ void	ms_readline_loop(t_job *job_head)
 		if (ms_empty_input(input) == true)
 		{
 			free(input);
-			continue;
+			continue ;
 		}
 		add_history(input);
 		job_head = parse_input(input, job_head);

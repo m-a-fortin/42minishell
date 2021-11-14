@@ -6,13 +6,13 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 13:03:19 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/14 13:16:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:04:31 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_trim_string(char *str, char c)
+char	*ft_trim_string(char *str, char c)
 {
 	char	*new_str;
 	int		i;
