@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/12 16:39:03 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/14 13:51:40 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ void	print_header(void)
 	printf("\n\n\n");
 }
 
+bool	ms_empty_input(char *input)
+{
+	char *trim;
+
+	trim = ft_trim_string(input, ' ');
+	if (trim[0] == '\0')
+	{
+		free (trim);
+		return (true);
+	}
+	free (trim);
+	return (false);
+}
+
 //*loop de readline qui envoie les infos au parsing et qui execute 
 //*le retour du parsing.
 void	ms_readline_loop(t_job *job_head)
@@ -43,12 +57,14 @@ void	ms_readline_loop(t_job *job_head)
 		if (!input)
 		{
 			ft_putendl_fd("Exit", 2);
+			ft_free_tab(g_ms.env);
+			ft_free_tab(g_ms.export);
 			exit(g_ms.exit);
 		}
-		if (input[0] == '\0')
+		if (ms_empty_input(input) == true)
 		{
 			free(input);
-			continue ;
+			continue;
 		}
 		add_history(input);
 		job_head = parse_input(input, job_head);
@@ -62,16 +78,23 @@ void	ms_readline_loop(t_job *job_head)
 char	**ms_export_cpy(char **env)
 {
 	int		x;
+	int		i;
 	int		len;
 	char	**export;
 
 	x = 0;
+	i = 0;
 	len = ft_matrice_size(env);
-	export = (char **)ft_calloc(len + 1, sizeof(char *));
+	if (len == 0)
+		len = 1;
+	export = ft_calloc(len + 1, sizeof(char *));
 	while (env[x])
 	{
 		if (ft_strncmp(env[x], "_=", 2) != 0)
-			export[x] = ft_strdup(env[x]);
+		{
+			export[i] = ft_strdup(env[x]);
+			i++;
+		}
 		x++;
 	}
 	return (export);
@@ -80,6 +103,7 @@ char	**ms_export_cpy(char **env)
 int	main(int argc, char **argv, char **envp)
 {
 	t_job		*job_head;
+	char		**sorted_env;
 
 	job_head = NULL;
 	(void)argv;
@@ -89,8 +113,11 @@ int	main(int argc, char **argv, char **envp)
 		exit(-1);
 	}
 	g_ms.env = ft_matrice_cpy(envp);
-	g_ms.export = ms_export_cpy(g_ms.env);
-	g_ms.export = ft_sort_strtab(g_ms.export);
+	sorted_env = ft_sort_strtab(g_ms.env);
+	g_ms.export = ms_export_cpy(sorted_env);
+	ft_free_tab(sorted_env);
 	print_header();
 	ms_readline_loop(job_head);
+	ft_free_tab(g_ms.env);
+	ft_free_tab(g_ms.export);
 }
