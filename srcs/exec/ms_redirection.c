@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:13:33 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 10:33:13 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:55:45 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,12 @@ bool	ms_redirection_in(char *sign, char *next, t_job *current)
 	{
 		ft_putstr_fd("Minishell: ", 2);
 		perror(next);
-		ft_putchar_fd('\n', 1);
 		return (false);
 	}
 	if (dup2(fd_in, 0) == -1)
 	{
 		perror("Minishell:");
-		ft_putchar_fd('\n', 1);
+		close(fd_in);
 		return (false);
 	}
 	close(fd_in);
@@ -85,7 +84,7 @@ bool	ms_redirection_loop(char *sign, char *next, t_job *current)
 	return (false);
 }
 
-//*A l'aide de dup2. Change le stdout/in pour 
+//*A l'aide de dup2. Change le save_out/in pour 
 //*un nouveau fd (g_ms.in ou g_ms.out). Fonctionne dans une loop
 //*pour les cas de plusieurs redirection.
 bool	ms_redirection_main(t_job *current)
@@ -93,6 +92,7 @@ bool	ms_redirection_main(t_job *current)
 	int		x;
 
 	x = 0;
+	ms_saved_fd();
 	if (!current->redir)
 		return (true);
 	while (current->redir[x] != 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:45:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 09:37:58 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:31:25 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,8 @@ int	ms_cd_main(char **cmd)
 	else if (chdir(cmd[1]) == -1)
 	{
 		free(old_pwd);
-		error = strerror(errno);
-		ft_putstr_fd("minishell: cd: ", 1);
-		ft_putstr_fd(cmd[1], 1);
-		ft_putstr_fd(": ", 1);
-		ft_putendl_fd(error, errno);
+		ft_putstr_fd("Minishell: ", 2);
+		perror(cmd[1]);
 		return (1);
 	}
 	else

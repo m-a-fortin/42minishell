@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:01:34 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/26 13:35:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:46:44 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_exec
 {
 	char				**env;
 	char				**export;
-	int					stdin;
-	int					stdout;
+	int					save_in;
+	int					save_out;
 	unsigned int		exit;
 }			t_exec;
 

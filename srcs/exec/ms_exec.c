@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/01 15:20:26 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:51:43 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ms_saved_fd(void)
 {
-	g_ms.stdin = dup(0);
-	g_ms.stdout = dup(1);
+	g_ms.save_in = dup(0);
+	g_ms.save_out = dup(1);
 }
 
 void	ms_return_fd(void)
 {
-	dup2(g_ms.stdin, 0);
-	dup2(g_ms.stdout, 1);
+	dup2(g_ms.save_in, 0);
+	dup2(g_ms.save_out, 1);
 }
 
 bool	ms_exec_phase(t_job *current)
