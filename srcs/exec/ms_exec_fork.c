@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/15 14:19:26 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:31:54 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	ms_fork(char **cmd)
 	path = NULL;
 	if (ft_char_search(cmd[0], '/') > 0)
 		ms_cmdispath(cmd);
+	if (ft_strncmp(cmd[0], ".\0", 2) == 0)
+	{
+		printf("Minishell: .: filename argument required\n");
+		exit (2);
+	}
 	path = ms_get_cmdpath(cmd[0]);
 	if (execve(path, cmd, g_ms.env) == -1)
 	{
