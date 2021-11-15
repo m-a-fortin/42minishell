@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/10 14:04:24 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:23:01 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,27 @@ char	*ms_get_cmdpath(char *cmd)
 	return (ms_find_cmdpath(cmd_name, paths));
 }
 
+char	*ms_join_currentdir(char *cmd)
+{
+	char	*pwd;
+	char	*join;
+	int		i;
+
+	i = 0;
+	pwd = NULL;
+	pwd = getcwd(pwd, 0);
+	while (cmd[i])
+	{
+		if (cmd[i] == '/')
+		{
+			break ;
+		}
+		i++;
+	}
+	join = ft_strjoin(pwd, cmd + i);
+	return (join);
+}
+
 char	**ms_create_paths(void)
 {
 	int		index;
@@ -67,9 +88,9 @@ char	**ms_create_paths(void)
 		if (ft_strncmp("PATH=", g_ms.env[index], 5) == 0)
 		{
 			found = true;
-			break ;
+			return (ft_split(g_ms.env[index] + 5, ':'));
 		}
 		index ++;
 	}
-	return (ft_split(g_ms.env[index] + 5, ':'));
+	return (NULL);
 }

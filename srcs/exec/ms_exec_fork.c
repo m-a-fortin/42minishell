@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/15 10:42:32 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:19:26 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ms_cmdispath(char **cmd)
 		exit (1);
 	}
 	execve(cmd[0], cmd, g_ms.env);
-	ms_nosuchfile(cmd[0] + 1);
+	perror("Minishell");
+	exit(127);
 }
 
 void	ms_fork(char **cmd)
@@ -34,16 +35,9 @@ void	ms_fork(char **cmd)
 	char	*path;
 
 	path = NULL;
-	if (ms_getenv("PATH=", g_ms.env) == NULL)
-	{
-		g_ms.exit = 127;
-		return (ms_nosuchfile(cmd[0]));
-	}
 	if (ft_char_search(cmd[0], '/') > 0)
 		ms_cmdispath(cmd);
 	path = ms_get_cmdpath(cmd[0]);
-	if (!path)
-		exit(1);
 	if (execve(path, cmd, g_ms.env) == -1)
 	{
 		free(path);
