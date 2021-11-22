@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/15 10:51:43 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:07:42 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ bool	ms_exec_prep(t_job *current)
 		g_ms.exit = 127;
 		return (false);
 	}
+	if (!current->cmd)
+		return (false);
 	trimquotes_main(current);
 	return (true);
 }
@@ -60,8 +62,6 @@ void	ms_exec_main(t_job *job_head)
 	bool	pipe;
 	t_job	*current;
 
-	if (!job_head->cmd)
-		return ;
 	pipe = false;
 	current = job_head;
 	dollarsign_main(current);
