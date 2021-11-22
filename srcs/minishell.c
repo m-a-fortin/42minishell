@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/15 10:43:41 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:37:04 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ms_readline_loop(t_job *job_head)
 			ft_free_tab(g_ms.export);
 			exit(g_ms.exit);
 		}
+		ms_saved_fd();
 		if (ms_empty_input(input) == true)
 		{
 			free(input);

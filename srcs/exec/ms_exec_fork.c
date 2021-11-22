@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/15 14:31:54 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:20:11 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	ms_cmdispath(char **cmd)
 {
 	struct stat	info;
 
-	stat(cmd[0], &info);
+	if (stat(cmd[0], &info) == -1)
+	{
+		perror("Minishell");
+		exit (127);
+	}
 	if (S_ISDIR(info.st_mode))
 	{
-		ms_return_fd();
 		ft_putstr_fd("Minishell: ", 1);
 		ft_putstr_fd(cmd[0], 1);
 		ft_putendl_fd(": is a directory", 1);
-		exit (1);
+		exit(126);
 	}
 	execve(cmd[0], cmd, g_ms.env);
 	perror("Minishell");
@@ -70,6 +73,7 @@ bool	ms_fork_signal(int status)
 bool	ms_fork_exit(int status)
 {
 	ms_fork_signal(status);
+	ms_return_fd();
 	if (g_ms.exit != 0)
 		return (false);
 	return (true);
