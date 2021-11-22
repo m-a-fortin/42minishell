@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:25:12 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/22 13:37:04 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:49:31 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ms_readline_loop(t_job *job_head)
 			ft_free_tab(g_ms.export);
 			exit(g_ms.exit);
 		}
-		ms_saved_fd();
 		if (ms_empty_input(input) == true)
 		{
 			free(input);
@@ -118,6 +117,7 @@ int	main(int argc, char **argv, char **envp)
 	g_ms.export = ms_export_cpy(sorted_env);
 	ft_free_tab(sorted_env);
 	print_header();
+	ms_saved_fd();
 	ms_readline_loop(job_head);
 	ft_free_tab(g_ms.env);
 	ft_free_tab(g_ms.export);

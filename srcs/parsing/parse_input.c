@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:50:35 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 14:36:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:50:45 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ t_token	*find_token(t_parser *par, t_token *token)
 		if (par->state != TEXT)
 		{
 			par->index = find_closing_quote(par, index_char(par));
-			check_state(par, par->input[par->index]);
 			if (par->index < 0)
+				par->index = 0;
+			check_state(par, par->input[par->index]);
+			if (par->index == 0)
 			{
 				bad_quotes_syntax(par);
 				free_list(token);
