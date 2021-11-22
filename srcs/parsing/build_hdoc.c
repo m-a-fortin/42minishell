@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 13:30:14 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:42:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,10 @@ void	add_hdoc_job(t_job *job, char *heredoc, int *fd)
 
 bool	read_from_input(int *fd, t_job *job)
 {
-	char	*line;
-	char	*temp;
 	char	buff[2];
 	int		ret;
 
 	close(fd[1]);
-	line = NULL;
 	while (true)
 	{
 		ret = read(fd[0], &buff, 1);
@@ -46,10 +43,8 @@ bool	read_from_input(int *fd, t_job *job)
 			return (false);
 		else if (ret == 0)
 			break ;
-		temp = ft_append_string(line, buff[0]);
-		line = temp;
+		job->hdoc = ft_append_string(job->hdoc, buff[0]);
 	}
-	job->hdoc = line;
 	close(fd[0]);
 	return (true);
 }
