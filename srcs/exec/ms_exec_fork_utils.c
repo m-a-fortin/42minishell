@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/15 14:23:01 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/25 11:48:05 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ms_find_cmdpath(char *cmd_name, char **paths)
 		if (access(cmd_path, F_OK) == 0)
 		{
 			free (cmd_name);
+			ft_free_tab(paths);
 			return (cmd_path);
 		}
 		free(cmd_path);
