@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 14:19:33 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/25 13:44:17 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_job	*build_or_free(t_token *token, t_job *job_head)
 		{
 			if (job_head)
 				ms_free_job(job_head);
+			free_list(head);
 			return (NULL);
 		}
 		token = token->next;
