@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/26 15:51:11 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:01:04 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	read_from_input(int *fd, t_job *job)
 	return (true);
 }
 
-void	heredoc_inputs(t_token *token, t_job *job, int *fd)
+void	heredoc_inputs(t_token *token, t_job *job, int *fd, t_job *job_head)
 {
 	char	*heredoc;
 	char	*input;
@@ -65,19 +65,19 @@ void	heredoc_inputs(t_token *token, t_job *job, int *fd)
 			exit (g_ms.exit);
 		if (!ft_strcmp(input, delimiter))
 		{
-			puts("allo");
 			add_hdoc_job(job, heredoc, fd);
 			break ;
 		}
 		heredoc = join_inputs(input, heredoc);
 		free(input);
 	}
-	free(input);
-	free(heredoc);
+	free_all_hdoc(input, heredoc, job_head, token);
+	// free(input);
+	// free(heredoc);
 	exit(EXIT_SUCCESS);
 }
 
-bool	build_heredoc(t_token *token, t_job *job)
+bool	build_heredoc(t_token *token, t_job *job, t_job *job_head)
 {
 	pid_t	pid;
 	int		status;
@@ -90,7 +90,7 @@ bool	build_heredoc(t_token *token, t_job *job)
 	if (invalid_process_id(pid))
 		return (false);
 	if (pid == 0)
-		heredoc_inputs(token, job, fd);
+		heredoc_inputs(token, job, fd, job_head);
 	waitpid(pid, &status, 0);
 	ms_fork_signal(status);
 	read_from_input(fd, job);

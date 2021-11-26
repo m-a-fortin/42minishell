@@ -6,11 +6,21 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:40:01 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/26 15:49:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:00:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_all_hdoc(char *input, char *hdoc, t_job *job_head, t_token *tok)
+{
+	if (tok)
+		free_list(rewind_list(tok));
+	if (job_head)
+		ms_free_job(job_head);
+	free(input);
+	free(hdoc);
+}
 
 bool	invalid_process_id(int pid)
 {

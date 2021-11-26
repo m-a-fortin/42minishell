@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:05:36 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/01 13:27:48 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:59:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ char		*dollarsign_loop(char *string);
 
 /* HEREDOCS */
 
-bool		build_heredoc(t_token *token, t_job *job);
+void		free_all_hdoc(char *input, char *hdoc, t_job *job_head, t_token *tok);
+bool		build_heredoc(t_token *token, t_job *job, t_job *job_head);
 bool		create_pipe(int *fd);
 bool		invalid_process_id(int pid);
 char		*find_delimiter(t_token *token);

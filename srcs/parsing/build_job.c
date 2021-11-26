@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:46:17 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/26 15:49:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:55:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	allocate_and_copy(t_token *tok, t_job *job, int i)
 	ft_strlcpy(job->redir[i], tok->token, ft_strlen(tok->token) + 1);
 }
 
-bool	build_redirection(t_token *tok, t_job *job)
+bool	build_redirection(t_token *tok, t_job *job, t_job *job_head)
 {
 	int	i;
 	int	count;
@@ -65,7 +65,7 @@ bool	build_redirection(t_token *tok, t_job *job)
 	tok = tok->next;
 	allocate_and_copy(tok, job, i);
 	if (tok->prev->type == L_HDOC)
-		return (build_heredoc(tok, job));
+		return (build_heredoc(tok, job, job_head));
 	return (true);
 }
 
@@ -103,7 +103,7 @@ t_job	*build_job(t_token *token, t_job *job)
 			build_cmd_and_args(token, job);
 		else if (is_redirection(token))
 		{
-			if (!build_redirection(token, job))
+			if (!build_redirection(token, job, job_head))
 				break ;
 			token = token->next;
 		}
