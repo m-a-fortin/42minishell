@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:40:01 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/02 13:48:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:49:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*find_delimiter(t_token *token)
 	char	*temp;
 
 	temp = NULL;
-	token = token->next;
 	if (token->token[0] == '\'')
 		temp = ft_strtrim(token->token, "\'");
 	else if (token->token[0] == '\"')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_hdoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/25 13:12:19 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:51:11 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	heredoc_inputs(t_token *token, t_job *job, int *fd)
 			exit (g_ms.exit);
 		if (!ft_strcmp(input, delimiter))
 		{
+			puts("allo");
 			add_hdoc_job(job, heredoc, fd);
 			break ;
 		}
