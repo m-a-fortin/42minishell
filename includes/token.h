@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:06:37 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 14:04:09 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 08:19:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 typedef enum e_type
 {
 	PIPE,
-	R_HDOC,
-	L_HDOC,
-	R_REDIR,
-	L_REDIR,
+	APPEND,
+	HDOC,
+	OUTPUT,
+	INPUT,
 	STRING,
 	EMPTY,
 }	t_type;

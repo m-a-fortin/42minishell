@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/30 14:02:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 08:19:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 char	*next_token(t_token *token)
 {
 	token = token->next;
-	if (token->type == L_REDIR)
+	if (token->type == INPUT)
 		return (L_REDIR_TOKEN);
-	else if (token->type == R_REDIR)
+	else if (token->type == OUTPUT)
 		return (R_REDIR_TOKEN);
-	else if (token->type == L_HDOC)
+	else if (token->type == HDOC)
 		return (L_HDOC_TOKEN);
 	else if (token->type == PIPE)
 		return (PIPE_TOKEN);

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:55:12 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/11 13:49:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 08:19:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	is_redirection(t_token *token)
 {
-	if (token->type == L_REDIR || token->type == R_REDIR
-		|| token->type == L_HDOC || token->type == R_HDOC)
+	if (token->type == INPUT || token->type == OUTPUT
+		|| token->type == HDOC || token->type == APPEND)
 		return (true);
 	return (false);
 }
@@ -23,13 +23,13 @@ bool	is_redirection(t_token *token)
 int	set_operator_type(char *str)
 {
 	if (!ft_strcmp(str, ">>"))
-		return (R_HDOC);
+		return (APPEND);
 	else if (!ft_strcmp(str, "<<"))
-		return (L_HDOC);
+		return (HDOC);
 	else if (!ft_strcmp(str, ">"))
-		return (R_REDIR);
+		return (OUTPUT);
 	else if (!ft_strcmp(str, "<"))
-		return (L_REDIR);
+		return (INPUT);
 	else if (!ft_strcmp(str, "|"))
 		return (PIPE);
 	return (EMPTY);

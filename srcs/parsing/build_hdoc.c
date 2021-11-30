@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/26 16:01:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 08:20:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	heredoc_inputs(t_token *token, t_job *job, int *fd, t_job *job_head)
 		free(input);
 	}
 	free_all_hdoc(input, heredoc, job_head, token);
-	// free(input);
-	// free(heredoc);
 	exit(EXIT_SUCCESS);
 }
 
