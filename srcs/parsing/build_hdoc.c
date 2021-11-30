@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:03:14 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/30 10:38:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:09:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ bool	read_from_input(int *fd, t_job *job)
 	int		ret;
 
 	close(fd[1]);
+	free(job->hdoc);
+	job->hdoc = NULL;
 	while (true)
 	{
 		ret = read(fd[0], &buff, 1);

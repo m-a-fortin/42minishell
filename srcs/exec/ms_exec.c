@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/30 12:25:03 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:07:20 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ms_exec_main(t_job *job_head)
 
 	pipe = false;
 	current = job_head;
-	printf("HEREDOC STRING : %s\n", job_head->hdoc);
 	dollarsign_main(current);
 	if (job_head->next)
 		pipe = true;
