@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:06:07 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/30 09:50:19 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 10:22:54 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ bool	p_error(char *prg, char *arg, char *msg, char *token)
 	if (msg)
 		ft_putstr_fd(msg, STDERR_FILENO);
 	if (token)
-		ft_putendl_fd(token, STDERR_FILENO);
+		ft_putstr_fd(token, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
 	return (false);
 }
 
