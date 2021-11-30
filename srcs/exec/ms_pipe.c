@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/30 12:19:02 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:28:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ms_pipe_dup(t_job *current, t_pipe *data, int index)
 
 void	ms_pipe_exec(t_job *current, t_pipe *data, int index, t_job *job_head)
 {
-	bool ret;
+	bool	ret;
 
 	ms_pipe_dup(current, data, index);
 	free(data);
