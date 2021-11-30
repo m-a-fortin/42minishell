@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:29:54 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/30 09:35:24 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 12:19:02 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,19 @@ void	ms_pipe_dup(t_job *current, t_pipe *data, int index)
 	}
 }
 
-void	ms_pipe_exec(t_job *current, t_pipe *data, int index)
+void	ms_pipe_exec(t_job *current, t_pipe *data, int index, t_job *job_head)
 {
-	(void)index;
-	(void)data;
-	(void)current;
+	bool ret;
+
 	ms_pipe_dup(current, data, index);
-	ms_exec_prep(current);
-	if (ms_check_builtin(current) == false)
-		ms_fork(current->cmd);
+	free(data);
+	ret = ms_exec_prep(current);
+	if (ret == true)
+	{
+		if (ms_check_builtin(current) == false)
+			ms_fork(current);
+	}
+	ms_free_fork(job_head);
 	exit(g_ms.exit);
 }
 
@@ -83,7 +87,7 @@ void	ms_pipe_loop(t_job *current, t_job *job_head, t_pipe *data)
 		if (invalid_process_id(current->pid))
 			return ;
 		if (!current->pid)
-			ms_pipe_exec(current, data, index);
+			ms_pipe_exec(current, data, index, job_head);
 		if (index > 0)
 			ms_close_pipe(data->prev_pipe);
 		if (current->next == NULL)

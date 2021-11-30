@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 14:30:23 by mafortin          #+#    #+#             */
-/*   Updated: 2021/10/28 15:44:25 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/30 12:15:55 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ int	ms_pipe_number(t_job *job_head)
 		node = node->next;
 	}
 	return (nb);
+}
+
+void	ms_free_fork(t_job *current)
+{
+	ft_free_tab(g_ms.env);
+	ft_free_tab(g_ms.export);
+	ms_free_job(current);
 }
 
 void	ms_pipe_save(t_pipe *data)

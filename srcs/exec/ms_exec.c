@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:44:24 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/30 09:31:55 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 12:25:03 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ bool	ms_exec_phase(t_job *current)
 
 bool	ms_exec_prep(t_job *current)
 {
-	(void)current;
 	if (ms_redirection_main(current) == false)
 	{
 		g_ms.exit = 127;
@@ -64,6 +63,7 @@ void	ms_exec_main(t_job *job_head)
 
 	pipe = false;
 	current = job_head;
+	printf("HEREDOC STRING : %s\n", job_head->hdoc);
 	dollarsign_main(current);
 	if (job_head->next)
 		pipe = true;
