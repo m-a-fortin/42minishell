@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:41:40 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/14 13:08:55 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/11/30 08:31:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ char		**ft_remove_line(char **matrice, int index);
 char		*ft_append_string(char *src, char c);
 char		*ft_add_newline(char *str);
 char		*ft_trim_string(char *str, char c);
+void		ft_putstr(char *str);
 
 #endif

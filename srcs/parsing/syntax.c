@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:56:11 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/30 08:16:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/30 10:08:35 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,9 @@ bool	validate_redir(t_token *token)
 	if (!is_redirection(token))
 		return (false);
 	if (!token->next)
-	{
-		p_error(SHELL, NULL, UNXP_TOKEN, NEWLINE_TOKEN);
-		return (false);
-	}
+		return (p_error(SHELL, NULL, UNXP_TOKEN, NEWLINE_TOKEN));
 	if (token->next->type != STRING)
-	{
-		p_error(SHELL, NULL, UNXP_TOKEN, next_token(token));
-		return (false);
-	}
+		return (p_error(SHELL, NULL, UNXP_TOKEN, next_token(token)));
 	else
 		return (true);
 }
@@ -36,15 +30,12 @@ bool	validate_pipe(t_token *token)
 		return (false);
 	while (token)
 	{
-		if (!token->next)
-			p_error(SHELL, NULL, UNXP_TOKEN, PIPE_TOKEN);
+		if (!token->next || !token->prev)
+			return (p_error(SHELL, NULL, UNXP_TOKEN, PIPE_TOKEN));
 		else if (token->next->type == STRING || is_redirection(token->next))
 			return (true);
 		else if (!token->next->next)
-		{
-			p_error(SHELL, NULL, UNXP_TOKEN, NEWLINE_TOKEN);
-			return (false);
-		}
+			return (p_error(SHELL, NULL, UNXP_TOKEN, NEWLINE_TOKEN));
 		token = token->next;
 	}
 	return (false);

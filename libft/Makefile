@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 14:02:25 by mafortin          #+#    #+#              #
-#    Updated: 2021/11/14 13:09:05 by mafortin         ###   ########.fr        #
+#    Updated: 2021/11/30 08:30:30 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS_FILES 	= 	ft_isalnum.c ft_isdigit.c ft_memccpy.c ft_memcpy.c ft_putchar_fd.
 				ft_isdigit_string.c get_next_line.c get_next_line_utils.c ft_char_search.c\
 				ft_change_line.c ft_print_matrice.c ft_matrice_cpy.c ft_addline.c\
 				ft_print_matrice_fd.c ft_majchar.c ft_strndup.c ft_remove_line.c\
-				ft_append_string.c ft_sort_strtab.c ft_strcmp.c ft_trim_string.c
+				ft_append_string.c ft_sort_strtab.c ft_strcmp.c ft_trim_string.c ft_putstr.c\
 
 
 OBJS_FILES	= $(SRCS_FILES:.c=.o)

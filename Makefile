@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/22 11:49:47 by mafortin          #+#    #+#              #
-#    Updated: 2021/11/11 13:43:49 by mmondell         ###   ########.fr        #
+#    Updated: 2021/11/30 10:13:48 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(OBJS_PATH):
 linux : CFLAGS += -g
 linux :	$(OBJS_PATH) $(OBJS)
 	@echo "\033[95m Compiling MINISHELL \033[0m"
-	$(MAKELIBFT)
+	@$(MAKELIBFT)
 	$(CC) $(OBJS) -L$(LIBFT_PATH) -l$(LIBFT) -lcurses -lreadline -o $(NAME)
 	@echo "\\n\033[32;1m MINISHELL IS READY \033[0m \\n"
 
