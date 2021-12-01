@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:24:55 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/30 15:31:07 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:02:15 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*ms_get_cmdpath(char *cmd)
 	if (!paths)
 	{
 		ms_nosuchfile(cmd);
+		free(cmd_name);
+		free(paths);
 		return (NULL);
 	}
 	return (ms_find_cmdpath(cmd_name, paths));

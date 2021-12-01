@@ -6,7 +6,7 @@
 /*   By: mafortin <mafortin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:44:10 by mafortin          #+#    #+#             */
-/*   Updated: 2021/11/30 16:13:39 by mafortin         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:00:21 by mafortin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	ms_fork(t_job *current, t_job *job_head)
 	{
 		if (execve(path, current->cmd, g_ms.env) == -1)
 		{
-			free(path);
 			printf("Minishell: %s: command not found\n", current->cmd[0]);
 			g_ms.exit = 127;
 		}
+		free(path);
 	}
 	ms_free_fork(job_head);
 	exit(g_ms.exit);
